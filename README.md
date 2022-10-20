@@ -1,6 +1,6 @@
 **Osnovna uputstva:**
 
-TBD
+- [Podešavanje GIT okruženja za omogućenje pristupa repozitorijumu](docs/git-setup.md)
 
 **Informacije o kursu:**
 
