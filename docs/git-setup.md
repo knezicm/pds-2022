@@ -58,7 +58,7 @@ Nakon što ste odabrali ovu opciju, pojaviće se stranica sa korisničkim podeš
 
 Pojaviće se prozor sa podešavanjima vezanim za SSH ključeve u kojem se prikazuju već dodani ključevi. Za dodavanje novog ključa, trebate kliknuti na dugme *New SSH key* označeno na slici.
 
-![ssh-enter-key](imgs/ssh-add-new-key.PNG)
+![ssh-add-new-key](imgs/ssh-add-new-key.PNG)
 
 Pojaviće se novi prozor za unos novog ključa sa poljima prikazanim na slici ispod. Prvo treba definisati ime ključa (polje *Title*). Polje *Key type* treba zadržati kao na slici (*Authentication Key*). U polje *Key* treba unijeti javni ključ generisan kako je opisano iznad. U tom smislu, potrebno je da otvorite prethodno generisani javni ključ (fajl `id_rsa.pub`) u nekom tekstualnom editoru (npr. *Notepad* u *Windows* okruženju), a zatim da kopirate kompletan sadržaj ovog fajla i prilijepite tako kopiran sadržaj u polje *Key*. Konačno, da sačuvate ključ, kliknite na dugme *Add SSH key*.
 
