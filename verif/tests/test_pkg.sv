@@ -13,7 +13,14 @@ package test_pkg;
     `include "virtual_interface_base.svh"
     `include "test_base.svh"
     
-
+    /**
+     * Issue(s) 9, 10 & 11
+     *  Full Adder test(s)
+     */
+    `include "./9/four_bit_full_adder_defines.svh"
+    `include "./9/four_bit_full_adder_vif_wrapper.svh"
+    `include "./9/four_bit_full_adder_test_generic.svh"
+    
     virtual_interface_base vif_base_h;
     test_base test_h;
 
@@ -33,6 +40,8 @@ package test_pkg;
         
         if ("test_base" == test_name) begin
             test_h = new(test_name);
+        end else if ("four_bit_full_subtractor_test_generic" == test_name) begin
+            test_h = four_bit_full_subtractor_test_generic::new(test_name, vif_base_h);
         end else begin
             $display("[FATAL]: Test name does not exist!!!");
             $fatal;
