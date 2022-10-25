@@ -1,0 +1,3 @@
+../tests/interfaces/gpio_interface.sv
+../tests/test_pkg.sv
+
