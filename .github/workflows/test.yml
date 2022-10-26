@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "assignments" branch
   push:
-    branches: [ "assignments" ]
+    branches: [ "assignments", "test", "verify" ]
   pull_request:
     branches: [ "assignments" ]
 
@@ -42,7 +42,15 @@ jobs:
           backend: mcode
         
       - name: Check GHDL version
-        run: ghdl --version
+        run: |
+            ghdl --version
+            if test -f test.vhd; then
+                echo "File test.vhd exists."
+                ghdl -s test.vhd
+            else
+                echo "File test.vhd does not exist."
+                exit 1
+            fi
       
       - name: Setup Python
         uses: actions/setup-python@v4.3.0
