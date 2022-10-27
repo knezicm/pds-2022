@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "This PR is opened by ${{ github.event.push.user.login }}."
+echo "This PR is opened by ${{ github.event.pull_request.user.login }}."
 
-DIR="/${{ github.event.push.user.login }}/"
+DIR="/${{ github.event.pull_request.user.login }}/"
 if [ -d "$DIR" ]; then
   echo "Directory ${DIR} exists. Now checking if test.vhd file exists..."
 else
