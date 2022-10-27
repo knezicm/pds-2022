@@ -5,6 +5,7 @@ echo "This pull request is opened by $PR_AUTHOR."
 DIR="./assignments/$PR_AUTHOR/"
 if [ -d "$DIR" ]; then
   echo "Directory ${DIR} exists. Now checking if test.vhd file exists..."
+  cd $DIR
 else
   echo "Error: ${DIR} not found. Aborting..."
   exit 1
