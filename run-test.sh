@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "This PR is opened by $PR_AUTHOR."
+echo "This pull request is opened by $PR_AUTHOR."
 
-DIR="/$PR_AUTHOR/"
+DIR="./assignments/$PR_AUTHOR/"
 if [ -d "$DIR" ]; then
   echo "Directory ${DIR} exists. Now checking if test.vhd file exists..."
 else
