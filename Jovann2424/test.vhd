@@ -7,7 +7,7 @@ port (
 
 	input  : in std_logic_vector (3 downto 0);
 	sel    : in std_logic_vector (1 downto 0);
-	output : out std_logic;
+	output : out std_logic
 	);
 end test;
 
