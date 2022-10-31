@@ -50,19 +50,19 @@ Generisane ključeve možete da preuzmete na lokaciji koju ste prethodno definis
 
 Da biste prenijeli javni ključ, koji zapravo predstavlja tekstualni sadržaj fajla `id_rsa.pub`, potrebno je da se ulogujete na GitHub sa prethodno kreiranim korisničkim nalogom i da odaberete opciju *Settings* u meniju korisničkog naloga (gornji desni ugao na mjestu korisničkog avatara, kao što je prikazano na slici ispod).
 
-![github-user-settings](imgs/github-user-settings.PNG)
+![github-user-settings](imgs/git-settings/01-github-user-settings.PNG)
 
 Nakon što ste odabrali ovu opciju, pojaviće se stranica sa korisničkim podešavanjima. U meniju sa lijeve strane, potrebno je odabrati opciju *SSH and GPG Keys* označenu na slici ispod.
 
-![github-ssh](imgs/github-ssh.PNG)
+![github-ssh](imgs/git-settings/02-github-ssh.PNG)
 
 Pojaviće se prozor sa podešavanjima vezanim za SSH ključeve u kojem se prikazuju već dodani ključevi. Za dodavanje novog ključa, trebate kliknuti na dugme *New SSH key* označeno na slici.
 
-![ssh-add-new-key](imgs/github-add-new-key.PNG)
+![ssh-add-new-key](imgs/git-settings/03-github-add-new-key.PNG)
 
 Pojaviće se novi prozor za unos novog ključa sa poljima prikazanim na slici ispod. Prvo treba definisati ime ključa (polje *Title*). Polje *Key type* treba zadržati kao na slici (*Authentication Key*). U polje *Key* treba unijeti javni ključ generisan kako je opisano iznad. U tom smislu, potrebno je da otvorite prethodno generisani javni ključ (fajl `id_rsa.pub`) u nekom tekstualnom editoru (npr. *Notepad* u *Windows* okruženju), a zatim da kopirate kompletan sadržaj ovog fajla i prilijepite tako kopiran sadržaj u polje *Key*. Konačno, da sačuvate ključ, kliknite na dugme *Add SSH key*.
 
-![ssh-enter-key](imgs/github-enter-key.PNG)
+![ssh-enter-key](imgs/git-settings/04-github-enter-key.PNG)
 
 Ovim je proces podešavanja SSH veze u GitHub okruženju kompletirano. Ostaje da pristupite kloniranju repozitorijuma i korišćenju ostalih opcija koje nudi Git alat. Za više informacija o korišćenju Git alata, možete da pogledate skup video materijala koje možete pronaći na sljedećem [YouTube kanalu](https://www.youtube.com/watch?v=qZ41BiMd1yI&list=PLwgfxpYcBNqGyUdy37jpFxAt-DdeSAHbU).
 
@@ -79,7 +79,7 @@ pri čemu trebate `Ime Prezime` i `ime.prezime` zamijeniti stvarnim podacima.
 
 Sada možemo da koristimo Git alat, a prva komanda je svakako kloniranje repozitorijuma. Koristimo SSH pristup na način da kopiramo link za SSH pristup koji se dobija klikom na dugme *Code* u okviru repozitorijuma, kao što je ilustrovano na slici.
 
-![git-clone-ssh](imgs/git-clone-ssh.PNG)
+![git-clone-ssh](imgs/git-settings/05-git-clone-ssh.PNG)
 
 Ovaj link zatim proslijedimo komandi `git clone` na sljedeći način:
 

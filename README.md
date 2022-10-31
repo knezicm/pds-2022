@@ -1,6 +1,7 @@
 **Osnovna uputstva:**
 
-- [Podešavanje GIT okruženja za omogućenje pristupa repozitorijumu](docs/git-setup.md)
+- [Podešavanje Git okruženja za omogućenje pristupa repozitorijumu](docs/git-setup.md)
+- [Proces rada u GitHub okruženju](docs/github-workflow.md)
 
 **Informacije o kursu:**
 
