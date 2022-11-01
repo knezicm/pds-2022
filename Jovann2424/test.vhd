@@ -15,3 +15,4 @@ architecture test_arch of test is
 
 
 end test_arch;
+	
