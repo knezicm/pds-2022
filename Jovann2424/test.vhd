@@ -11,5 +11,6 @@ port (
 end test;
 
 architecture test_arch of test is
+begin
 	output <= input;
 end test_arch;
