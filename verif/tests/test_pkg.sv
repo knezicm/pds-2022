@@ -13,6 +13,14 @@ package test_pkg;
     `include "virtual_interface_base.svh"
     `include "test_base.svh"
     
+    /** 
+     * Issue 0
+     *  NAND2
+     */
+    `include "./0/nand2_defines.svh"
+    `include "./0/nand2_vif_wrapper.svh"
+    `include "./0/nand2_test_generic.svh" 
+    
     /**
      * Issue(s) 9, 10 & 11
      *  Full Adder test(s)
@@ -54,6 +62,8 @@ package test_pkg;
         
         if ("test_base" == test_name) begin
             test_h = new(test_name);
+        end else if ("nand2_test_generic" == test_name) begin
+            test_h = nand2_test_generic::new(test_name, vif_base_h);
         end else if ("four_bit_full_subtractor_test_generic" == test_name) begin
             test_h = four_bit_full_subtractor_test_generic::new(test_name, vif_base_h);
         end else if ("four_bit_full_adder_test_generic" == test_name) begin
