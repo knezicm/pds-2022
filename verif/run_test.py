@@ -314,7 +314,7 @@ def compile_testbench() :
     #
     log_dir = path["sim"] + '/' + path["log"];
     work_lib = "test_lib";
-    dut_wrap_macro = " -define DUT_WRAPPER=%s " %(app_opts["design"] + "_wrapper");
+    dut_wrap_macro = " +define+DUT_WRAPPER=%s " %(app_opts["design"] + "_wrapper");
     
     print("Creating log directory - \"%s\" ..." %(log_dir));
     is_exist = os.path.exists(log_dir);
