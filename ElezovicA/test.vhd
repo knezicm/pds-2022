@@ -14,5 +14,5 @@ end test;
 
 architecture test_arch of test is
 begin
-	output <= a+b;
+	output <= a xor b;
 end test_arch;
