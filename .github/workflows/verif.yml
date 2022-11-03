@@ -22,7 +22,8 @@ jobs:
     runs-on: self-hosted
     env:
       PR_AUTHOR: ${{ github.event.pull_request.user.login }}
-      ISSUE_NO: ${{ github.event.pull_request.issue_number }}
+      PR_TITLE: ${{ github.event.pull_request.title }}
+      PR_BRANCH: ${{ github.event.pull_request.head.ref }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -34,11 +35,11 @@ jobs:
 #        env:
 #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: Print author
-        run: echo "Author is $PR_AUTHOR"
-        
-      - name: Print issue number
-        run: echo "Issue number is $ISSUE_NO"
+      - name: Print info
+        run: |
+          echo "Author is $PR_AUTHOR"
+          echo "Title is $PR_TITLE"
+          echo "Branch is $PR_BRANCH"
       
       - name: Check Python version
         run: |
