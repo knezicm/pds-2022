@@ -45,4 +45,4 @@ jobs:
       - name: Check Modelsim version
         run: |
           cd verif
-          python ./run_test.py --issue=$ISSUE_NUMBER
+          python ./run_test.py --issue="$ISSUE_NUMBER"
