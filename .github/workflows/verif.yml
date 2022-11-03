@@ -1,0 +1,53 @@
+# This is a workflow for continuous integration of assignments
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push events for the "test" branch
+  push:
+    branches: [ "test-verif" ]
+  # Triggers the workflow on pull request events for the "test" branch
+  pull_request:
+    branches: [ "test-verif" ]
+    types: [edited, synchronize, opened, reopened]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This job prepare environment and run the analysis on a test file
+  verif:
+    # The type of runner that the job will run on
+    runs-on: self-hosted
+    env:
+      PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+      ISSUE_NO: ${{ github.issue.number }}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+#      - name: Verify Linked Issue
+#        uses: hattan/verify-linked-issue-action@v1.1.5
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Print author
+        run: echo "Author is $PR_AUTHOR"
+        
+      - name: Print issue number
+        run: echo "Issue number is $ISSUE_NO"
+      
+      - name: Check Python version
+        run: |
+          shopt -s expand_aliases
+          alias python='python3'
+          python --version
+      
+      - name: Add Modelsim to PATH
+        run: echo "$HOME/intelFPGA_lite/17.0/modelsim_ase/bin" >> $GITHUB_PATH
+    
+      - name: Check Modelsim version
+        run: vsim -version
