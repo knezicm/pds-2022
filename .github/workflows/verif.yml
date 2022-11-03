@@ -40,6 +40,8 @@ jobs:
           echo "Author is $PR_AUTHOR"
           echo "Title is $PR_TITLE"
           echo "Branch is $PR_BRANCH"
+          NUMBER=$(echo "$PR_TITLE" | grep -o -E '#[0-9]+')
+          echo $NUMBER
       
       - name: Check Python version
         run: |
