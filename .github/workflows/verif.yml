@@ -28,16 +28,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
-      - name: Exctract issue number from PR title
-        run: |
-          ISSUE_NUMBER=$(echo $PR_TITLE | grep -o -E '[0-9]+')
-          echo $ISSUE_NUMBER
-      
-      - name: Check Python version
+      - name: Set Python alias
         run: |
           shopt -s expand_aliases
           alias python='python3'
-          python --version
       
       - name: Add Modelsim to PATH
         run: echo "$HOME/intelFPGA_lite/17.0/modelsim_ase/bin" >> $GITHUB_PATH
