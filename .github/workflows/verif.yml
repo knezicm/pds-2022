@@ -22,7 +22,7 @@ jobs:
     runs-on: self-hosted
     env:
       PR_AUTHOR: ${{ github.event.pull_request.user.login }}
-      ISSUE_NO: ${{ github.issue.number }}
+      ISSUE_NO: ${{ github.event.pull_request.issue.number }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
