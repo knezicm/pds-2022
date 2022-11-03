@@ -37,9 +37,8 @@ jobs:
       - name: Print info
         run: |
           echo "Author is $PR_AUTHOR"
-          INFO=$(echo "$PR_TITLE" | grep -o -E '#[0-9]+')
           ISSUE_NUMBER=$(echo "$INFO" | grep -o -E '[0-9]+')
-          echo $NUMBER
+          echo $ISSUE_NUMBER
       
       - name: Check Python version
         run: |
