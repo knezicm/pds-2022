@@ -23,7 +23,6 @@ jobs:
     env:
       PR_AUTHOR: ${{ github.event.pull_request.user.login }}
       PR_TITLE: ${{ github.event.pull_request.title }}
-      PR_BRANCH: ${{ github.event.pull_request.head.ref }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -38,9 +37,8 @@ jobs:
       - name: Print info
         run: |
           echo "Author is $PR_AUTHOR"
-          echo "Title is $PR_TITLE"
-          echo "Branch is $PR_BRANCH"
-          NUMBER=$(echo "$PR_TITLE" | grep -o -E '#[0-9]+')
+          INFO=$(echo "$PR_TITLE" | grep -o -E '#[0-9]+')
+          ISSUE_NUMBER=$(echo "$INFO" | grep -o -E '[0-9]+')
           echo $NUMBER
       
       - name: Check Python version
