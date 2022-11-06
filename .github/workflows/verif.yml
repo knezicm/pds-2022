@@ -3,9 +3,6 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push events for the "test" branch
-  push:
-    branches: [ "test-verif" ]
   # Triggers the workflow on pull request events for the "test" branch
   pull_request:
     branches: [ "test-verif" ]
@@ -38,5 +35,9 @@ jobs:
     
       - name: Run simulation script
         run: |
-          cd verif
-          python ./run_test.py --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+')
+          cd $HOME/pds-2022-verification/verif/sim
+          shopt -s extglob
+          rm -rf !(modelsim)
+          shopt -u extglob
+          cd $HOME/pds-2022-verification/verif/sim
+          python ./run_test.py --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+') --path=$GITHUB_WORKSPACE/
