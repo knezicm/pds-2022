@@ -2,6 +2,7 @@
 
 - [Podešavanje Git okruženja za omogućenje pristupa repozitorijumu](docs/git-setup.md)
 - [Proces rada u GitHub okruženju](docs/github-workflow.md)
+- [Pravila prilikom predaje rješenja zadataka](docs/git-commit.md)
 
 **Informacije o kursu:**
 
