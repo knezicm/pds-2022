@@ -1,0 +1,4 @@
+Sva rješenja se obavezno predaju unutar foldera "assignments".
+
+U ovom folderu, student treba da napravi folder čije ime odgovara broju zadatka i da unutar istog
+smjesti sve tražene fajlove.
