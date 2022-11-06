@@ -39,5 +39,5 @@ jobs:
           shopt -s extglob
           rm -rf !(modelsim)
           shopt -u extglob
-          cd $HOME/pds-2022-verification/verif/sim
+          cd $HOME/pds-2022-verification/verif
           python ./run_test.py --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+') --path=$GITHUB_WORKSPACE/
