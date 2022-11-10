@@ -17,7 +17,7 @@ architecture arch_four_bit_comparator of four_bit_comparator is
 
 component two_bit_comparator 
 	port (
-	A, B : in std_logic_vector (2 downto 0);
+	A, B : in std_logic_vector (1 downto 0);
 	AGTB : out std_logic; -- if A > B
 	AEQB : out std_logic; -- if A = B
 	ALTB : out std_logic -- if A < B
