@@ -6,7 +6,7 @@ use ieee.std_logic_arith.all;  -- ukljucena biblioteka kako bih mogao koristiti 
 entity two_bit_comparator is 
 port (
 	
-	A, B : in std_logic_vector (2 downto 0);
+	A, B : in std_logic_vector (1 downto 0);
 	AGTB : out std_logic; -- if A > B
 	AEQB : out std_logic; -- if A = B
 	ALTB : out std_logic -- if A < B
