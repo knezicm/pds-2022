@@ -28,10 +28,10 @@ signal equal1, greater1, less1, equal2, greater2, less2, temp1, temp2: std_logic
 begin
 
 	comparator1: two_bit_comparator
-		port map (A(0) => i_A(0), A(1) => i_A(1), B(0) => i_A(2), B(1) => i_A(3), AEQB => equal1, AGTB => greater1, ALTB => less1);
+		port map (A(0) => i_A(2), A(1) => i_A(3), B(0) => i_B(2), B(1) => i_B(3), AEQB => equal1, AGTB => greater1, ALTB => less1);
 		
 	comparator2: two_bit_comparator
-		port map (A(0) => i_B(0), A(1) => i_B(1), B(0) => i_B(2), B(1) => i_B(3), AEQB => equal2, AGTB => greater2, ALTB => less2);
+		port map (A(0) => i_A(0), A(1) => i_A(1), B(0) => i_B(0), B(1) => i_B(1), AEQB => equal2, AGTB => greater2, ALTB => less2);
 		
 		temp1 <= equal1 and greater2;
 		temp2 <= equal1 and less2;
