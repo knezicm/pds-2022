@@ -25,6 +25,4 @@ begin
 			  '0';
 	ALTB <= '1' when (A < B) else 
 			  '0';
-
 end arch_comparator;
-	
