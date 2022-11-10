@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all; -- radi se o neoznacenim podacima
+use ieee.std_logic_arith.all;
 
 entity four_bit_comparator is  --entitet zadan tekstom zadatka
     port (i_A : in std_logic_vector(3 downto 0);
