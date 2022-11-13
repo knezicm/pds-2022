@@ -13,12 +13,14 @@ begin
  
 process(i_E,i_A)
 begin
+if(i_E='0') then o_Y <= "0000";
+else
 case i_A is
 when "00" => o_Y <= "0001"; 
 when "01" => o_Y <= "0010"; 
 when "10" => o_Y <= "0100"; 
 when "11" => o_Y <= "1000";
 end case;
+end if; 
 end process;
- 
-end bhv;
+end;
