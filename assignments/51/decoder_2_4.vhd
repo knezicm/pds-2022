@@ -11,9 +11,9 @@ end decoder_2_4;
 architecture bhv of decoder_2_4 is
 begin
  
-process(i_E,i_A)
+process(i_E, i_A)
 begin
-if(i_E='0') then o_Y <= "0000";
+if(i_E = '0') then o_Y <= "0000";
 else
 case i_A is
 when "00" => o_Y <= "0001"; 
@@ -23,4 +23,4 @@ when "11" => o_Y <= "1000";
 end case;
 end if; 
 end process;
-end;
+end bhv;
