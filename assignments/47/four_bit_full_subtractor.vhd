@@ -31,13 +31,13 @@ signal s3, s2, s1 : std_logic;
 begin
 
 	f3: full_sub
-	   port map( p1=>o_C, a(2)=>i_A(3), a(1)=>i_B(3), r=>o_SUB(3), a(0)=>s3);
+	   port map( p1=>o_C, a(2)=>i_A(3), a(1)=>i_B(3), a(0)=>s3, r=>o_SUB(3) );
 	f2: full_sub
-	   port map( p1=>s3, a(2)=>i_A(2), a(1)=>i_B(2), r=>o_SUB(2), a(0)=>s2);                   
+	   port map( p1=>s3, a(2)=>i_A(2), a(1)=>i_B(2), a(0)=>s2, r=>o_SUB(2) );                   
 	f1: full_sub
-	   port map( p1=>s2, a(2)=>i_A(1), a(1)=>i_B(1), r=>o_SUB(1), a(0)=>s1);                               
+	   port map( p1=>s2, a(2)=>i_A(1), a(1)=>i_B(1), a(0)=>s1, r=>o_SUB(1) );                               
 	f0: full_sub
-	   port map( p1=>s1, a(2)=>i_A(0), a(1)=>i_B(0), r=>o_SUB(0), a(0)=>i_C);                          
+	   port map( p1=>s1, a(2)=>i_A(0), a(1)=>i_B(0), a(0)=>i_C, r=>o_SUB(0) );                          
 
 end str_arch;
 
