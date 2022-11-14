@@ -13,14 +13,11 @@ begin
  
 process(i_E, i_A)
 begin
-if(i_E = '1') then 
-	case i_A is
-		when "00" => o_Y <= "0001"; 
-		when "01" => o_Y <= "0010"; 
-		when "10" => o_Y <= "0100"; 
-		when "11" => o_Y <= "1000";
-else o_Y <= "0000";
-end case;
+if (i_E = '0') then o_Y <= "0000";
+elsif(i_E = '1' and i_A = "00") then  o_Y <= "0001"; 
+elsif(i_E = '1' and i_A = "01") then o_Y <= "0010"; 
+elsif(i_E = '1' and i_A = "10") then o_Y <= "0100"; 
+elsif(i_E = '1' and i_A = "11") then o_Y <= "1000";
 end if; 
 end process;
 end bhv;
