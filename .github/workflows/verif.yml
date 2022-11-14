@@ -34,9 +34,15 @@ jobs:
           repository: knezicm/pds-2022-verification
           token: ${{ secrets.PDS_PAT }}
           path: verif-environment
+          
+      - name: Save root directory path
+        run: |
+          ROOT_DIR=$(PWD)
+          echo $ROOT_DIR
       
       - name: Set Python alias
         run: |
+          echo $ROOT_DIR
           shopt -s expand_aliases
           alias python='python3'
       
@@ -46,4 +52,4 @@ jobs:
       - name: Run simulation script
         run: |
           cd verif-environment/verif
-          python ./run_test.py --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+') --path=../../main/
+          python ./run_test.py --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+') --path=../../main
