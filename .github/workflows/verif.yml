@@ -25,8 +25,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout main repo
         uses: actions/checkout@v3
-        with:
-          path: main
           
       - name: Checkout verification environment
         uses: actions/checkout@v3
@@ -34,15 +32,9 @@ jobs:
           repository: knezicm/pds-2022-verification
           token: ${{ secrets.PDS_PAT }}
           path: verif-environment
-          
-      - name: Save root directory path
-        run: |
-          ROOT_DIR=$(pwd)
-          echo $ROOT_DIR
       
       - name: Set Python alias
         run: |
-          echo $ROOT_DIR
           shopt -s expand_aliases
           alias python='python3'
       
@@ -52,4 +44,5 @@ jobs:
       - name: Run simulation script
         run: |
           cd verif-environment/verif
-          python ./run_test.py --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+') --path=../../main
+          pwd
+          python ./run_test.py --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+') --path=../..
