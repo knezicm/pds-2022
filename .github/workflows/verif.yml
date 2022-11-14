@@ -37,7 +37,7 @@ jobs:
           
       - name: Save root directory path
         run: |
-          ROOT_DIR=$(PWD)
+          ROOT_DIR=$(pwd)
           echo $ROOT_DIR
       
       - name: Set Python alias
