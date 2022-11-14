@@ -42,19 +42,8 @@ jobs:
       
       - name: Add Modelsim to PATH
         run: echo "$HOME/intelFPGA_lite/17.0/modelsim_ase/bin" >> $GITHUB_PATH
-      
-      #- name: Clean build and sync with remote repo
-      #  run: |
-      #    cd $HOME/pds-2022-verification/verif/sim
-      #    shopt -s extglob
-      #    rm -rf !(modelsim)
-      #    shopt -u extglob
-      #    cd $HOME/pds-2022-verification
-      #    git pull
     
       - name: Run simulation script
         run: |
-      #    cd $HOME/pds-2022-verification/verif
           cd verif-environment/verif
-      #    python ./run_test.py --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+') --path=$GITHUB_WORKSPACE/
           python ./run_test.py --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+') --path=../../main/
