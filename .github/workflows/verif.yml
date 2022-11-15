@@ -45,5 +45,5 @@ jobs:
         run: |
           pwd
           ls
-          cd pds-verif/verif
+          cd verif-environment/verif
           python ./run_test.py --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+') --path=$(pwd)/../..
