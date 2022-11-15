@@ -31,7 +31,7 @@ jobs:
         with:
           repository: knezicm/pds-2022-verification
           token: ${{ secrets.PDS_PAT }}
-          path: verif-environment
+          path: pds-verif
       
       - name: Set Python alias
         run: |
@@ -43,5 +43,7 @@ jobs:
     
       - name: Run simulation script
         run: |
+          pwd
+          ls
           cd verif-environment/verif
           python ./run_test.py --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+') --path=$(pwd)/../..
