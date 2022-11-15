@@ -43,7 +43,5 @@ jobs:
     
       - name: Run simulation script
         run: |
-          pwd
-          ls
-          cd verif-environment/verif
+          cd pds-verif/verif
           python ./run_test.py --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+') --path=$(pwd)/../..
