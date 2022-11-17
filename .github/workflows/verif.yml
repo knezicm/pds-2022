@@ -20,11 +20,8 @@ jobs:
       PR_TITLE: ${{ github.event.pull_request.title }}
     
     steps:
+      - run: git config --global core.autocrlf false
       - uses: actions/checkout@v3
-        with:
-          config:
-            core:
-              autocrlf: false
       
       - name: Check code style
         shell: pwsh
