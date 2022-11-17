@@ -13,6 +13,21 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # This job checks the code style
+  linter:
+    runs-on: windows-latest
+    env:
+      PR_TITLE: ${{ github.event.pull_request.title }}
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Check code style
+        shell: pwsh
+        run: |
+          cd vhdllint-ohwr
+          .\check-files.bat ($env:PR_TITLE -replace '[^0-9+]') ..\assignments\
+    
   # This job prepares environment and runs simulation script
   verif:
     # The job runs on a self-hosted runner
