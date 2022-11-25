@@ -87,7 +87,6 @@ begin
     lzc : four_bit_lzc port map(
     X_i => INPUT_DATA_i((4*I)+3 downto 4*I),Q_o => lower_bits((2*I)+1 downto (2*I)),A_o => nibble_zero_bits(I));
   end generate g1;
-  g1;
 
   OUTPUT_DATA_o(4) <= all_zero;
 
