@@ -130,7 +130,7 @@ begin
           end if;
         elsif Y_o = "1000" then
           if not (std_logic_vector(v_count) = "1000") then
-            assert false report "incorrect hamming distance! Expected: 0, but got: "  &
+            assert false report "incorrect hamming distance! Expected: 8, but got: "  &
               integer'image(to_integer(v_count)) & "!" severity error;
           end if;
         end if;
