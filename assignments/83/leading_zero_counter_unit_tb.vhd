@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------
--- faculty of electrical engineering
--- pds 2022
+-- Faculty of Electrical Engineering
+-- PDS 2022
 -- https://github.com/knezicm/pds-2022/
 -----------------------------------------------------------------------------
 --
@@ -8,32 +8,32 @@
 --
 -- description:
 --
---   this file implements testbench for 16-bit leading zero counter
+--   This file implements testbench for leading_zero_counter_unit.
 --
 -----------------------------------------------------------------------------
--- copyright (c) 2022 faculty of electrical engineering
+-- Copyright (c) 2022 Faculty of Electrical Engineering
 -----------------------------------------------------------------------------
--- the mit license
+-- The MIT License
 -----------------------------------------------------------------------------
--- copyright 2022 faculty of electrical engineering
+-- Copyright 2022 Faculty of Electrical Engineering
 --
--- permission is hereby granted, free of charge, to any person obtaining a
--- copy of this software and associated documentation files (the "software"),
--- to deal in the software without restriction, including without limitation
+-- Permission is hereby granted, free of charge, to any person obtaining a
+-- copy of this software and associated documentation files (the "Software"),
+-- to deal in the Software without restriction, including without limitation
 -- the rights to use, copy, modify, merge, publish, distribute, sublicense,
--- and/or sell copies of the software, and to permit persons to whom
--- the software is furnished to do so, subject to the following conditions:
+-- and/or sell copies of the Software, and to permit persons to whom
+-- the Software is furnished to do so, subject to the following conditions:
 --
--- the above copyright notice and this permission notice shall be included in
--- all copies or substantial portions of the software.
+-- The above copyright notice and this permission notice shall be included in
+-- all copies or substantial portions of the Software.
 --
--- the software is provided "as is", without warranty of any kind, express or
--- implied, including but not limited to the warranties of merchantability,
--- fitness for a particular purpose and noninfringement. in no event shall
--- the authors or copyright holders be liable for any claim, damages or other
--- liability, whether in an action of contract, tort or otherwise,
--- arising from, out of or in connection with the software or the use or
--- other dealings in the software
+-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+-- THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+-- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+-- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
