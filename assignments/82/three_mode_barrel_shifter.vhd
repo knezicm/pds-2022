@@ -46,34 +46,30 @@ entity three_mode_barrel_shifter is
 );
 end three_mode_barrel_shifter;
 
-architecture shifter_arch of three_mode_barrel_shifter is
-   signal out1, out2, out3 : std_logic_vector(7 downto 0);
-   signal bit1 : std_logic;
-   signal bit2: std_logic_vector(1 downto 0);
-   signal bit4: std_logic_vector(3 downto 0);
-	
+architecture arch of three_mode_barrel_shifter is
+  signal out1 : std_logic_vector(7 downto 0);
+  signal out2 : std_logic_vector(7 downto 0);
+  signal out3 : std_logic_vector(7 downto 0);
+  signal bit1 : std_logic;
+  signal bit2 : std_logic_vector(1 downto 0);
+  signal bit4 : std_logic_vector(3 downto 0);
 begin
+  with LAR_i select
+  bit1 <= '0'  when "00",
+        A_i(7) when "01",
+        A_i(0) when others;
+  out1 <= bit1 & A_i(7 downto 1) when AMT_i(0) = '1' else A_i;
 
   with LAR_i select
-	bit1 <= '0'  when "00",
-			A_i(7) when "01",
-			A_i(0) when others;
-  out1 <= bit1 & A_i(7 downto 1) when AMT_i(0)='1' else
-			  A_i;
+         bit2 <= "00" when "00",
+  (others => out1(7)) when "01",
+  out1(1 downto 0)    when others;
+  out2 <= bit2 & out1(7 downto 2) when AMT_i(1) = '1' else out1;
 
   with LAR_i select
-	bit2 <= "00" when "00",
-		   (others => out1(7)) when "01",
-		   out1(1 downto 0)    when others;
-  out2<= bit2 & out1(7 downto 2) when AMT_i(1)='1' else
-			  out1;
-
-  with LAR_i select
-	bit4 <= "0000" when "00",
-		  (others => out2(7)) when "01",
-		  out2(3 downto 0)    when others;
-  out3 <= bit4 & out2(7 downto 4)when AMT_i(2)='1' else
-			  out2;
-			  
+       bit4 <= "0000" when "00",
+  (others => out2(7)) when "01",
+  out2(3 downto 0)    when others;
+  out3 <= bit4 & out2(7 downto 4)when AMT_i(2) = '1' else out2;
   Y_o <= out3;
-end shifter_arch;
+end arch;
