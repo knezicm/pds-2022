@@ -69,7 +69,7 @@ signal ctrl_in                      : std_logic_vector(1 downto 0);
 
 begin
     
-	 ut: entity work.multi_function_aritmetic_unit(str_arch_version_one)
+	 ut: multi_function_aritmetic_unit
 	   port map( 
 		  A_i    => test1_in,
 		  B_i    => test2_in,
