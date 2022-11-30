@@ -60,7 +60,6 @@ architecture beh_arch of adder is
 
 begin
 
-	c_o <= std_logic_vector(unsigned(a_i) + unsigned(b_i));
+  c_o <= std_logic_vector(unsigned(a_i) + unsigned(b_i));
 
 end beh_arch;
-
