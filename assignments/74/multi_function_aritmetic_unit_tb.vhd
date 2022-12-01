@@ -36,10 +36,6 @@
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
 
-
-
-
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -68,67 +64,62 @@ architecture arch of multi_function_aritmetic_unit_tb is
   signal ctrl_in                      : std_logic_vector(1 downto 0);
 
 begin
-    
+
   ut : multi_function_aritmetic_unit
-    port map ( 
+    port map (
       A_i    => test1_in,
       B_i    => test2_in,
       CTRL_i => ctrl_in,
       RES_o  => test_out);
-		
-		
-		
+
+
+
   tb : process
-		
+	
   begin
-	 
-	  
-	  
+
     test1_in <= "0000000000000000";
     test2_in <= "0000000000000000";
     ctrl_in  <= "00";
-  
+
     for k in 0 to 3 loop
       wait for 10 ns;
-		
       for i in 0 to 15 loop
-			
         for j in 0 to 15 loop
           wait for 10 ns;
-				
-				
+	
+
           if(ctrl_in = "00") then
             assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) +to_integer(unsigned(test2_in)) report " Error!"  severity error;
-				
+
           elsif (ctrl_in = "01") then
             if(to_integer(unsigned(test1_in)) > to_integer(unsigned(test2_in))) then
               assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) -to_integer(unsigned(test2_in)) report " Error!" severity error;
             end if;
-				
+	
           elsif (ctrl_in = "10") then
             assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) + 1 report " Error!" severity error;
-          else 
+          else
             if(to_integer(unsigned(test1_in)) > 1) then
               assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) -1 report " Error!" severity error;
-            end if; 
+            end if;
           end if;
-          test1_in <= std_logic_vector(unsigned(test1_in) + 1);	
-		  
+          test1_in <= std_logic_vector(unsigned(test1_in) + 1);
+
         end loop;
-		   
-        test2_in <= std_logic_vector(unsigned(test1_in) + 1); 
-        test1_in <= "0000000000000000";	
+   
+        test2_in <= std_logic_vector(unsigned(test1_in) + 1);
+        test1_in <= "0000000000000000";
       end loop;
-    
+
       test1_in <= "0000000000000000";
       test2_in <= "0000000000000000";
       ctrl_in <= std_logic_vector(unsigned(ctrl_in) + 1);
-	  
+
     end loop;
 
     report "Test completed.";
-    wait;	
-		
+    wait;
+
   end process;
-	 
 end arch;
