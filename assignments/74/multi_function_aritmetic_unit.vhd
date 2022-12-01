@@ -64,8 +64,9 @@ architecture arch_version_one of multi_function_aritmetic_unit is
   component sub
 
     port (
-      a_i, b_i	: in std_logic_vector(15 downto 0);
-       c_o      : out std_logic_vector(15 downto 0));
+      a_i : in  std_logic_vector(15 downto 0);
+      b_i	: in  std_logic_vector(15 downto 0);
+      c_o : out std_logic_vector(15 downto 0));
 
   end component;
 
@@ -121,22 +122,22 @@ begin
       b_i(5)  => B_i(5),
       b_i(6)  => B_i(6),
       b_i(7)  => B_i(7),
-      b_i(8)  => B_i(8), 
-      b_i(9)  => B_i(9), 
+      b_i(8)  => B_i(8),
+      b_i(9)  => B_i(9),
       b_i(10) => B_i(10),
       b_i(11) => B_i(11),
       b_i(12) => B_i(12),
       b_i(13) => B_i(13),
       b_i(14) => B_i(14),
       b_i(15) => B_i(15),
-      c_o(0)  => tmp1(0), 
+      c_o(0)  => tmp1(0),
       c_o(1)  => tmp1(1),
       c_o(2)  => tmp1(2),
       c_o(3)  => tmp1(3),
       c_o(4)  => tmp1(4),
       c_o(5)  => tmp1(5),
       c_o(6)  => tmp1(6),
-      c_o(7)  => tmp1(7), 
+      c_o(7)  => tmp1(7),
       c_o(8)  => tmp1(8),
       c_o(9)  => tmp1(9),
       c_o(10) => tmp1(10),
@@ -147,7 +148,7 @@ begin
       c_o(15) => tmp1(15));
 
   u2 : sub
-    port map( 
+    port map(
       a_i(0)  => A_i(0),
       a_i(1)  => A_i(1),
       a_i(2)  => A_i(2),
@@ -172,22 +173,22 @@ begin
       b_i(5)  => B_i(5),
       b_i(6)  => B_i(6),
       b_i(7)  => B_i(7),
-      b_i(8)  => B_i(8), 
-      b_i(9)  => B_i(9), 
+      b_i(8)  => B_i(8),
+      b_i(9)  => B_i(9),
       b_i(10) => B_i(10),
       b_i(11) => B_i(11),
       b_i(12) => B_i(12),
       b_i(13) => B_i(13),
       b_i(14) => B_i(14),
       b_i(15) => B_i(15),
-      c_o(0)  => tmp2(0), 
+      c_o(0)  => tmp2(0),
       c_o(1)  => tmp2(1),
       c_o(2)  => tmp2(2),
       c_o(3)  => tmp2(3),
       c_o(4)  => tmp2(4),
       c_o(5)  => tmp2(5),
       c_o(6)  => tmp2(6),
-      c_o(7)  => tmp2(7), 
+      c_o(7)  => tmp2(7),
       c_o(8)  => tmp2(8),
       c_o(9)  => tmp2(9),
       c_o(10) => tmp2(10),
@@ -198,7 +199,7 @@ begin
       c_o(15) => tmp2(15));
 
   u3 : inc
-    port map( 
+    port map(
       a_i(0)  => A_i(0),
       a_i(1)  => A_i(1),
       a_i(2)  => A_i(2),
@@ -215,14 +216,14 @@ begin
       a_i(13) => A_i(13),
       a_i(14) => A_i(14),
       a_i(15) => A_i(15),
-      c_o(0)  => tmp3(0), 
+      c_o(0)  => tmp3(0),
       c_o(1)  => tmp3(1),
       c_o(2)  => tmp3(2),
       c_o(3)  => tmp3(3),
       c_o(4)  => tmp3(4),
       c_o(5)  => tmp3(5),
       c_o(6)  => tmp3(6),
-      c_o(7)  => tmp3(7), 
+      c_o(7)  => tmp3(7),
       c_o(8)  => tmp3(8),
       c_o(9)  => tmp3(9),
       c_o(10) => tmp3(10),
@@ -233,7 +234,7 @@ begin
       c_o(15) => tmp3(15));
 
   u4 : dec
-    port map( 
+    port map (
       a_i(0)  => A_i(0),
       a_i(1)  => A_i(1),
       a_i(2)  => A_i(2),
@@ -250,14 +251,14 @@ begin
       a_i(13) => A_i(13),
       a_i(14) => A_i(14),
       a_i(15) => A_i(15),
-      c_o(0)  => tmp4(0), 
+      c_o(0)  => tmp4(0),
       c_o(1)  => tmp4(1),
       c_o(2)  => tmp4(2),
       c_o(3)  => tmp4(3),
       c_o(4)  => tmp4(4),
       c_o(5)  => tmp4(5),
       c_o(6)  => tmp4(6),
-      c_o(7)  => tmp4(7), 
+      c_o(7)  => tmp4(7),
       c_o(8)  => tmp4(8),
       c_o(9)  => tmp4(9),
       c_o(10) => tmp4(10),
@@ -289,8 +290,9 @@ architecture arch_version_two of multi_function_aritmetic_unit is
   component sub1
 
     port (
-      a_i, b_i	: in  std_logic_vector (15 downto 0);
-      c_i       : in std_logic_vector(1 downto 0);
+      a_i : in  std_logic_vector(15 downto 0);
+      b_i	: in  std_logic_vector (15 downto 0);
+      c_i : in  std_logic_vector(1 downto 0);
       y_o	: out std_logic_vector (15 downto 0));
 
   end component;
@@ -333,19 +335,19 @@ begin
       b_i(15) => B_i(15),
       c_i(0)  => CTRL_i(0),
       c_i(1)  => CTRL_i(1),
-      y_o(0)  => RES_o(0), 
-      y_o(1)  => RES_o(1), 
-      y_o(2)  => RES_o(2), 
+      y_o(0)  => RES_o(0),
+      y_o(1)  => RES_o(1),
+      y_o(2)  => RES_o(2),
       y_o(3)  => RES_o(3),
-      y_o(4)  => RES_o(4), 
+      y_o(4)  => RES_o(4),
       y_o(5)  => RES_o(5),
-      y_o(6)  => RES_o(6), 
+      y_o(6)  => RES_o(6),
       y_o(7)  => RES_o(7),
       y_o(8)  => RES_o(8),
       y_o(9)  => RES_o(9),
       y_o(10) => RES_o(10),
       y_o(11) => RES_o(11),
-      y_o(12) => RES_o(12), 
+      y_o(12) => RES_o(12),
       y_o(13) => RES_o(13),
       y_o(14) => RES_o(14),
       y_o(15) => RES_o(15));
