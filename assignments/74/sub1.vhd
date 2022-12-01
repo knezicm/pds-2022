@@ -49,34 +49,31 @@ entity sub1 is
 	
 
 
-  port
-  (
-	 a_i, b_i	: in  std_logic_vector (15 downto 0);
-    c_i        : in std_logic_vector(1 downto 0);
-    y_o	      : out std_logic_vector (15 downto 0));
+  port (
+    a_i, b_i	: in  std_logic_vector(15 downto 0);
+    c_i         : in std_logic_vector(1 downto 0);
+    y_o	        : out std_logic_vector(15 downto 0));
   
 end sub1;
 
-architecture beh_arch of sub1 is
+architecture arch of sub1 is
 
 
 begin
    
 	
   process(a_i, b_i, c_i) is
-		
-    begin
-      case (c_i) is
-        when "00" =>   y_o <= std_logic_vector( unsigned(a_i) + unsigned(b_i));
-		  when "01" =>   y_o <= std_logic_vector(unsigned(a_i) - unsigned(b_i));
-	     when "10" =>   y_o <= std_logic_vector(unsigned(a_i) + 1);
-	     when "11" =>   y_o <= std_logic_vector(unsigned(a_i) - 1);
-		  when others => y_o <= std_logic_vector( unsigned(a_i) + unsigned(b_i)); 
-	   end case;
-		
+  begin
+    case (c_i) is
+      when "00"   =>   y_o <= std_logic_vector( unsigned(a_i) + unsigned(b_i));
+      when "01"   =>   y_o <= std_logic_vector(unsigned(a_i) - unsigned(b_i));
+      when "10"   =>   y_o <= std_logic_vector(unsigned(a_i) + 1);
+      when "11"   =>   y_o <= std_logic_vector(unsigned(a_i) - 1);
+      when others => y_o <= std_logic_vector( unsigned(a_i) + unsigned(b_i)); 
+    end case;
   end process;
 
 	
-end beh_arch;
+end arch;
 
 
