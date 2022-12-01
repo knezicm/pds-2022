@@ -44,22 +44,15 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity dec is
-	
-	port (
-     a_i	: in  std_logic_vector(15 downto 0);
-     c_o	: out std_logic_vector(15 downto 0));
-	  
+  port (
+    a_i	: in  std_logic_vector(15 downto 0);
+    c_o	: out std_logic_vector(15 downto 0));	  
 end dec;
-
-
 
 architecture beh_arch of dec is
 
-
 begin
 
-	c_o <= std_logic_vector(unsigned(a_i)-1);
-
+  c_o <= std_logic_vector(unsigned(a_i)-1);
+	
 end beh_arch;
-
-
