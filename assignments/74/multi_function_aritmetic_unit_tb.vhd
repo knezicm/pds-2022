@@ -75,7 +75,7 @@ begin
 
 
   tb : process
-	
+
   begin
 
     test1_in <= "0000000000000000";
@@ -87,7 +87,7 @@ begin
       for i in 0 to 15 loop
         for j in 0 to 15 loop
           wait for 10 ns;
-	
+
 
           if(ctrl_in = "00") then
             assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) +to_integer(unsigned(test2_in)) report " Error!"  severity error;
@@ -96,7 +96,7 @@ begin
             if(to_integer(unsigned(test1_in)) > to_integer(unsigned(test2_in))) then
               assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) -to_integer(unsigned(test2_in)) report " Error!" severity error;
             end if;
-	
+
           elsif (ctrl_in = "10") then
             assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) + 1 report " Error!" severity error;
           else
