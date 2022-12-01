@@ -100,19 +100,19 @@ begin
           if(ctrl_in = "00") then
             assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) +to_integer(unsigned(test2_in)) report " Error!"  severity error;
 				
-          elsif (ctrl_in ="01") then
+          elsif (ctrl_in = "01") then
             if(to_integer(unsigned(test1_in)) > to_integer(unsigned(test2_in))) then
               assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) -to_integer(unsigned(test2_in)) report " Error!" severity error;
             end if;
 				
           elsif (ctrl_in = "10") then
-            assert to_integer(unsigned(test_out))= to_integer(unsigned(test1_in)) + 1 report " Error!" severity error;
+            assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) + 1 report " Error!" severity error;
           else 
             if(to_integer(unsigned(test1_in)) > 1) then
               assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) -1 report " Error!" severity error;
             end if; 
           end if;
-          test1_in<=std_logic_vector(unsigned(test1_in) + 1);	
+          test1_in <= std_logic_vector(unsigned(test1_in) + 1);	
 		  
         end loop;
 		   
