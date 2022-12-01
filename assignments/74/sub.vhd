@@ -48,18 +48,18 @@ entity sub is
 	
 
   port (
-    a_i, b_i	: in  std_logic_vector(15 downto 0);
-    c_o	      : out std_logic_vector(15 downto 0));
+    a_i, b_i   : in  std_logic_vector(15 downto 0);
+    c_o	       : out std_logic_vector(15 downto 0));
   
 end sub;
 
 
 
-architecture beh_arch of sub is
+architecture arch of sub is
 
 begin
 
   c_o <= std_logic_vector(unsigned(a_i) - unsigned(b_i));
 
-end beh_arch;
+end arch;
 
