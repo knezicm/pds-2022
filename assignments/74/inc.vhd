@@ -45,19 +45,19 @@ use ieee.numeric_std.all;
 
 entity inc is
 	
-	port (
-     a_i	: in  std_logic_vector(15 downto 0);
-     c_o	: out std_logic_vector(15 downto 0));
+  port (
+    a_i	: in  std_logic_vector(15 downto 0);
+    c_o	: out std_logic_vector(15 downto 0));
 	  
 end inc;
 
 
-architecture beh_arch of inc is
+architecture arch of inc is
 
 	
 begin
 
   c_o <= std_logic_vector(unsigned(a_i)+1);
 
-end beh_arch;
+end arch;
 
