@@ -51,7 +51,7 @@ end multi_function_aritmetic_unit_tb;
 
 
 
-architecture tb_arch of multi_function_aritmetic_unit_tb is
+architecture arch of multi_function_aritmetic_unit_tb is
 
   component multi_function_aritmetic_unit
 
@@ -126,10 +126,9 @@ begin
 	  
     end loop;
 
-  report "Test completed.";
-  wait;	
+    report "Test completed.";
+    wait;	
 		
   end process;
 	 
-end tb_arch;
-
+end arch;
