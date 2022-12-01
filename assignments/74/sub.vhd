@@ -36,21 +36,17 @@
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
 
-
-
-
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity sub is
-	
+
 
   port (
     a_i, b_i   : in  std_logic_vector(15 downto 0);
     c_o	       : out std_logic_vector(15 downto 0));
-  
+
 end sub;
 
 
@@ -62,4 +58,3 @@ begin
   c_o <= std_logic_vector(unsigned(a_i) - unsigned(b_i));
 
 end arch;
-
