@@ -88,12 +88,12 @@ begin
     test2_in <= "0000000000000000";
     ctrl_in  <= "00";
   
-      for k in 0 to 3 loop
+    for k in 0 to 3 loop
       wait for 10 ns;
 		
-        for i in 0 to 15 loop
+      for i in 0 to 15 loop
 			
-          for j in 0 to 15 loop
+        for j in 0 to 15 loop
           wait for 10 ns;
 				
 				
@@ -116,15 +116,15 @@ begin
 		  
         end loop;
 		   
-      test2_in <= std_logic_vector(unsigned(test1_in) + 1); 
-      test1_in <= "0000000000000000";	
-    end loop;
+        test2_in <= std_logic_vector(unsigned(test1_in) + 1); 
+        test1_in <= "0000000000000000";	
+      end loop;
     
-    test1_in <= "0000000000000000";
-    test2_in <= "0000000000000000";
-    ctrl_in <= std_logic_vector(unsigned(ctrl_in) + 1);
+      test1_in <= "0000000000000000";
+      test2_in <= "0000000000000000";
+      ctrl_in <= std_logic_vector(unsigned(ctrl_in) + 1);
 	  
-  end loop;
+    end loop;
 
   report "Test completed.";
   wait;	
