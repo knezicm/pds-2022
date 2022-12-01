@@ -53,91 +53,83 @@ end multi_function_aritmetic_unit_tb;
 
 architecture tb_arch of multi_function_aritmetic_unit_tb is
 
-component multi_function_aritmetic_unit
+  component multi_function_aritmetic_unit
 
 
-	port (
+    port (
      A_i    : in  std_logic_vector(15 downto 0);
      B_i    : in  std_logic_vector(15 downto 0);
      CTRL_i : in  std_logic_vector(1 downto 0);
      RES_o  : out std_logic_vector(15 downto 0));
 
-end component;
+  end component;
 
-signal test1_in, test2_in, test_out : std_logic_vector(15 downto 0);
-signal ctrl_in                      : std_logic_vector(1 downto 0);
+  signal test1_in, test2_in, test_out : std_logic_vector(15 downto 0);
+  signal ctrl_in                      : std_logic_vector(1 downto 0);
 
 begin
     
-	 ut: multi_function_aritmetic_unit
-	   port map( 
-		  A_i    => test1_in,
-		  B_i    => test2_in,
-		  CTRL_i => ctrl_in,
-		  RES_o  => test_out);
+  ut : multi_function_aritmetic_unit
+    port map ( 
+      A_i    => test1_in,
+      B_i    => test2_in,
+      CTRL_i => ctrl_in,
+      RES_o  => test_out);
 		
 		
 		
-  tb: process
+  tb : process
 		
   begin
 	 
 	  
 	  
-  test1_in<= "0000000000000000";
-  test2_in<= "0000000000000000";
-  ctrl_in<= "00";
+    test1_in <= "0000000000000000";
+    test2_in <= "0000000000000000";
+    ctrl_in  <= "00";
   
-  for k in 0 to 3 loop
-    wait for 10 ns;
+      for k in 0 to 3 loop
+      wait for 10 ns;
 		
-    for i in 0 to 15 loop
+        for i in 0 to 15 loop
 			
-      for j in 0 to 15 loop
-        wait for 10 ns;
+          for j in 0 to 15 loop
+          wait for 10 ns;
 				
 				
-        if(ctrl_in="00") then
-		    assert to_integer(unsigned(test_out))= to_integer(unsigned(test1_in)) +to_integer(unsigned(test2_in)) report " Error!"  severity error;
-				   
-					
-        elsif (ctrl_in="01") then
-          if(to_integer(unsigned(test1_in)) > to_integer(unsigned(test2_in))) then
-            assert to_integer(unsigned(test_out))= to_integer(unsigned(test1_in)) -to_integer(unsigned(test2_in)) report " Error!" severity error;
+          if(ctrl_in = "00") then
+            assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) +to_integer(unsigned(test2_in)) report " Error!"  severity error;
+				
+          elsif (ctrl_in ="01") then
+            if(to_integer(unsigned(test1_in)) > to_integer(unsigned(test2_in))) then
+              assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) -to_integer(unsigned(test2_in)) report " Error!" severity error;
+            end if;
+				
+          elsif (ctrl_in = "10") then
+            assert to_integer(unsigned(test_out))= to_integer(unsigned(test1_in)) + 1 report " Error!" severity error;
+          else 
+            if(to_integer(unsigned(test1_in)) > 1) then
+              assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) -1 report " Error!" severity error;
+            end if; 
           end if;
-				
-        elsif (ctrl_in="10") then
-          assert to_integer(unsigned(test_out))= to_integer(unsigned(test1_in)) + 1 report " Error!" severity error;
-				   
-				
-        else 
-          if(to_integer(unsigned(test1_in)) > 1) then
-            assert to_integer(unsigned(test_out))= to_integer(unsigned(test1_in)) -1 report " Error!" severity error;
-          end if; 
-				
-        end if;
-        test1_in<=std_logic_vector(unsigned(test1_in) + 1);	
+          test1_in<=std_logic_vector(unsigned(test1_in) + 1);	
 		  
-       end loop;
+        end loop;
 		   
-       test2_in <= std_logic_vector(unsigned(test1_in) + 1); 
-       test1_in <= "0000000000000000";	
-     end loop;
+      test2_in <= std_logic_vector(unsigned(test1_in) + 1); 
+      test1_in <= "0000000000000000";	
+    end loop;
+    
+    test1_in <= "0000000000000000";
+    test2_in <= "0000000000000000";
+    ctrl_in <= std_logic_vector(unsigned(ctrl_in) + 1);
 	  
-     test1_in<= "0000000000000000";
-     test2_in<= "0000000000000000";
-     ctrl_in<=std_logic_vector(unsigned(ctrl_in) + 1);
-	  
-   end loop;
+  end loop;
 
-		
   report "Test completed.";
   wait;	
 		
-				
   end process;
-
-	
 	 
 end tb_arch;
 
