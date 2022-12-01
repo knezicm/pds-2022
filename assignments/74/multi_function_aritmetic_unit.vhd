@@ -55,43 +55,41 @@ end multi_function_aritmetic_unit;
 
 
 architecture str_arch_version_one of multi_function_aritmetic_unit is
-signal tmp1, tmp2, tmp3, tmp4 : std_logic_vector(15 downto 0);
+  signal tmp1, tmp2, tmp3, tmp4 : std_logic_vector(15 downto 0);
 
-component adder
+  component adder
 
-  port (
-	 a_i, b_i : in std_logic_vector(15 downto 0);
-    c_o	    : out std_logic_vector(15 downto 0));
+    port (
+      a_i, b_i : in std_logic_vector(15 downto 0);
+      c_o      : out std_logic_vector(15 downto 0));
 
-end component;
+  end component;
 
-component sub
+  component sub
 
-	port (
-     a_i, b_i	: in std_logic_vector(15 downto 0);
-     c_o	      : out std_logic_vector(15 downto 0));
+    port (
+      a_i, b_i	: in std_logic_vector(15 downto 0);
+       c_o      : out std_logic_vector(15 downto 0));
 
-end component;
-
-
-component dec
+  end component;
 
 
-	port (
-     a_i	: in  std_logic_vector(15 downto 0);
-     c_o	: out std_logic_vector(15 downto 0));
+  component dec
 
-end component;
+    port (
+      a_i       : in  std_logic_vector(15 downto 0);
+      c_o       : out std_logic_vector(15 downto 0));
+
+  end component;
 
 
 
-component inc
+  component inc
+    port (
+      a_i       : in  std_logic_vector(15 downto 0);
+      c_o       : out std_logic_vector(15 downto 0));
 
-  port (
-    a_i	: in  std_logic_vector(15 downto 0);
-    c_o	: out std_logic_vector(15 downto 0));
-
-end component;
+  end component;
 
 
 
