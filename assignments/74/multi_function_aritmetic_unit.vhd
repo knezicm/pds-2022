@@ -282,7 +282,7 @@ begin
       when others =>   RES_o <= "0000000000000000"; 
     end case;
 	 
-  end process;
+  end process multipr;
 
 
 end arch_version_one;
