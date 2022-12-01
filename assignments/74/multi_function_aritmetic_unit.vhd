@@ -99,7 +99,7 @@ architecture arch_version_one of multi_function_aritmetic_unit is
 
 begin
   
- u1 : adder
+  u1 : adder
     port map( 
       a_i(0)  => A_i(0),
       a_i(1)  => A_i(1),
@@ -201,7 +201,7 @@ begin
       c_o(14) => tmp2(14),
       c_o(15) => tmp2(15));
 		
- u3 : inc
+  u3 : inc
     port map( 
       a_i(0)  => A_i(0),
       a_i(1)  => A_i(1),
@@ -274,7 +274,7 @@ begin
   main : process(A_i, B_i, CTRL_i, tmp1, tmp2, tmp3, tmp4) is
   begin
 
-    case (CTRL_i) is
+    case CTRL_i is
       when "00"   =>   RES_o <= tmp1;
       when "01"   =>   RES_o <= tmp2;
       when "10"   =>   RES_o <= tmp3;
@@ -282,7 +282,7 @@ begin
       when others =>   RES_o <= "0000000000000000"; 
     end case;
 	 
-  end process;
+  end main ;
 
 
 end arch_version_one;
@@ -290,14 +290,14 @@ end arch_version_one;
 
 architecture arch_version_two of multi_function_aritmetic_unit is
 
-component sub1
+  component sub1
 
-  port (
-    a_i, b_i	: in  std_logic_vector (15 downto 0);
-    c_i         : in std_logic_vector(1 downto 0);
-    y_o	        : out std_logic_vector (15 downto 0));
+    port (
+      a_i, b_i	: in  std_logic_vector (15 downto 0);
+      c_i       : in std_logic_vector(1 downto 0);
+      y_o	: out std_logic_vector (15 downto 0));
 
-end component;
+  end component;
 	
 begin
  
