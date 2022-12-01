@@ -37,27 +37,24 @@
 -----------------------------------------------------------------------------
 
 
-
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity inc is
-	
+
   port (
     a_i	: in  std_logic_vector(15 downto 0);
     c_o	: out std_logic_vector(15 downto 0));
-	  
+
 end inc;
 
 
 architecture arch of inc is
 
-	
+
 begin
 
   c_o <= std_logic_vector(unsigned(a_i)+1);
 
 end arch;
-
