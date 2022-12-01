@@ -49,10 +49,10 @@ entity dec is
     c_o	: out std_logic_vector(15 downto 0));	  
 end dec;
 
-architecture beh_arch of dec is
+architecture arch of dec is
 
 begin
 
   c_o <= std_logic_vector(unsigned(a_i)-1);
 	
-end beh_arch;
+end arch;
