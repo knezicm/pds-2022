@@ -285,7 +285,7 @@ begin
   end process;
 
 
-end srch_version_one;
+end arch_version_one;
 
 
 architecture arch_version_two of multi_function_aritmetic_unit is
