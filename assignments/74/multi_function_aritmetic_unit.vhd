@@ -36,10 +36,6 @@
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
 
-
-
-
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -50,7 +46,7 @@ entity multi_function_aritmetic_unit is
          B_i    : in  std_logic_vector(15 downto 0);
          CTRL_i : in  std_logic_vector(1 downto 0);
          RES_o  : out std_logic_vector(15 downto 0));
-			
+
 end multi_function_aritmetic_unit;
 
 
@@ -98,7 +94,7 @@ architecture arch_version_one of multi_function_aritmetic_unit is
 
 
 begin
-  
+
   u1 : adder
     port map( 
       a_i(0)  => A_i(0),
@@ -149,7 +145,7 @@ begin
       c_o(13) => tmp1(13),
       c_o(14) => tmp1(14),
       c_o(15) => tmp1(15));
-	  
+
   u2 : sub
     port map( 
       a_i(0)  => A_i(0),
@@ -200,7 +196,7 @@ begin
       c_o(13) => tmp2(13),
       c_o(14) => tmp2(14),
       c_o(15) => tmp2(15));
-		
+
   u3 : inc
     port map( 
       a_i(0)  => A_i(0),
@@ -279,9 +275,9 @@ begin
       when "01"   =>   RES_o <= tmp2;
       when "10"   =>   RES_o <= tmp3;
       when "11"   =>   RES_o <= tmp4;
-      when others =>   RES_o <= "0000000000000000"; 
+      when others =>   RES_o <= "0000000000000000";
     end case;
-	 
+
   end process multipr;
 
 
@@ -298,9 +294,9 @@ architecture arch_version_two of multi_function_aritmetic_unit is
       y_o	: out std_logic_vector (15 downto 0));
 
   end component;
-	
+
 begin
- 
+
   u : sub1
     port map  (
       a_i(0)  => A_i(0),
@@ -353,8 +349,8 @@ begin
       y_o(13) => RES_o(13),
       y_o(14) => RES_o(14),
       y_o(15) => RES_o(15));
-      
-		
+
+
 end arch_version_two;
 
 
@@ -365,5 +361,3 @@ configuration multi_function_aritmetic_unit_cfg of multi_function_aritmetic_unit
   for arch_version_one
   end for;
 end multi_function_aritmetic_unit_cfg;
-
-
