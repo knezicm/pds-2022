@@ -54,7 +54,7 @@ entity multi_function_aritmetic_unit is
 end multi_function_aritmetic_unit;
 
 
-architecture str_arch_version_one of multi_function_aritmetic_unit is
+architecture arch_version_one of multi_function_aritmetic_unit is
   signal tmp1, tmp2, tmp3, tmp4 : std_logic_vector(15 downto 0);
 
   component adder
@@ -271,37 +271,37 @@ begin
       c_o(14) => tmp4(14),
       c_o(15) => tmp4(15));
 
-  process(A_i, B_i, CTRL_i, tmp1, tmp2, tmp3, tmp4) is
+  main : process(A_i, B_i, CTRL_i, tmp1, tmp2, tmp3, tmp4) is
   begin
 
     case (CTRL_i) is
       when "00"   =>   RES_o <= tmp1;
-		when "01"   =>   RES_o <= tmp2;
-	   when "10"   =>   RES_o <= tmp3;
-	   when "11"   =>   RES_o <= tmp4;
+      when "01"   =>   RES_o <= tmp2;
+      when "10"   =>   RES_o <= tmp3;
+      when "11"   =>   RES_o <= tmp4;
       when others =>   RES_o <= "0000000000000000"; 
     end case;
 	 
   end process;
 
 
-end str_arch_version_one;
+end srch_version_one;
 
 
-architecture str_arch_version_two of multi_function_aritmetic_unit is
+architecture arch_version_two of multi_function_aritmetic_unit is
 
 component sub1
 
   port (
     a_i, b_i	: in  std_logic_vector (15 downto 0);
-    c_i        : in std_logic_vector(1 downto 0);
-    y_o	      : out std_logic_vector (15 downto 0));
+    c_i         : in std_logic_vector(1 downto 0);
+    y_o	        : out std_logic_vector (15 downto 0));
 
 end component;
 	
 begin
  
-  u: sub1
+  u : sub1
     port map  (
       a_i(0)  => A_i(0),
       a_i(1)  => A_i(1),
@@ -355,14 +355,14 @@ begin
       y_o(15) => RES_o(15));
       
 		
-end str_arch_version_two;
+end arch_version_two;
 
 
 
 
 
 configuration multi_function_aritmetic_unit_cfg of multi_function_aritmetic_unit is
-  for str_arch_version_one
+  for arch_version_one
   end for;
 end multi_function_aritmetic_unit_cfg;
 
