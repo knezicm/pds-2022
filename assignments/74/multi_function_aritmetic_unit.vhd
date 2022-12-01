@@ -271,7 +271,7 @@ begin
       c_o(14) => tmp4(14),
       c_o(15) => tmp4(15));
 
-  main : process(A_i, B_i, CTRL_i, tmp1, tmp2, tmp3, tmp4) is
+  multipr : process(A_i, B_i, CTRL_i, tmp1, tmp2, tmp3, tmp4) is
   begin
 
     case CTRL_i is
