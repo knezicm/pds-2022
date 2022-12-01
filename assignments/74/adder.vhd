@@ -48,15 +48,15 @@ use ieee.numeric_std.all;
 entity adder is
   port (
     a_i, b_i   : in std_logic_vector(15 downto 0);
-    c_o      : out std_logic_vector(15 downto 0));
+    c_o        : out std_logic_vector(15 downto 0));
 end adder;
 
 
-architecture beh_arch of adder is
+architecture arch of adder is
 
 
 begin
 
   c_o <= std_logic_vector(unsigned(a_i) + unsigned(b_i));
 
-end beh_arch;
+end arch;
