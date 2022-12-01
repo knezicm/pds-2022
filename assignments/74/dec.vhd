@@ -54,5 +54,5 @@ architecture arch of dec is
 begin
 
   c_o <= std_logic_vector(unsigned(a_i)-1);
-	
+
 end arch;
