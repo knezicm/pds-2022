@@ -50,26 +50,22 @@ entity multi_function_aritmetic_unit is
 end multi_function_aritmetic_unit;
 
 
-architecture arch_version_one of multi_function_aritmetic_unit is
+architecture arch of multi_function_aritmetic_unit is
   signal tmp1, tmp2, tmp3, tmp4 : std_logic_vector(15 downto 0);
 
   component adder
-
-    port (
-      a_i, b_i : in std_logic_vector(15 downto 0);
-      c_o      : out std_logic_vector(15 downto 0));
-
-  end component;
-
-  component sub
-
     port (
       a_i : in  std_logic_vector(15 downto 0);
-      b_i	: in  std_logic_vector(15 downto 0);
+      b_i : in  std_logic_vector(15 downto 0);
       c_o : out std_logic_vector(15 downto 0));
+  end adder
 
-  end component;
-
+  component sub
+    port (
+      a_i : in  std_logic_vector(15 downto 0);
+      b_i : in  std_logic_vector(15 downto 0);
+      c_o : out std_logic_vector(15 downto 0));
+  end sub;
 
   component dec
 
@@ -282,84 +278,84 @@ begin
   end process multipr;
 
 
-end arch_version_one;
+end arch;
 
-
-architecture arch_version_two of multi_function_aritmetic_unit is
-
-  component sub1
-
-    port (
-      a_i : in  std_logic_vector(15 downto 0);
-      b_i	: in  std_logic_vector (15 downto 0);
-      c_i : in  std_logic_vector(1 downto 0);
-      y_o	: out std_logic_vector (15 downto 0));
-
-  end component;
-
-begin
-
-  u : sub1
-    port map  (
-      a_i(0)  => A_i(0),
-      a_i(1)  => A_i(1),
-      a_i(2)  => A_i(2),
-      a_i(3)  => A_i(3),
-      a_i(4)  => A_i(4),
-      a_i(5)  => A_i(5),
-      a_i(6)  => A_i(6),
-      a_i(7)  => A_i(7),
-      a_i(8)  => A_i(8),
-      a_i(9)  => A_i(9),
-      a_i(10) => A_i(10),
-      a_i(11) => A_i(11),
-      a_i(12) => A_i(12),
-      a_i(13) => A_i(13),
-      a_i(14) => A_i(14),
-      a_i(15) => A_i(15),
-      b_i(0)  => B_i(0),
-      b_i(1)  => B_i(1),
-      b_i(2)  => B_i(2),
-      b_i(3)  => B_i(3),
-      b_i(4)  => B_i(4),
-      b_i(5)  => B_i(5),
-      b_i(6)  => B_i(6),
-      b_i(7)  => B_i(7),
-      b_i(8)  => B_i(8),
-      b_i(9)  => B_i(9),
-      b_i(10) => B_i(10),
-      b_i(11) => B_i(11),
-      b_i(12) => B_i(12),
-      b_i(13) => B_i(13),
-      b_i(14) => B_i(14),
-      b_i(15) => B_i(15),
-      c_i(0)  => CTRL_i(0),
-      c_i(1)  => CTRL_i(1),
-      y_o(0)  => RES_o(0),
-      y_o(1)  => RES_o(1),
-      y_o(2)  => RES_o(2),
-      y_o(3)  => RES_o(3),
-      y_o(4)  => RES_o(4),
-      y_o(5)  => RES_o(5),
-      y_o(6)  => RES_o(6),
-      y_o(7)  => RES_o(7),
-      y_o(8)  => RES_o(8),
-      y_o(9)  => RES_o(9),
-      y_o(10) => RES_o(10),
-      y_o(11) => RES_o(11),
-      y_o(12) => RES_o(12),
-      y_o(13) => RES_o(13),
-      y_o(14) => RES_o(14),
-      y_o(15) => RES_o(15));
-
-
-end arch_version_two;
-
-
-
-
-
-configuration multi_function_aritmetic_unit_cfg of multi_function_aritmetic_unit is
-  for arch_version_one
-  end for;
-end multi_function_aritmetic_unit_cfg;
+-----------------------------------------------------------------------------
+-- architecture arch_version_two of multi_function_aritmetic_unit is
+--
+--  component sub1
+--
+--   port (
+--      a_i : in  std_logic_vector(15 downto 0);
+--      b_i	: in  std_logic_vector(15 downto 0);
+--      c_i : in  std_logic_vector(1 downto 0);
+--      y_o	: out std_logic_vector(15 downto 0));
+--  end sub1;
+--
+-- begin
+--  u : sub1
+--  
+--    port map  (
+--      a_i(0)  => A_i(0),
+--      a_i(1)  => A_i(1),
+--      a_i(2)  => A_i(2),
+--      a_i(3)  => A_i(3),
+--      a_i(4)  => A_i(4),
+--      a_i(5)  => A_i(5),
+--      a_i(6)  => A_i(6),
+--      a_i(7)  => A_i(7),
+--      a_i(8)  => A_i(8),
+--      a_i(9)  => A_i(9),
+--      a_i(10) => A_i(10),
+--      a_i(11) => A_i(11),
+--      a_i(12) => A_i(12),
+--      a_i(13) => A_i(13),
+--      a_i(14) => A_i(14),
+--      a_i(15) => A_i(15),
+--      b_i(0)  => B_i(0),
+--      b_i(1)  => B_i(1),
+--      b_i(2)  => B_i(2),
+--      b_i(3)  => B_i(3),
+--      b_i(4)  => B_i(4),
+--      b_i(5)  => B_i(5),
+--      b_i(6)  => B_i(6),
+--      b_i(7)  => B_i(7),
+--      b_i(8)  => B_i(8),
+--      b_i(9)  => B_i(9),
+--      b_i(10) => B_i(10),
+--      b_i(11) => B_i(11),
+--      b_i(12) => B_i(12),
+--      b_i(13) => B_i(13),
+--      b_i(14) => B_i(14),
+--      b_i(15) => B_i(15),
+--      c_i(0)  => CTRL_i(0),
+--      c_i(1)  => CTRL_i(1),
+--      y_o(0)  => RES_o(0),
+--      y_o(1)  => RES_o(1),
+--      y_o(2)  => RES_o(2),
+--      y_o(3)  => RES_o(3),
+--      y_o(4)  => RES_o(4),
+--      y_o(5)  => RES_o(5),
+--      y_o(6)  => RES_o(6),
+--      y_o(7)  => RES_o(7),
+--      y_o(8)  => RES_o(8),
+--      y_o(9)  => RES_o(9),
+--      y_o(10) => RES_o(10),
+--      y_o(11) => RES_o(11),
+--      y_o(12) => RES_o(12),
+--      y_o(13) => RES_o(13),
+--      y_o(14) => RES_o(14),
+--      y_o(15) => RES_o(15));
+--
+--
+-- end arch_version_two;
+--
+--
+--
+--
+--
+-- configuration multi_function_aritmetic_unit_cfg of multi_function_aritmetic_unit is
+--  for arch_version_one
+--  end for;
+-- end multi_function_aritmetic_unit_cfg;
+-----------------------------------------------------------------------------
