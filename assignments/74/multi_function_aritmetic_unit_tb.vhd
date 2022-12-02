@@ -40,12 +40,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-
 entity multi_function_aritmetic_unit_tb is
-  
 end multi_function_aritmetic_unit_tb;
-
-
 
 architecture arch of multi_function_aritmetic_unit_tb is
 
