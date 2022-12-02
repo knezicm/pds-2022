@@ -58,7 +58,7 @@ architecture arch of multi_function_aritmetic_unit is
       a_i : in  std_logic_vector(15 downto 0);
       b_i : in  std_logic_vector(15 downto 0);
       c_o : out std_logic_vector(15 downto 0));
-  end adder
+  end adder;
 
   component sub
     port (
@@ -93,7 +93,7 @@ architecture arch of multi_function_aritmetic_unit is
 begin
 
   u1 : adder
-    port map( 
+    port map (
       a_i(0)  => A_i(0),
       a_i(1)  => A_i(1),
       a_i(2)  => A_i(2),
@@ -294,7 +294,7 @@ end arch;
 --
 -- begin
 --  u : sub1
---  
+--
 --    port map  (
 --      a_i(0)  => A_i(0),
 --      a_i(1)  => A_i(1),
