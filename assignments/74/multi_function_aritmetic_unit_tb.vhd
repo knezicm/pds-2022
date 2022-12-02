@@ -57,7 +57,7 @@ architecture arch of multi_function_aritmetic_unit_tb is
 
   signal test1_in : std_logic_vector(15 downto 0);
   signal test2_in : std_logic_vector(15 downto 0);
-  signal ctrl_in  : std_logic_vector(15 downto 0);
+  signal ctrl_in  : std_logic_vector(1 downto 0);
   signal test_out : std_logic_vector(15 downto 0);
 
 
