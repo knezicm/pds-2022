@@ -42,7 +42,7 @@ use ieee.numeric_std.all;
 
 
 entity multi_function_aritmetic_unit_tb is
-
+  
 end multi_function_aritmetic_unit_tb;
 
 
@@ -50,7 +50,7 @@ end multi_function_aritmetic_unit_tb;
 architecture arch of multi_function_aritmetic_unit_tb is
 
   component multi_function_aritmetic_unit
-  
+
     port (
      A_i    : in  std_logic_vector(15 downto 0);
      B_i    : in  std_logic_vector(15 downto 0);
@@ -59,7 +59,7 @@ architecture arch of multi_function_aritmetic_unit_tb is
 
   end component;
 
-  singal test1_in : std_logic_vector(15 downto 0);
+  signal test1_in : std_logic_vector(15 downto 0);
   signal test2_in : std_logic_vector(15 downto 0);
   signal ctrl_in  : std_logic_vector(15 downto 0);
   signal test_out : std_logic_vector(15 downto 0);
@@ -97,7 +97,7 @@ begin
             severity error;
 
           elsif ctrl_in = "01" then
-            if(to_integer(unsigned(test1_in)) > to_integer(unsigned(test2_in))) then
+            if to_integer(unsigned(test1_in)) > to_integer(unsigned(test2_in)) then
               assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) -to_integer(unsigned(test2_in))
               report " Error!"
               severity error;
