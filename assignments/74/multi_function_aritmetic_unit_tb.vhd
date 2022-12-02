@@ -126,7 +126,6 @@ begin
 
     end loop;
 
-    report "Test completed.";
     wait;
 
   end process;
