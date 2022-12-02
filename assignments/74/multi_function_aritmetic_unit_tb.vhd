@@ -50,8 +50,7 @@ end multi_function_aritmetic_unit_tb;
 architecture arch of multi_function_aritmetic_unit_tb is
 
   component multi_function_aritmetic_unit
-
-
+  
     port (
      A_i    : in  std_logic_vector(15 downto 0);
      B_i    : in  std_logic_vector(15 downto 0);
@@ -60,8 +59,11 @@ architecture arch of multi_function_aritmetic_unit_tb is
 
   end component;
 
-  signal test1_in, test2_in, test_out : std_logic_vector(15 downto 0);
-  signal ctrl_in                      : std_logic_vector(1 downto 0);
+  singal test1_in : std_logic_vector(15 downto 0);
+  signal test2_in : std_logic_vector(15 downto 0);
+  signal ctrl_in  : std_logic_vector(15 downto 0);
+  signal test_out : std_logic_vector(15 downto 0);
+
 
 begin
 
@@ -89,24 +91,24 @@ begin
           wait for 10 ns;
 
 
-          if(ctrl_in = "00") then
+          if ctrl_in = "00" then
             assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) +to_integer(unsigned(test2_in))
             report " Error!"
             severity error;
 
-          elsif (ctrl_in = "01") then
+          elsif ctrl_in = "01" then
             if(to_integer(unsigned(test1_in)) > to_integer(unsigned(test2_in))) then
               assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) -to_integer(unsigned(test2_in))
               report " Error!"
               severity error;
             end if;
 
-          elsif (ctrl_in = "10") then
+          elsif ctrl_in = "10" then
             assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) + 1
             report
             " Error!" severity error;
           else
-            if(to_integer(unsigned(test1_in)) > 1) then
+            if to_integer(unsigned(test1_in)) > 1 then
               assert to_integer(unsigned(test_out)) = to_integer(unsigned(test1_in)) -1
               report " Error!"
               severity error;
@@ -128,5 +130,5 @@ begin
 
     wait;
 
-  end process;
+  end process tb;
 end arch;
