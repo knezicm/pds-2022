@@ -45,9 +45,9 @@ use ieee.numeric_std.all;
 
 entity dec is
   port (
-    a_i	: in  std_logic_vector(15 downto 0);
-    c_o	: out std_logic_vector(15 downto 0));
-end dec;
+    a_i : in  std_logic_vector(15 downto 0);
+    c_o : out std_logic_vector(15 downto 0));
+ end dec;
 
 architecture arch of dec is
 
