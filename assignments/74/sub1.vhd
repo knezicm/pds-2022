@@ -53,9 +53,9 @@ architecture arch of sub1 is
 
 begin
 
-  process(a_i, b_i, c_i) is
+  sub1_pr : process(a_i, b_i, c_i) is
   begin
-    case (c_i) is
+    case c_i is
       when "00"   =>   y_o <= std_logic_vector( unsigned(a_i) + unsigned(b_i));
       when "01"   =>   y_o <= std_logic_vector(unsigned(a_i) - unsigned(b_i));
       when "10"   =>   y_o <= std_logic_vector(unsigned(a_i) + 1);
