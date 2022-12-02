@@ -42,10 +42,12 @@ use ieee.numeric_std.all;
 
 
 entity sub1 is
- port (
-   a_i : in  std_logic_vector(15 downto 0);
-   b_i : in  std_logic_vector(15 downto 0);
-   y_o : out std_logic_vector(15 downto 0));
+  port (
+    a_i : in  std_logic_vector(15 downto 0);
+    b_i : in  std_logic_vector(15 downto 0);
+    c_i : in  std_logic_vector(15 downto 0);
+    y_o : out std_logic_vector(15 downto 0));
+
 end sub1;
 
 architecture arch of sub1 is
@@ -62,6 +64,6 @@ begin
       when "11"   =>   y_o <= std_logic_vector(unsigned(a_i) - 1);
       when others => y_o <= std_logic_vector( unsigned(a_i) + unsigned(b_i));
     end case;
-  end process;
+  end process sub1_pr;
 
 end arch;
