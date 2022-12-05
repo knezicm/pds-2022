@@ -15,7 +15,7 @@ Raspodjela bodova za navedene dvije cjeline je data u tabeli ispod.
 
 | Priprema (50%) || Projekat (50%) |||
 | :------: | :------: | :------: | :------: | :------: |
-| Zadaci | Test | Dizajn | QA | Workflow |
+| [Zadaci](docs/evaluations/assignments-evaluation.md) | Test | Dizajn | QA | Workflow |
 | 25% | 25% | 20%| 20% | 10% |
 
 **Zadaci:** Student radi pet zadataka tokom prvog dijela kursa (svaki nosi 5% ocjene). Svaki student se ocjenjuje individualno.
