@@ -72,7 +72,7 @@ begin
     wait for 50 ns;
     SIGN_BIN_i <= "11111111";
     wait for 50 ns;
-    for i in -127 to 127 loop
+    for i in -128 to 127 loop
       wait for 50 ns;
       if tmp = 0 then
       else
@@ -93,7 +93,7 @@ begin
       tmp := tmp + 1;
     end loop;
     wait for 50 ns;
-    report "Test completed.";
+    assert true report "Test completed." severity note;
     wait;
   end process init;
 end arch;
