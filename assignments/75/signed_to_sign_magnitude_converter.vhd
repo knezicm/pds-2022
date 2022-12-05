@@ -62,7 +62,7 @@ begin
     y_o => zero);
   p1 : process(SIGN_BIN_i,zero)
   begin
-    if zero = '1'then
+    if zero = '1' and not(SIGN_BIN_i(7) = '1') then
       SIGN_MAG_o <= (others => '0');
     elsif SIGN_BIN_i(7) = '1' then
       SIGN_MAG_o <= '1' & std_logic_vector(not(signed (SIGN_BIN_i(6 downto 0))) + 1);
