@@ -105,7 +105,7 @@ begin
       b_i => B_i,
       c_o => tmp3);
 
-   u4 : dec
+  u4 : dec
     port map (
       a_i => A_i,
       b_i => B_i,
