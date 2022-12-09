@@ -37,7 +37,7 @@
 -----------------------------------------------------------------------------
 -- !Use standard library
 library ieee;
-use ieee.std_logic_1164.all; 
+use ieee.std_logic_1164.all;
 -- !@brief Description of this entity
 -- !@details More details about this element.
 entity preamble_detector is
