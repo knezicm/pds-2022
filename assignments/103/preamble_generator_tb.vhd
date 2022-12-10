@@ -35,23 +35,14 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
---! @file
---! @brief Preamble generator testbench
------------------------------------------------------------------------------
 
---! Use standard library
 library ieee;
---! Use logic elements
 use ieee.std_logic_1164.all;
---! Use numeric elements
 use ieee.numeric_std.all;
 
---! @brief Entity for preamble generator testbench
 entity preamble_generator_tb is
 end preamble_generator_tb;
 
---! @brief Architecture definition of the preamble generator testbench
---! @details Generating 30 cycles of clock signal and for certain moments of the simulation seting start_i to '1'.
 architecture arch of preamble_generator_tb is
   component preamble_generator
     port(
@@ -67,10 +58,10 @@ architecture arch of preamble_generator_tb is
   signal clk_i, rst_i, start_i, data_o, data_o_pom : std_logic;
 
   constant c_NUM_OF_CLOCKS : integer := 30;
-  signal i, count : integer := 0; --! loop variable
+  signal i, count : integer := 0; -- loop variable
 begin
 
-  --! uut instantiation
+  -- uut instantiation
   uut : preamble_generator port map (
     clk_i   => clk_i,
     rst_i   => rst_i,
@@ -78,10 +69,10 @@ begin
     data_o  => data_o
   );
 
-  --! stimulus generator for reset
+  -- stimulus generator for reset
   rst_i <= '1', '0' after c_T/2;
 
-  -- ! stimulus for continous clock
+  -- stimulus for continous clock
   process
   begin
     clk_i <= '0';
