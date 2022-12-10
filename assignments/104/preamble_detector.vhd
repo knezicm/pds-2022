@@ -38,18 +38,21 @@
 -- !Use standard library
 library ieee;
 use ieee.std_logic_1164.all;
--- !@brief Description of this entity
+-- !@brief In digital communications, a synchronization bit sequence known as
+-- !a preamble is often used. The entity describes all the necessary input and
+-- !output signals needed to realize this circuit.
+
 -- !@details More details about this element.
 entity preamble_detector is
   port (
-  clk_i   : in  std_logic;  -- !Clock input
-  rst_i   : in  std_logic;  -- !Reset enable when '1' or disable
-  data_i  : in  std_logic;  -- !Input data
-  match_o : out std_logic   -- !Output data
+  clk_i   : in  std_logic;  -- !Clock input 
+  rst_i   : in  std_logic;  -- !Reset signal: When the input signal is '1' then the detector is in the reset state and cannot receive the signal.
+  data_i  : in  std_logic;  -- !Input data: Each clock signal is followed by input data.
+  match_o : out std_logic   -- !Output data: When the sequence appears at the output, we have a high logic level for one clock period.
 );
 end preamble_detector;
 
--- !@brief Architecture definition of the preamble_detector
+-- !@brief Architecture definition of the preamble_detector: a state machine that detects the bit sequence "10101010" on the serial input.
 -- !@details More details about this element.
 
 architecture arch of preamble_detector is
