@@ -98,7 +98,7 @@ begin
     if rising_edge(clk_i) and (rst_i /= '1') then -- avoid reset
       if start_i = '1' then
         count <= 1;
-        data_o_pom <= '1';
+        data_o_pom <= '0';
       end if;
       if count > 0 and count < 9 then
         if data_o /= data_o_pom then
