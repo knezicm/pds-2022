@@ -1,30 +1,40 @@
--- Copyright (C) 2022  Intel Corporation. All rights reserved.
--- Your use of Intel Corporation's design tools, logic functions
--- and other software and tools, and any partner logic
--- functions, and any output files from any of the foregoing
--- (including device programming or simulation files), and any
--- associated documentation or information are expressly subject
--- to the terms and conditions of the Intel Program License
--- Subscription Agreement, the Intel Quartus Prime License Agreement,
--- the Intel FPGA IP License Agreement, or other applicable license
--- agreement, including, without limitation, that your use is for
--- the sole purpose of programming logic devices manufactured by
--- Intel and sold by Intel or its authorized distributors.  Please
--- refer to the applicable agreement for further details, at
--- https://fpgasoftware.intel.com/eula.
-
--- ***************************************************************************
--- This file contains a Vhdl test bench template that is freely editable to
--- suit user's needs .Comments are provided in each section to help the user
--- fill out necessary details.
--- ***************************************************************************
--- Generated on "12/07/2022 00:28:54"
-
--- Vhdl Test Bench template for design  :  preamble_detector
+-----------------------------------------------------------------------------
+-- Faculty of Electrical Engineering
+-- PDS 2022
+-- https://github.com/knezicm/pds-2022/
+-----------------------------------------------------------------------------
 --
--- Simulation tool : ModelSim (VHDL)
+-- unit name:   Preamble detector
 --
-
+-- description:
+--
+-- This VHDL project presents a testbench code for Moore FSM sequence detector.
+--
+-----------------------------------------------------------------------------
+-- Copyright (c) 2022 Faculty of Electrical Engineering
+-----------------------------------------------------------------------------
+-- The MIT License
+-----------------------------------------------------------------------------
+-- Copyright 2022 Faculty of Electrical Engineering
+--
+-- Permission is hereby granted, free of charge, to any person obtaining a
+-- copy of this software and associated documentation files (the "Software"),
+-- to deal in the Software without restriction, including without limitation
+-- the rights to use, copy, modify, merge, publish, distribute, sublicense,
+-- and/or sell copies of the Software, and to permit persons to whom
+-- the Software is furnished to do so, subject to the following conditions:
+--
+-- The above copyright notice and this permission notice shall be included in
+-- all copies or substantial portions of the Software.
+--
+-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+-- THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+-- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+-- OTHER DEALINGS IN THE SOFTWARE
+-----------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
 
