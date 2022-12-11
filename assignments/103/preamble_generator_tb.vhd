@@ -55,7 +55,8 @@ architecture arch of preamble_generator_tb is
 
   constant c_T : time := 20 ns;
 
-  signal clk_i, rst_i, start_i, data_o, data_o_pom : std_logic;
+  signal clk_i, rst_i, start_i, data_o : std_logic;
+  signal data_o_pom : std_logic := '0';
 
   constant c_NUM_OF_CLOCKS : integer := 30;
   signal i, count : integer := 0; -- loop variable
@@ -98,9 +99,9 @@ begin
     if rising_edge(clk_i) and (rst_i /= '1') then -- avoid reset
       if start_i = '1' then
         count <= 1;
-        data_o_pom <= '0';
+        data_o_pom <= '1';
       end if;
-      if count > 0 and count < 9 then
+      if count > 0 and count < 8 then
         if data_o /= data_o_pom then
           assert false report "incorrect value! Expected: " &
             std_logic'image(data_o_pom) & ", but got: " &
@@ -108,6 +109,9 @@ begin
         end if;
         count <= count + 1;
         data_o_pom <= not data_o_pom;
+      end if;
+      if count = 9 then
+        data_o_pom <= '0';
       end if;
     end if;
   end process clk_process;

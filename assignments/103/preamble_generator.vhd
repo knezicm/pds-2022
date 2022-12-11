@@ -36,18 +36,19 @@
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
 --! @file
---! @brief Preamble generator
+--! @brief Preamble generator.
 -----------------------------------------------------------------------------
 
---! Use standard library
+--! Use standard library.
 library ieee;
---! Use logic elements
+--! Use logic elements.
 use ieee.std_logic_1164.all;
---! Use numeric elements
+--! Use numeric elements.
 use ieee.numeric_std.all;
 
---! @brief Entity for preamble generator
---! @details This entity contains clock and reset inputs, input for triggering preamble generation and output port on which preamble is generated.
+--! @brief Entity for preamble generator.
+--! @details This entity contains clock and reset inputs,
+--! input for triggering preamble generation and output port on which preamble is generated.
 entity preamble_generator is
   port (
     clk_i   : in  std_logic; --! Input clock signal.
@@ -57,17 +58,17 @@ entity preamble_generator is
   );
 end preamble_generator;
 
---! @brief Architecture definition of the preamble generator
+--! @brief Architecture definition of the preamble generator.
 --! @details This design is realized like a Moore machine with a finite number of states by using look-ahead output method.
 --! When start_i is set to logic '1', a sequence of bits "10101010" appears on the output (data_o).
 architecture arch of preamble_generator is
-  type t_mc_sm is (idle, write1, write2, write3, write4, write5, write6, write7, write8); --! States of FSM
-  signal state_reg  : t_mc_sm; --! Current state of register
-  signal state_next : t_mc_sm; --! Next state of register
-  signal out_next   : std_logic; --! Temp signal for data_o_reg
-  signal data_o_reg : std_logic; --! Temp signal for data_o
+  type t_mc_sm is (idle, write1, write2, write3, write4, write5, write6, write7, write8); --! States of FSM.
+  signal state_reg  : t_mc_sm; --! Current state of register.
+  signal state_next : t_mc_sm; --! Next state of register.
+  signal out_next   : std_logic; --! Temp signal for data_o_reg.
+  signal data_o_reg : std_logic; --! Temp signal for data_o.
 begin
-  --! State register
+  --! State register.
   process(clk_i, rst_i)
   begin
     if rst_i = '1' then
@@ -77,7 +78,7 @@ begin
     end if;
   end process;
 
-  --! Output buffer
+  --! Output buffer.
   process(clk_i, rst_i)
   begin
     if rst_i = '1' then
@@ -87,7 +88,7 @@ begin
     end if;
   end process;
 
-  --! Next-state logic
+  --! Next-state logic.
   process(state_reg, start_i)
   begin
     case state_reg is
@@ -123,24 +124,24 @@ begin
     case state_next is
       when idle =>
       when write1 =>
-        out_next <= '0';
+        out_next <= '1';
       when write2 =>
-        out_next <= '1';
+        out_next <= '0';
       when write3 =>
-        out_next <= '0';
+        out_next <= '1';
       when write4 =>
-        out_next <= '1';
+        out_next <= '0';
       when write5 =>
-        out_next <= '0';
+        out_next <= '1';
       when write6 =>
-        out_next <= '1';
-      when write7 =>
         out_next <= '0';
-      when write8 =>
+      when write7 =>
         out_next <= '1';
+      when write8 =>
+        out_next <= '0';
     end case;
   end process;
 
-  --! output
+  --! Output.
   data_o <= data_o_reg;
 end arch;
