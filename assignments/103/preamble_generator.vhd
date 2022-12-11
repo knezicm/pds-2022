@@ -47,13 +47,13 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 --! @brief Entity for preamble generator
---! @details This entity contains 3 input signals, and 1 output signal
+--! @details This entity contains clock and reset inputs, input for triggering preamble generation and output port on which preamble is generated.
 entity preamble_generator is
   port (
-    clk_i   : in  std_logic; --! input clock signal
-    rst_i   : in  std_logic; --! input reset signal
-    start_i : in  std_logic; --! input start signal
-    data_o  : out std_logic  --! output signal
+    clk_i   : in  std_logic; --! Input clock signal.
+    rst_i   : in  std_logic; --! It resets the system when set to logic '1'.
+    start_i : in  std_logic; --! It triggers preamble generation when is set to logic '1' for one clock period.
+    data_o  : out std_logic  --! Output signal on which generated preamble sequence appears.
   );
 end preamble_generator;
 
@@ -67,7 +67,7 @@ architecture arch of preamble_generator is
   signal out_next   : std_logic; --! Temp signal for data_o_reg
   signal data_o_reg : std_logic; --! Temp signal for data_o
 begin
-  --! state register
+  --! State register
   process(clk_i, rst_i)
   begin
     if rst_i = '1' then
@@ -77,7 +77,7 @@ begin
     end if;
   end process;
 
-  --! output buffer
+  --! Output buffer
   process(clk_i, rst_i)
   begin
     if rst_i = '1' then
@@ -87,7 +87,7 @@ begin
     end if;
   end process;
 
-  --! next-state logic
+  --! Next-state logic
   process(state_reg, start_i)
   begin
     case state_reg is
@@ -116,7 +116,7 @@ begin
     end case;
   end process;
 
-  --! look-ahead output logic
+  --! Look-ahead output logic
   process(state_next)
   begin
     out_next <= '0';
