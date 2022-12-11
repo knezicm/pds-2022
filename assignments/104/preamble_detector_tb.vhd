@@ -38,9 +38,9 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity preamble_detector_vhd_tst is
-end preamble_detector_vhd_tst;
-architecture arch of preamble_detector_vhd_tst is
+entity preamble_detector_tb is
+end preamble_detector_tb;
+architecture arch of preamble_detector_tb is
 -- constants
 -- signals
   signal clk_i : STD_LOGIC := '0';
