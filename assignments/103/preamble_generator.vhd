@@ -84,7 +84,11 @@ begin
     if rst_i = '1' then
       data_o_reg <= '0';
     elsif falling_edge(clk_i) then
-      data_o_reg <= out_next;
+	   if start_i = '1' then
+		  data_o_reg <= '1';
+		else
+		  data_o_reg <= out_next;
+		end if;
     end if;
   end process;
 
@@ -124,21 +128,20 @@ begin
     case state_next is
       when idle =>
       when write1 =>
-        out_next <= '1';
+        out_next <= '0';
       when write2 =>
-        out_next <= '0';
+        out_next <= '1';
       when write3 =>
-        out_next <= '1';
+        out_next <= '0';
       when write4 =>
-        out_next <= '0';
+        out_next <= '1';
       when write5 =>
-        out_next <= '1';
+        out_next <= '0';
       when write6 =>
-        out_next <= '0';
-      when write7 =>
         out_next <= '1';
-      when write8 =>
+      when write7 =>
         out_next <= '0';
+      when write8 =>
     end case;
   end process;
 
