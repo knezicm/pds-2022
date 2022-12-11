@@ -49,7 +49,7 @@ entity preamble_detector is
 
   rst_i   : in  std_logic;  -- !Reset signal: When the input signal is '1' then
                             -- !the detector is in the reset state and cannot receive the signal.
-  data_i  : in  std_logic;  -- !Input data: Each clock signal is followed 
+  data_i  : in  std_logic;  -- !Input data: Each clock signal is followed
                             -- !by input data.
   match_o : out std_logic   -- !Output data: When the sequence appears at the output,
                             -- !we have a high logic level for one clock period.
