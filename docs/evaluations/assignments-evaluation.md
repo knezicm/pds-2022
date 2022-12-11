@@ -7,7 +7,7 @@
 | Elezović Azra | 5% |  |  |  | **5%** |
 | Cetić Nikola | 5% | 5% |  |  | **10%** |
 | Čenić Nemanja | 5% | 5% |  |  | **10%** |
-| Lekić Tamara | 5% |  |  |  | **5%** |
+| Lekić Tamara | 5% | 5% |  |  | **10%** |
 | Novaković Jovan | 5% |  |  |  | **5%** |
 | Popović Tanja | 5% |  |  |  | **5%** |
 
