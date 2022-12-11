@@ -53,14 +53,14 @@ entity preamble_generator is
   port (
     clk_i   : in  std_logic; --! Input clock signal.
     rst_i   : in  std_logic; --! It resets the system when set to logic '1'.
-    start_i : in  std_logic; --! It triggers preamble generation when is set to logic '1' for one clock period.
+    start_i : in  std_logic; --! It triggers preamble generation when is set to logic '0' for one clock period.
     data_o  : out std_logic  --! Output signal on which generated preamble sequence appears.
   );
 end preamble_generator;
 
 --! @brief Architecture definition of the preamble generator.
 --! @details This design is realized like a Moore machine with a finite number of states by using look-ahead output method.
---! When start_i is set to logic '1', a sequence of bits "10101010" appears on the output (data_o).
+--! When start_i is set to logic '0', a sequence of bits "10101010" appears on the output (data_o).
 architecture arch of preamble_generator is
   type t_mc_sm is (idle, write1, write2, write3, write4, write5, write6, write7, write8); --! States of FSM.
   signal state_reg  : t_mc_sm; --! Current state of register.
@@ -73,7 +73,7 @@ begin
   begin
     if rst_i = '1' then
       state_reg <= idle;
-    elsif rising_edge(clk_i) then
+    elsif falling_edge(clk_i) then
       state_reg <= state_next;
     end if;
   end process;
@@ -83,7 +83,7 @@ begin
   begin
     if rst_i = '1' then
       data_o_reg <= '0';
-    elsif rising_edge(clk_i) then
+    elsif falling_edge(clk_i) then
       data_o_reg <= out_next;
     end if;
   end process;
