@@ -35,40 +35,38 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
--- !Use standard library
+--! @file
+--! @brief Preamble detector
+-----------------------------------------------------------------------------
+--! Use standard library
 library ieee;
 use ieee.std_logic_1164.all;
--- !@brief In digital communications, a synchronization bit sequence known as
--- !a preamble is often used. The entity describes all the necessary input and
--- !output signals needed to realize this circuit.
-
--- !@details More details about this element.
+--! @brief Entity for preamble detector.
+--! @details In digital communications, a synchronization bit sequence known as
+--! a preamble is often used. The entity describes all the necessary input and
+--! output signals needed to realize this circuit.
 entity preamble_detector is
   port (
-  clk_i   : in  std_logic;  -- !Clock input
-
-  rst_i   : in  std_logic;  -- !Reset signal: When the input signal is '1' then
-                            -- !the detector is in the reset state and cannot receive the signal.
-  data_i  : in  std_logic;  -- !Input data: Each clock signal is followed
-                            -- !by input data.
-  match_o : out std_logic   -- !Output data: When the sequence appears at the output,
-                            -- !we have a high logic level for one clock period.
+  clk_i   : in  std_logic;  --! Clock input signals.
+  rst_i   : in  std_logic;  --! It resets the system when set to logic '1'.
+  data_i  : in  std_logic;  --! This port receives the data on the basis of which the required sequence is detected.
+  match_o : out std_logic   --! High for one clock period when preamble is detected.
 );
 end preamble_detector;
 
--- !@brief Architecture definition of the preamble_detector: a state machine that
--- !detects the bit sequence "10101010" on the serial input.
--- !@details More details about this element.
+--! @brief Architecture definition of the preamble detector.
+--! @details Architecture definition of the preamble_detector: a state machine that
+--! detects the bit sequence "10101010" on the serial input.
 
 architecture arch of preamble_detector is
 
--- !Defintion of Moore state type
+--! Defintion of Moore state type
   type t_moore_state is
    (idle, state1, state2, state3, state4, state5, state6, state7, state8);
   signal state_reg, state_next : t_moore_state;
 
 begin
--- !State register--
+--! State register--
   process(clk_i, rst_i)
   begin
     if rst_i = '1' then
@@ -77,7 +75,7 @@ begin
       state_reg <= state_next;
     end if;
   end process;
--- !Next_state logic--
+--! Next_state logic--
   process(state_reg, data_i)
   begin
     case state_reg is
@@ -137,7 +135,7 @@ begin
         end if;
     end case;
   end process;
--- !Moore output logic
+--! Moore output logic
   process(state_reg)
   begin
     match_o <= '0';
