@@ -45,7 +45,7 @@ use ieee.std_logic_1164.all;
 
 --! \brief Creates NRZI decoder.
 --! Entity is created using Moore FSM with 4 states.
---! States: zero_zero, zero_one, one_zero,one_one
+--! States : zero_zero, zero_one, one_zero,one_one
 --!
 
 entity nrzi_decoder is
