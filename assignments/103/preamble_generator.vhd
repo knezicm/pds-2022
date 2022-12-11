@@ -143,5 +143,5 @@ begin
   end process;
 
   --! Output.
-  data_o <= data_o_reg;
+  data_o <= not data_o_reg;
 end arch;
