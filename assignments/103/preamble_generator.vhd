@@ -78,16 +78,6 @@ begin
     end if;
   end process;
 
-  --! Output buffer.
-  process(clk_i, rst_i)
-  begin
-    if rst_i = '1' then
-      data_o_reg <= '0';
-    elsif rising_edge(clk_i) then
-      data_o_reg <= out_next;
-    end if;
-  end process;
-
   --! Next-state logic.
   process(state_reg, start_i)
   begin
@@ -141,7 +131,17 @@ begin
         out_next <= '0';
     end case;
   end process;
+  
+  --! Output buffer.
+--  process(clk_i, rst_i)
+--  begin
+--    if rst_i = '1' then
+--      data_o_reg <= '0';
+--    elsif rising_edge(clk_i) then
+--      data_o_reg <= out_next;
+--    end if;
+--  end process;
 
   --! Output.
-  data_o <= data_o_reg;
+  data_o <= out_next;
 end arch;

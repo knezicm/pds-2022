@@ -93,12 +93,13 @@ begin
     if rising_edge(clk_i) and (rst_i /= '1') then -- avoid reset
 	   if i = 0 or i = 16 then
         start_i <= '1';
+		  data_o_pom <= '1';
       else
         start_i <= '0';
       end if;
       if start_i = '1' then
         count <= 1;
-        data_o_pom <= '1';
+        data_o_pom <= '0';
       end if;
       if count > 0 and count < 8 then
         if data_o /= data_o_pom then
