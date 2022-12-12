@@ -73,7 +73,7 @@ begin
   begin
     if rst_i = '1' then
       state_reg <= idle;
-    elsif falling_edge(clk_i) then
+    elsif rising_edge(clk_i) then
       state_reg <= state_next;
     end if;
   end process;
@@ -83,7 +83,7 @@ begin
   begin
     if rst_i = '1' then
       data_o_reg <= '0';
-    elsif falling_edge(clk_i) then
+    elsif rising_edge(clk_i) then
       data_o_reg <= out_next;
     end if;
   end process;

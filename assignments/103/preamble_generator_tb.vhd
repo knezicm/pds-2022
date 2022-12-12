@@ -81,12 +81,6 @@ begin
     clk_i <= '1';
     wait for c_T/2;
 
-    if i = 0 or i = 16 then
-      start_i <= '1';
-    else
-      start_i <= '0';
-    end if;
-
     if i = c_NUM_OF_CLOCKS then
       wait;
     else
@@ -96,7 +90,12 @@ begin
 
   clk_process : process (clk_i)
   begin
-    if falling_edge(clk_i) and (rst_i /= '1') then -- avoid reset
+    if rising_edge(clk_i) and (rst_i /= '1') then -- avoid reset
+	   if i = 0 or i = 16 then
+        start_i <= '1';
+      else
+        start_i <= '0';
+      end if;
       if start_i = '1' then
         count <= 1;
         data_o_pom <= '1';
