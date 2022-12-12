@@ -143,5 +143,5 @@ begin
 --  end process;
 
   --! Output.
-  data_o <= out_next;
+  data_o <= not out_next;
 end arch;
