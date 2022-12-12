@@ -93,7 +93,6 @@ begin
     if rising_edge(clk_i) and (rst_i /= '1') then -- avoid reset
 	   if i = 0 or i = 16 then
         start_i <= '1';
-		  --data_o_pom <= '1';
       else
         start_i <= '0';
       end if;
