@@ -1,9 +1,3 @@
---! \file nrzi_decoder_tb.vhd
---! \brief This file Implements testbench for nrzi_decoder.
---!
---! This file is part of the PDS-2022 project
---! \author Nikola Cetic
-
 -----------------------------------------------------------------------------
 -- Faculty of Electrical Engineering
 -- PDS 2022
@@ -45,8 +39,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
---! \brief Creates testbench.
---!
 
 entity nrzi_decoder_tb is
 end nrzi_decoder_tb;

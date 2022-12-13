@@ -1,8 +1,3 @@
---! \file nrzi_decoder_tb.vhd
---! \brief This file Implements testbench for nrzi_decoder.
---!
---! This file is part of the PDS-2022 project
---! \author Nikola Cetic
 -----------------------------------------------------------------------------
 -- Faculty of Electrical Engineering
 -- PDS 2022
@@ -40,13 +35,14 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
+--! \file nrzi_decoder.vhd
+--! \brief This file Implements  NRZI DECODER.
+--!
+--! This file is part of the PDS-2022 project
+--! \author Nikola Cetic
+
 library ieee;
 use ieee.std_logic_1164.all;
-
---! \brief Creates NRZI decoder.
---! Entity is created using Moore FSM with 4 states.
---! States : zero_zero, zero_one, one_zero,one_one
---!
 
 entity nrzi_decoder is
   port (
@@ -57,6 +53,12 @@ entity nrzi_decoder is
 );
 end nrzi_decoder;
 
+
+--! \details Creates NRZI decoder.
+--! Architecture is implemented using Moore FSM with 4 states.
+--! States : zero_zero, zero_one, one_zero,one_one
+--! Every state is self explanatory
+--!
 architecture arch of nrzi_decoder is
 
   type t_states is (zero_zero, zero_one, one_zero, one_one);
