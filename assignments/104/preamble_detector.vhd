@@ -60,13 +60,13 @@ end preamble_detector;
 
 architecture arch of preamble_detector is
 
---! Defintion of Moore state type
+--! Defintion of Moore state type.
   type t_moore_state is
    (idle, state1, state2, state3, state4, state5, state6, state7, state8);
   signal state_reg, state_next : t_moore_state;
 
 begin
---! State register--
+--! State register.
   process(clk_i, rst_i)
   begin
     if rst_i = '1' then
@@ -75,7 +75,7 @@ begin
       state_reg <= state_next;
     end if;
   end process;
---! Next_state logic--
+--! Next_state logic.
   process(state_reg, data_i)
   begin
     case state_reg is
@@ -135,7 +135,7 @@ begin
         end if;
     end case;
   end process;
---! Moore output logic
+--! Moore output logic.
   process(state_reg)
   begin
     match_o <= '0';
