@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['a_0',['a',['../classfull__sub.html#a6e803e5d6ab866c6c642e2580a2261cd',1,'full_sub']]],
-  ['a_1',['A',['../classone__bit__full__adder.html#aaaf857ee937a59fcd16a435e73e575f8',1,'one_bit_full_adder.A()'],['../classtwo__bit__comparator.html#a3f4597f367957b73bbed47f00344317d',1,'two_bit_comparator.A()']]],
+  ['a_0',['A',['../classone__bit__full__adder.html#aaaf857ee937a59fcd16a435e73e575f8',1,'one_bit_full_adder.A()'],['../classtwo__bit__comparator.html#a3f4597f367957b73bbed47f00344317d',1,'two_bit_comparator.A()']]],
+  ['a_1',['a',['../classfull__sub.html#a6e803e5d6ab866c6c642e2580a2261cd',1,'full_sub']]],
   ['a_5fi_2',['a_i',['../classseven__bit__comparator.html#a9aae93672017960229cff19b69609769',1,'seven_bit_comparator']]],
   ['a_5fi_3',['A_i',['../classhamming__distance__unit.html#a4a684bb2e79adf7b97cecffea494fa91',1,'hamming_distance_unit']]],
   ['a_5fo_4',['A_o',['../classfour__bit__lzc.html#ac63477c5211b96e76179321bda479421',1,'four_bit_lzc.A_o()'],['../classfour__bit__lze.html#ac63477c5211b96e76179321bda479421',1,'four_bit_lze.A_o()']]],
