@@ -102,13 +102,11 @@ begin
   u3 : inc
     port map(
       a_i => A_i,
-      b_i => B_i,
       c_o => tmp3);
 
   u4 : dec
     port map (
       a_i => A_i,
-      b_i => B_i,
       c_o => tmp4);
 
   multipr : process(A_i, B_i, CTRL_i, tmp1, tmp2, tmp3, tmp4) is
