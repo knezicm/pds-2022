@@ -57,7 +57,7 @@ entity nrzi_decoder is
 );
 end nrzi_decoder;
 
-
+--! \brief Architecture for nrzi_decoder
 --! \details Creates NRZI decoder.
 --! Architecture is implemented using Moore FSM with 4 states.
 --! States : zero_zero, zero_one, one_zero,one_one
