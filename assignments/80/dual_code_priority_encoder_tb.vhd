@@ -41,12 +41,11 @@ use ieee.std_logic_1164.all;
 
 use ieee.numeric_std.all;
 
-use ieee.std_logic_arith.all;
 
 entity dual_code_priority_encoder_tb is
 end dual_code_priority_encoder_tb;
 
-architecture tb_arch of dual_code_priority_encoder_tb is
+architecture arch of dual_code_priority_encoder_tb is
   component dual_code_priority_encoder
     port (
       REQ_i    : in std_logic_vector(7 downto 0);
@@ -64,9 +63,9 @@ begin
 
      -- uut instantiation
   uut : dual_code_priority_encoder port map (
-    REQ_i => REQ_test,
-    CODE1_o => CODE1_test,
-    CODE2_o => CODE2_test,
+    REQ_i    => REQ_test,
+    CODE1_o  => CODE1_test,
+    CODE2_o  => CODE2_test,
     VALID1_o => VALID1_test,
     VALID2_o => VALID2_test
   );
@@ -80,107 +79,107 @@ begin
     for i in 0 to 255 loop
       REQ_test <= std_logic_vector(to_unsigned(i,8));
       wait for 1 ns;
-      if(REQ_test(7) = '1' and CODE1_test = "111") then
-        if(REQ_test(6) = '1' and CODE2_test = "110") then
+      if REQ_test(7) = '1' and CODE1_test = "111" then
+        if REQ_test(6) = '1' and CODE2_test = "110" then
           error_status := false;
-        elsif(REQ_test(5) = '1' and CODE2_test = "101") then
+        elsif REQ_test(5) = '1' and CODE2_test = "101" then
           error_status := false;
-        elsif(REQ_test(4) = '1' and CODE2_test = "100") then
+        elsif REQ_test(4) = '1' and CODE2_test = "100" then
           error_status := false;
-        elsif(REQ_test(3) = '1' and CODE2_test = "011") then
+        elsif REQ_test(3) = '1' and CODE2_test = "011" then
           error_status := false;
-        elsif(REQ_test(2) = '1' and CODE2_test = "010") then
+        elsif REQ_test(2) = '1' and CODE2_test = "010" then
           error_status := false;
-        elsif(REQ_test(1) = '1' and CODE2_test = "001") then
+        elsif REQ_test(1) = '1' and CODE2_test = "001" then
           error_status := false;
-        elsif(REQ_test(0) = '1' and CODE2_test = "000") then
+        elsif REQ_test(0) = '1' and CODE2_test = "000" then
           error_status := false;
-        elsif(REQ_test(6 downto 0) = "0000000" and VALID2_test = '0') then
-          error_status := false;
-        else
-          error_status := true;
-        end if;
-      elsif(REQ_test(6) = '1' and CODE1_test = "110") then
-        if(REQ_test(5) = '1' and CODE2_test = "101") then
-          error_status := false;
-        elsif(REQ_test(4) = '1' and CODE2_test = "100") then
-          error_status := false;
-        elsif(REQ_test(3) = '1' and CODE2_test = "011") then
-          error_status := false;
-        elsif(REQ_test(2) = '1' and CODE2_test = "010") then
-          error_status := false;
-        elsif(REQ_test(1) = '1' and CODE2_test = "001") then
-          error_status := false;
-        elsif(REQ_test(0) = '1' and CODE2_test = "000") then
-          error_status := false;
-        elsif(REQ_test(5 downto 0) = "000000" and VALID2_test = '0') then
+        elsif REQ_test(6 downto 0) = "0000000" and VALID2_test = '0' then
           error_status := false;
         else
           error_status := true;
         end if;
-      elsif(REQ_test(5) = '1' and CODE1_test = "101") then
-        if(REQ_test(4) = '1' and CODE2_test = "100") then
+      elsif REQ_test(6) = '1' and CODE1_test = "110" then
+        if REQ_test(5) = '1' and CODE2_test = "101" then
           error_status := false;
-        elsif(REQ_test(3) = '1' and CODE2_test = "011") then
+        elsif REQ_test(4) = '1' and CODE2_test = "100" then
           error_status := false;
-        elsif(REQ_test(2) = '1' and CODE2_test = "010") then
+        elsif REQ_test(3) = '1' and CODE2_test = "011" then
           error_status := false;
-        elsif(REQ_test(1) = '1' and CODE2_test = "001") then
+        elsif REQ_test(2) = '1' and CODE2_test = "010" then
           error_status := false;
-        elsif(REQ_test(0) = '1' and CODE2_test = "000") then
+        elsif REQ_test(1) = '1' and CODE2_test = "001" then
           error_status := false;
-        elsif(REQ_test(4 downto 0) = "00000" and VALID2_test = '0') then
+        elsif REQ_test(0) = '1' and CODE2_test = "000" then
           error_status := false;
-        else
-          error_status := true;
-        end if;
-      elsif(REQ_test(4) = '1' and CODE1_test = "100") then
-        if(REQ_test(3) = '1' and CODE2_test = "011") then
-          error_status := false;
-        elsif(REQ_test(2) = '1' and CODE2_test = "010") then
-          error_status := false;
-        elsif(REQ_test(1) = '1' and CODE2_test = "001") then
-          error_status := false;
-        elsif(REQ_test(0) = '1' and CODE2_test = "000") then
-          error_status := false;
-        elsif(REQ_test(3 downto 0) = "0000" and VALID2_test = '0') then
+        elsif REQ_test(5 downto 0) = "000000" and VALID2_test = '0' then
           error_status := false;
         else
           error_status := true;
         end if;
-      elsif(REQ_test(3) = '1' and CODE1_test = "011") then
-        if(REQ_test(2) = '1' and CODE2_test = "010") then
+      elsif REQ_test(5) = '1' and CODE1_test = "101" then
+        if REQ_test(4) = '1' and CODE2_test = "100" then
           error_status := false;
-        elsif(REQ_test(1) = '1' and CODE2_test = "001") then
+        elsif REQ_test(3) = '1' and CODE2_test = "011" then
           error_status := false;
-        elsif(REQ_test(0) = '1' and CODE2_test = "000") then
+        elsif REQ_test(2) = '1' and CODE2_test = "010" then
           error_status := false;
-        elsif(REQ_test(2 downto 0) = "000" and VALID2_test = '0') then
+        elsif REQ_test(1) = '1' and CODE2_test = "001" then
           error_status := false;
-        else
-          error_status := true;
-        end if;
-      elsif(REQ_test(2) = '1' and CODE1_test = "010") then
-        if(REQ_test(1) = '1' and CODE2_test = "001") then
+        elsif REQ_test(0) = '1' and CODE2_test = "000" then
           error_status := false;
-        elsif(REQ_test(0) = '1' and CODE2_test = "000") then
-          error_status := false;
-        elsif(REQ_test(1 downto 0) = "00" and VALID2_test = '0') then
+        elsif REQ_test(4 downto 0) = "00000" and VALID2_test = '0' then
           error_status := false;
         else
           error_status := true;
         end if;
-      elsif(REQ_test(1) = '1' and CODE1_test = "001") then
-        if(REQ_test(0) = '1' and CODE2_test = "000") then
+      elsif REQ_test(4) = '1' and CODE1_test = "100" then
+        if REQ_test(3) = '1' and CODE2_test = "011" then
           error_status := false;
-        elsif(REQ_test(0) = '0' and VALID2_test = '0') then
+        elsif REQ_test(2) = '1' and CODE2_test = "010" then
+          error_status := false;
+        elsif REQ_test(1) = '1' and CODE2_test = "001" then
+          error_status := false;
+        elsif REQ_test(0) = '1' and CODE2_test = "000" then
+          error_status := false;
+        elsif REQ_test(3 downto 0) = "0000" and VALID2_test = '0' then
           error_status := false;
         else
           error_status := true;
         end if;
-      elsif(REQ_test(0) = '1' and CODE1_test = "000" and VALID2_test = '0') then
+      elsif REQ_test(3) = '1' and CODE1_test = "011" then
+        if REQ_test(2) = '1' and CODE2_test = "010" then
+          error_status := false;
+        elsif REQ_test(1) = '1' and CODE2_test = "001" then
+          error_status := false;
+        elsif REQ_test(0) = '1' and CODE2_test = "000" then
+          error_status := false;
+        elsif REQ_test(2 downto 0) = "000" and VALID2_test = '0' then
+          error_status := false;
+        else
+          error_status := true;
+        end if;
+      elsif REQ_test(2) = '1' and CODE1_test = "010" then
+        if REQ_test(1) = '1' and CODE2_test = "001" then
+          error_status := false;
+        elsif REQ_test(0) = '1' and CODE2_test = "000" then
+          error_status := false;
+        elsif REQ_test(1 downto 0) = "00" and VALID2_test = '0' then
+          error_status := false;
+        else
+          error_status := true;
+        end if;
+      elsif REQ_test(1) = '1' and CODE1_test = "001" then
+        if REQ_test(0) = '1' and CODE2_test = "000" then
+          error_status := false;
+        elsif REQ_test(0) = '0' and VALID2_test = '0' then
+          error_status := false;
+        else
+          error_status := true;
+        end if;
+      elsif REQ_test(0) = '1' and CODE1_test = "000" and VALID2_test = '0' then
         error_status := false;
-      elsif(REQ_test = "00000000" and VALID1_test = '0') then
+      elsif REQ_test = "00000000" and VALID1_test = '0' then
         error_status := false;
       else
         error_status := true;
@@ -192,7 +191,7 @@ begin
              severity note;
       wait for 20 ns;
     end loop;
-    report "Test completed.";
+    assert true report "Test completed." severity note;
     wait;
   end process;
-end tb_arch;
+end arch;

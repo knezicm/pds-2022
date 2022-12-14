@@ -40,8 +40,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity priority_encoder_8_3 is
- port (
- REQ_i   : in std_logic_vector(7 downto 0);
+  port (
+ REQ_i   :  in std_logic_vector(7 downto 0);
  CODE_o  : out std_logic_vector(2 downto 0);
  VALID_o : out std_logic
  );
@@ -51,25 +51,33 @@ architecture arch of priority_encoder_8_3 is
 
 begin
 
-process(REQ_i)
+  encoding : process(REQ_i)
 
-begin
+  begin
 
-VALID_O <= '1';
+    VALID_O <= '1';
 
-if(REQ_i(7) = '1') then CODE_o <= "111";
-elsif(REQ_i(6) = '1') then CODE_o <= "110";
-elsif(REQ_i(5) = '1') then CODE_o <= "101";
-elsif(REQ_i(4) = '1') then CODE_o <= "100";
-elsif(REQ_i(3) = '1') then CODE_o <= "011";
-elsif(REQ_i(2) = '1') then CODE_o <= "010";
-elsif(REQ_i(1) = '1') then CODE_o <= "001";
-elsif(REQ_i(0) = '1') then CODE_o <= "000";
-else
-VALID_o <= '0';
-CODE_o <= "UUU";
-end if;
+    if REQ_i(7) = '1' then
+      CODE_o <= "111";
+    elsif REQ_i(6) = '1' then
+      CODE_o <= "110";
+    elsif REQ_i(5) = '1' then
+      CODE_o <= "101";
+    elsif REQ_i(4) = '1' then
+      CODE_o <= "100";
+    elsif REQ_i(3) = '1' then
+      CODE_o <= "011";
+    elsif REQ_i(2) = '1' then
+      CODE_o <= "010";
+    elsif REQ_i(1) = '1' then
+      CODE_o <= "001";
+    elsif REQ_i(0) = '1' then
+      CODE_o <= "000";
+    else
+      VALID_o <= '0';
+      CODE_o <= "UUU";
+    end if;
 
-end process;
+  end process encoding;
 
 end arch;
