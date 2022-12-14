@@ -89,18 +89,25 @@ begin
   end process;
 
   clk_process : process (clk_i)
+    variable v_start1, v_start2 : std_logic := '0';
   begin
     if rising_edge(clk_i) and (rst_i /= '1') then -- avoid reset
-	   if i = 0 or i = 16 then
+	   if i = 2 or i = 1 or i = 12 then
         start_i <= '1';
+		  v_start1 := '1';
       else
         start_i <= '0';
       end if;
-      if start_i = '1' then
+		if v_start1 = '1' and start_i = '0' then
+		  v_start1 := '0';
+		  v_start2 := '1';
+		end if;
+      if v_start2 = '1' and start_i = '0' then
         count <= 1;
-        data_o_pom <= '1';
+        data_o_pom <= '0';
+		  v_start2 := '0';
       end if;
-      if count > 0 and count < 8 then
+      if count > 0 and count < 8 and start_i = '0' then
         if data_o /= data_o_pom then
           assert false report "incorrect value! Expected: " &
             std_logic'image(data_o_pom) & ", but got: " &
@@ -109,7 +116,8 @@ begin
         count <= count + 1;
         data_o_pom <= not data_o_pom;
       end if;
-      if count = 9 then
+      if count = 8 then
+		  count <= 0;
         data_o_pom <= '0';
       end if;
     end if;
