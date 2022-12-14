@@ -44,6 +44,10 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
+
+--! \brief Entity for nrzi_decoder
+--! \details This entity contains clock, reset and data inputs
+--!  and data output
 entity nrzi_decoder is
   port (
   clk_i  : in  std_logic; --! clk_i input clock
