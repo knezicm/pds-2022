@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['y_0',['Y',['../classone__bit__full__subtractor.html#a7026ac067fc8fcb9b03ff3c566ed0e40',1,'one_bit_full_subtractor']]],
-  ['y_1',['y',['../classone__bit__full__subtractor.html#a8d1e09e33790a84e1bf3084967ce0c1a',1,'one_bit_full_subtractor']]],
-  ['y_5fo_2',['Y_o',['../classhamming__distance__unit.html#ad491ebb77a7fa4a5ec9e2df06d2edc42',1,'hamming_distance_unit']]],
-  ['y_5fo_3',['y_o',['../classsub1.html#ab8c85a0beac366ff958a38c4bff7da50',1,'sub1.y_o()'],['../classseven__bit__comparator.html#aedcf1485d2cff9a24e6f43f03c362565',1,'seven_bit_comparator.y_o()']]]
+  ['x_0',['X',['../classone__bit__full__subtractor.html#ac7615c93f5fbea0816f7eb7d88e8fdf7',1,'one_bit_full_subtractor']]],
+  ['x_1',['x',['../classone__bit__full__subtractor.html#aa726403f33107ef55d4ef3182bc122d7',1,'one_bit_full_subtractor']]],
+  ['x_5fi_2',['X_i',['../classfour__bit__lzc.html#affcf55a77e2508f7e840ffdc1bf3cc14',1,'four_bit_lzc.X_i()'],['../classfour__bit__lze.html#affcf55a77e2508f7e840ffdc1bf3cc14',1,'four_bit_lze.X_i()']]],
+  ['xor_5fgates_3',['xor_gates',['../classhamming__distance__unit_1_1arch.html#a3d5a28d9d12aa12f561b02bf643101a8',1,'hamming_distance_unit::arch']]]
 ];

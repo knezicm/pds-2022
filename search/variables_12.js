@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['x_0',['X',['../classone__bit__full__subtractor.html#ac7615c93f5fbea0816f7eb7d88e8fdf7',1,'one_bit_full_subtractor']]],
-  ['x_1',['x',['../classone__bit__full__subtractor.html#aa726403f33107ef55d4ef3182bc122d7',1,'one_bit_full_subtractor']]],
-  ['x_5fi_2',['X_i',['../classfour__bit__lzc.html#affcf55a77e2508f7e840ffdc1bf3cc14',1,'four_bit_lzc.X_i()'],['../classfour__bit__lze.html#affcf55a77e2508f7e840ffdc1bf3cc14',1,'four_bit_lze.X_i()']]],
-  ['xor_5fgates_3',['xor_gates',['../classhamming__distance__unit_1_1arch.html#a3d5a28d9d12aa12f561b02bf643101a8',1,'hamming_distance_unit::arch']]]
+  ['valid1_5fo_0',['VALID1_o',['../classdual__code__priority__encoder.html#a7e1c341805c874b2aa4c6c5254dff775',1,'dual_code_priority_encoder']]],
+  ['valid2_5fo_1',['VALID2_o',['../classdual__code__priority__encoder.html#a8ae25a9257cdf1ca7183ceb9c570e6de',1,'dual_code_priority_encoder']]],
+  ['valid_5fo_2',['VALID_o',['../classpriority__encoder__8__3.html#a1c7de56376bbe124cd32aebf089c454a',1,'priority_encoder_8_3']]]
 ];

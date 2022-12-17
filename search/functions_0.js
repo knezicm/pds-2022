@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['log2_5funsigned_0',['log2_unsigned',['../classhamming__distance__unit_1_1arch.html#a0f59060411119cf5e83c7f340ce9ed76',1,'hamming_distance_unit::arch']]]
+  ['decoding_0',['decoding',['../classdecoder__3__8_1_1arch.html#a351d5d92b211043ee4dc0449f41138c2',1,'decoder_3_8::arch']]]
 ];
