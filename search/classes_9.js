@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['two_5fbit_5fcomparator_0',['two_bit_comparator',['../classtwo__bit__comparator.html',1,'']]]
+  ['preamble_5fdetector_0',['preamble_detector',['../classpreamble__detector.html',1,'']]]
 ];
