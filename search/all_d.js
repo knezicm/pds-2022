@@ -12,5 +12,8 @@ var searchData=
   ['process_5f4_9',['PROCESS_4',['../classpreamble__detector_1_1arch.html#ac1317ee71ff8b9d8ff5fcc53984490bb',1,'preamble_detector::arch']]],
   ['process_5f5_10',['PROCESS_5',['../classpreamble__detector_1_1arch.html#a29e4fd876bc594b4fd0e3feb32b12fd7',1,'preamble_detector::arch']]],
   ['process_5f6_11',['PROCESS_6',['../classpreamble__detector_1_1arch.html#abfb58ef661b812ce88a406a22c347ac1',1,'preamble_detector::arch']]],
-  ['process_5fadder_5fxor_12',['process_adder_xor',['../classhamming__distance__unit_1_1arch.html#aa980ac69aee20a9ab96cb952b4bd1d0e',1,'hamming_distance_unit::arch']]]
+  ['process_5f7_12',['PROCESS_7',['../classnrzi__decoder_1_1arch.html#a5e6f5a8eb3ec33ab9ec81c14c2dbf4e0',1,'nrzi_decoder::arch']]],
+  ['process_5f8_13',['PROCESS_8',['../classnrzi__decoder_1_1arch.html#a160f479a134f8ede11fdf683a93d9df2',1,'nrzi_decoder::arch']]],
+  ['process_5f9_14',['PROCESS_9',['../classnrzi__decoder_1_1arch.html#ad53b06e70ab0cebf60b0e150018455e4',1,'nrzi_decoder::arch']]],
+  ['process_5fadder_5fxor_15',['process_adder_xor',['../classhamming__distance__unit_1_1arch.html#aa980ac69aee20a9ab96cb952b4bd1d0e',1,'hamming_distance_unit::arch']]]
 ];
