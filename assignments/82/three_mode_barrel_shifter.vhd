@@ -55,21 +55,21 @@ architecture arch of three_mode_barrel_shifter is
   signal bit4 : std_logic_vector(3 downto 0);
 begin
   with LAR_i select
-  bit1 <= '0'  when "00",
-        A_i(7) when "01",
-        A_i(0) when others;
+  bit1 <= A_i(0) when "00",
+          A_i(7) when "01",
+          '0' when others;
   out1 <= bit1 & A_i(7 downto 1) when AMT_i(0) = '1' else A_i;
 
   with LAR_i select
-         bit2 <= "00" when "00",
-  (others => out1(7)) when "01",
-  out1(1 downto 0)    when others;
+         bit2 <= out1(1 downto 0) when "00",
+       (others => out1(7)) when "01",
+          "00" when others;
   out2 <= bit2 & out1(7 downto 2) when AMT_i(1) = '1' else out1;
 
   with LAR_i select
-       bit4 <= "0000" when "00",
+       bit4 <= out2(3 downto 0)  when "00",
   (others => out2(7)) when "01",
-  out2(3 downto 0)    when others;
-  out3 <= bit4 & out2(7 downto 4)when AMT_i(2) = '1' else out2;
+              "0000"  when others;
+  out3 <= bit4 & out2(7 downto 4) when AMT_i(2) = '1' else out2;
   Y_o <= out3;
 end arch;
