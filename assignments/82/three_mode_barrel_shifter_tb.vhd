@@ -54,7 +54,7 @@ architecture arch of three_mode_barrel_shifter_tb is
   signal tstLAR_i : std_logic_vector(1 downto 0) := (others => '0');
   signal tstAMT_i : std_logic_vector(2 downto 0) := (others => '0');
   signal tstY_o : std_logic_vector(7 downto 0);
-  signal tmpA_i : std_logic_vector(7 downto 0) := "10001100";
+  signal tmpA_i : std_logic_vector(7 downto 0) := "10000100";
 
 begin
 
@@ -98,7 +98,7 @@ begin
             severity note;
       wait for 20 ns;
     end loop;
-  -- arithmetic shift
+  -- logical shift
     wait for 20 ns;
     tstLAR_i <= "01";
     tmpA_i <= "10000100";
@@ -113,11 +113,11 @@ begin
         error_status := true;
       end if;
       assert not error_status
-            report "Arithmetic shift test failed!"
+            report "Logical shift test failed!"
             severity note;
       wait for 20 ns;
     end loop;
-  -- logical shift
+  -- arithmetical shift
     wait for 20 ns;
     tstLAR_i <= "10";
     tmpA_i <= "10000100";
@@ -132,7 +132,7 @@ begin
         error_status := true;
       end if;
       assert not error_status
-            report "Logical shift test failed!"
+            report "Arithmetical shift test failed!"
             severity note;
       wait for 20 ns;
     end loop;
