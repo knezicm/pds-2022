@@ -35,12 +35,11 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
-
 --! @file manchester_decoder.vhd
 --! @brief This file implements Manchester decoding circuit.
+--!
 --! @author Tamara Lekic
 
---! Use standard library.
 library ieee;
 use ieee.std_logic_1164.all;
 
@@ -51,20 +50,17 @@ use ieee.std_logic_1164.all;
 entity manchester_decoder is
   port(
     clk_i   : in  std_logic; --! Clock input signal.
-    data_i  : in  std_logic_vector(1 downto 0); --! The data_i is the input manchester data stream.
+    data_i  : in  std_logic; --! The data_i is the input manchester data stream.
     data_o  : out std_logic; --! The data_o is the output data stream.
     valid_o : out std_logic --! The valid_o output indicates whether the data_o signal is valid.
 );
 end manchester_decoder;
 
 --! @brief Architecture for manchester_decoder.
---! @details Architecture is implemented using Moore FSM with 3 states(idle, state0, state1).
---! Idle state when Moore FSM detects the bit sequence "00" or "11" on the input.
---! State0 for a bit sequence "01" on the input.
---! State1 for a bit sequence "10" on the input.
-
+--! @details Architecture is implemented using Moore FSM with 5 states(idle, s0, s1, s2, s3).
+--!
 architecture arch of manchester_decoder is
-  type t_manch_dec is (idle,state0,state1);
+  type t_manch_dec is (idle,s0,s1,s2,s3);
   signal state_reg,state_next : t_manch_dec;
 begin
 --! State register
@@ -79,28 +75,34 @@ begin
   begin
     case state_reg is
       when idle =>
-        if data_i = "01" then
-          state_next <= state0;
-        elsif data_i = "10" then
-          state_next <= state1;
-        else
-          state_next <= idle;
+        if data_i = '0' then
+          state_next <= s0;
+        elsif data_i = '1' then
+          state_next <= s2;
         end if;
-      when state0 =>
-        if data_i = "10" then
-          state_next <= state1;
-        elsif data_i = "01" then
-          state_next <= state0;
-        else
-          state_next <= idle;
+      when s0 =>
+        if data_i = '0' then
+          state_next <= s0;
+        elsif data_i = '1' then
+          state_next <= s1;
         end if;
-      when state1 =>
-        if data_i <= "01" then
-          state_next <= state0;
-        elsif data_i = "10" then
-          state_next <= state1;
-        else
-          state_next <= idle;
+      when s2 =>
+        if data_i = '0' then
+          state_next <= s3;
+        elsif data_i = '1' then
+          state_next <= s2;
+        end if;
+      when s1 =>
+        if data_i = '1' then
+          state_next <= s2;
+        elsif data_i = '0' then
+          state_next <= s3;
+        end if;
+      when s3 =>
+        if data_i = '0' then
+          state_next <= s0;
+        elsif data_i = '1' then
+          state_next <= s1;
         end if;
     end case;
   end process;
@@ -111,9 +113,11 @@ begin
     valid_o <= '0';
     case state_reg is
       when idle =>
-      when state0 =>
+      when s0 =>
+      when s2 =>
+      when s1 =>
         valid_o <= '1';
-      when state1 =>
+      when s3 =>
         data_o <= '1';
         valid_o <= '1';
     end case;

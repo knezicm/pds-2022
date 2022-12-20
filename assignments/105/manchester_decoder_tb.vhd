@@ -45,13 +45,13 @@ end manchester_decoder_tb;
 
 architecture arch of manchester_decoder_tb is
   signal clk_i_test   : std_logic;
-  signal data_i_test  : std_logic_vector(1 downto 0);
+  signal data_i_test  : std_logic;
   signal data_o_test  : std_logic;
   signal valid_o_test : std_logic;
   component manchester_decoder is
     port(
       clk_i   : in std_logic;
-      data_i  : in std_logic_vector(1 downto 0);
+      data_i  : in std_logic;
       data_o  : out std_logic;
       valid_o : out std_logic
         );
@@ -63,7 +63,7 @@ architecture arch of manchester_decoder_tb is
   signal real_valid_o : std_logic;
 
   type t_test_vector is record
-    data_i   : std_logic_vector(1 downto 0);
+    data_i   : std_logic;
     data_o  : std_logic;
     valid_o : std_logic;
   end record t_test_vector;
@@ -71,18 +71,19 @@ architecture arch of manchester_decoder_tb is
   type t_test_vector_array is array (natural range <>) of t_test_vector;
 
   constant c_TEST_VECTORS : t_test_vector_array := (
-    ("00",'0','0'),
-    ("01",'0','1'),
-    ("11",'0','0'),
-    ("10",'1','1'),
-    ("11",'0','0'),
-    ("00",'0','0'),
-    ("01",'0','1'),
-    ("10",'1','1'),
-    ("11",'0','0'),
-    ("00",'0','0'),
-    ("10",'1','1'),
-    ("11",'0','0')
+    ('0','0','0'),
+    ('0','0','0'),
+    ('1','0','1'),
+    ('1','0','0'),
+    ('1','0','0'),
+    ('0','1','1'),
+    ('1','0','1'),
+    ('0','1','1'),
+    ('0','0','0'),
+    ('1','0','1'),
+    ('1','0','0'),
+    ('1','0','0'),
+    ('0','1','1')
    );
 
 begin
