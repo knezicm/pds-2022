@@ -4,11 +4,11 @@
 -- https://github.com/knezicm/pds-2022/
 -----------------------------------------------------------------------------
 --
--- unit name:   eight_bit_multiplier
+-- unit name:   eight_bit_multiplier_tb
 --
 -- description:
 --
---   This file implements a simple multiplier between two 8-bit number.
+--   This file implements eight-bit-multiplier self-checking testbench..
 --
 -----------------------------------------------------------------------------
 -- Copyright (c) 2022 Faculty of Electrical Engineering
