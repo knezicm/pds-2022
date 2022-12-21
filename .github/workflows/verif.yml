@@ -49,15 +49,33 @@ jobs:
           token: ${{ secrets.PDS_PAT }}
           path: pds-verif
       
-      - name: Set Python alias
+      - name: Set Python and Quartus aliases
         run: |
           shopt -s expand_aliases
           alias python='python3'
+          alias quartus_cmd='quartus_cmd --64bit'
+          alias quartus_map='quartus_map --64bit'
+          alias quartus_cdb='quartus_cdb --64bit'
+          alias quartus_fit='quartus_fit --64bit'
+          alias quartus_asm='quartus_asm --64bit'
+          alias quartus_eda='quartus_eda --64bit'
+          alias quartus_sta='quartus_sta --64bit'
       
-      - name: Add Modelsim to PATH
-        run: echo "$HOME/intelFPGA_lite/17.0/modelsim_ase/bin" >> $GITHUB_PATH
+      - name: Add Modelsim and Quartus to PATH
+        run: |
+          echo "$HOME/intelFPGA_lite/17.0/modelsim_ase/bin" >> $GITHUB_PATH
+          echo "$HOME/intelFPGA_lite/17.0/quartus/bin" >> $GITHUB_PATH
     
       - name: Run simulation script
         run: |
           cd pds-verif/verif
-          python ./run_test.py --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+') --path=$(pwd)/../..
+          python ./run_test.py --synth --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+') --path=$(pwd)/../..
+
+      - name: Upload simulation and synthesis artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: verif-artifacts
+          path: |
+            sim/$(echo $PR_TITLE | grep -o -E '[0-9]+')/test_results
+            synth/$(echo $PR_TITLE | grep -o -E '[0-9]+')
+          retention-days: 10
