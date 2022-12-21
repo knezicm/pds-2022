@@ -39,28 +39,49 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity eight_bit_multiplier is
-  port (
-    A_i   : in  std_logic_vector(7 downto 0);
-    B_i   : in  std_logic_vector(7 downto 0);
-    RES_o : out std_logic_vector(15 downto 0)
+entity eight_bit_multiplier_tb is
+end eight_bit_multiplier_tb;
+architecture arch of eight_bit_multiplier_tb is
+-- constants
+-- signals
+  signal A_i : std_logic_vector(7 downto 0);
+  signal B_i : std_logic_vector(7 downto 0);
+  signal RES_o : std_logic_vector(15 downto 0);
+  component eight_bit_multiplier
+    port (
+      A_i   : in std_logic_vector(7 downto 0);
+      B_i   : in std_logic_vector(7 downto 0);
+      RES_o : out std_logic_vector(15 downto 0)
 );
-end eight_bit_multiplier;
-
-architecture arch of eight_bit_multiplier is
+  end component;
 begin
-
-  multipler : process ( B_i, A_i)
-    variable temp_product, temp_b_shift : unsigned (15 downto 0);
+  i1 : eight_bit_multiplier
+  port map (
+-- list connections between master ports and signals
+    A_i   => A_i,
+    B_i   => B_i,
+    RES_o => RES_o
+  );
+  init : process
+  -- variable declarations
   begin
-    temp_product := "0000000000000000";
-    temp_b_shift := unsigned("00000000" & B_i);
-    for i in 0 to 7 loop
-      if A_i(i) = '1' then
-        temp_product := temp_product + temp_b_shift;
-      end if;
-      temp_b_shift := temp_b_shift(14 downto 0) & '0';
+    for i in 0 to 255 loop -- 16 multiplier values
+      A_i <= std_logic_vector(to_unsigned(i,8));
+      for j in 1 to 255 loop -- 16 multiplicand values
+        B_i <= std_logic_vector(to_unsigned(j,8));
+        wait for 10 ns;
+        assert (to_integer(UNSIGNED(RES_o)) = (i * j)) report "Incorrect product" severity NOTE;
+        wait for 10 ns;
+      end loop;
     end loop;
-    RES_o <= std_logic_vector(temp_product);
-  end process multipler;
-end architecture arch;
+    wait;
+  end process init;
+  always : process
+  begin
+    -- optional sensitivity list
+    -- (        )
+    -- variable declarationsBEGIN
+        -- code executes for every event on sensitivity list
+    wait;
+  end process always;
+end arch;
