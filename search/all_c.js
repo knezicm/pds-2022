@@ -19,5 +19,6 @@ var searchData=
   ['out2_16',['out2',['../classthree__mode__barrel__shifter_1_1arch.html#a501f462638f5c8b49d7a90c7580dfe2f',1,'three_mode_barrel_shifter::arch']]],
   ['out3_17',['out3',['../classthree__mode__barrel__shifter_1_1arch.html#add81a9298a7dc39d9f6f427c7becede9',1,'three_mode_barrel_shifter::arch']]],
   ['out_5fnext_18',['out_next',['../classpreamble__generator_1_1arch.html#a99a96dd73ff42ede5d16afb5061c6d0e',1,'preamble_generator::arch']]],
-  ['output_5fdata_5fo_19',['OUTPUT_DATA_o',['../classleading__zero__counter__unit.html#a6f8b4f869d27457e8fe8237393b3df95',1,'leading_zero_counter_unit']]]
+  ['output_5fdata_5fo_19',['OUTPUT_DATA_o',['../classleading__zero__counter__unit.html#a6f8b4f869d27457e8fe8237393b3df95',1,'leading_zero_counter_unit']]],
+  ['output_5flogic_20',['output_logic',['../classdual__edge__detector_1_1arch.html#ad823bca72d44ac5fba59456ec381f4f0',1,'dual_edge_detector::arch']]]
 ];

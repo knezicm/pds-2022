@@ -5,7 +5,7 @@ var searchData=
   ['c_5flevels_2',['c_LEVELS',['../classhamming__distance__unit_1_1arch.html#a6cc6105627baabca0ddba006c8c38cfc',1,'hamming_distance_unit::arch']]],
   ['c_5fo_3',['c_o',['../classadder.html#a76e2ba4fbea38cd72a840077e7e90d6b',1,'adder.c_o()'],['../classdec.html#a76e2ba4fbea38cd72a840077e7e90d6b',1,'dec.c_o()'],['../classinc.html#a76e2ba4fbea38cd72a840077e7e90d6b',1,'inc.c_o()'],['../classsub.html#a76e2ba4fbea38cd72a840077e7e90d6b',1,'sub.c_o()']]],
   ['ci_4',['Ci',['../classone__bit__full__adder.html#a9d83ad3afd0680ff2689c45b99c6b892',1,'one_bit_full_adder']]],
-  ['clk_5fi_5',['clk_i',['../classpreamble__generator.html#ae8d3e5458b0e3cd523d6461463e36fe8',1,'preamble_generator.clk_i()'],['../classnrzi__decoder.html#ae8d3e5458b0e3cd523d6461463e36fe8',1,'nrzi_decoder.clk_i()'],['../classpreamble__detector.html#ae8d3e5458b0e3cd523d6461463e36fe8',1,'preamble_detector.clk_i()']]],
+  ['clk_5fi_5',['clk_i',['../classpreamble__generator.html#ae8d3e5458b0e3cd523d6461463e36fe8',1,'preamble_generator.clk_i()'],['../classnrzi__decoder.html#ae8d3e5458b0e3cd523d6461463e36fe8',1,'nrzi_decoder.clk_i()'],['../classpreamble__detector.html#ae8d3e5458b0e3cd523d6461463e36fe8',1,'preamble_detector.clk_i()'],['../classdual__edge__detector.html#ae8d3e5458b0e3cd523d6461463e36fe8',1,'dual_edge_detector.clk_i()']]],
   ['co_6',['Co',['../classone__bit__full__adder.html#a4bbcc5b21edbf95206ef90fa05a3d1e7',1,'one_bit_full_adder']]],
   ['code1_5fo_7',['CODE1_o',['../classdual__code__priority__encoder.html#a876c1f2d3e96fda3c0667d287c147435',1,'dual_code_priority_encoder']]],
   ['code2_5fo_8',['CODE2_o',['../classdual__code__priority__encoder.html#a559803c130f43376f25fb317ccadd3ae',1,'dual_code_priority_encoder']]],
