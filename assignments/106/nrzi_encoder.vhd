@@ -37,28 +37,29 @@
 -----------------------------------------------------------------------------
 
 -------------------------------------------------------
---! @file
---! @brief nrzi_encoder 
+--!  @file
+--!  @brief nrzi_encoder
 -------------------------------------------------------
 
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
---! @brief nrzi_encoder entity (encoder of input signal) 
---! @details This entity represent Non return to zero Inverted encoder of input signal.
+--!  @brief nrzi_encoder entity (encoder of input signal)
+--!  @details This entity represent Non return to zero Inverted encoder of input signal.
 
 entity nrzi_encoder is
   port (
-  clk_i  : in  std_logic;   --! Clock input
-  rst_i  : in  std_logic;   --! Reset input
-  data_i : in  std_logic;   --! Input for data signal
-  data_o : out std_logic);  --! Output of nrzi_encoder  
+  clk_i  : in  std_logic;   --!  Clock input
+  rst_i  : in  std_logic;   --!  Reset input
+  data_i : in  std_logic;   --!  Input for data signal
+  data_o : out std_logic);  --!  Output of nrzi_encoder
 end nrzi_encoder;
 
---! @brief  Architecture description of nrzi_encoder entity
---! @details This architecture represent encoding of input signal . 
---! @details If the input signal is '0', then output of nrzi_encoder  block will remain same. But if input signal is '1', then output of NRZI block will change state.
+--!  @brief  Architecture description of nrzi_encoder entity
+--!  @details This architecture represent encoding of input signal.
+--!  @details If the input signal is '0', then output of nrzi_encoder  block will remain same.
+--!  But if input signal is '1', then output of NRZI block will change state.
 
 
 architecture arch of nrzi_encoder is
@@ -73,46 +74,44 @@ begin
 
   pr1 : process(clk_i, rst_i)
         begin
-		    if rst_i = '1' then
-			   state_reg <= idle;
-			 elsif (clk_i'event and clk_i='1') then
-			   state_reg <= state_next;
-		    end if;
-		  end process pr1;
+          if rst_i = '1' then
+             state_reg <= idle;
+          elsif (clk_i'event and clk_i='1') then
+            state_reg <= state_next;
+          end if;
+        end process pr1;
 
   pr2 : process(state_reg, data_i)
         begin
-		    case state_reg is
-			   when idle =>
-				  if data_i = '1' then
-				    state_next <= one;
-				  else
-				    state_next <= zero;
-				  end if;
-				when one =>
-
-				  if data_i ='1' then
-				   state_next<= zero;
-					else
-					state_next<= one;
-				  end if;
-				when zero =>
-				   if data_i='1' then state_next<= one;
-					else state_next<=zero;
-				end if;
-			 end case;
-			end process pr2;
+          case state_reg is
+            when idle =>
+              if data_i = '1' then
+                state_next <= one;
+              else
+                state_next <= zero;
+              end if;
+            when one =>
+              if data_i ='1' then
+                state_next<= zero;
+              else
+                state_next<= one;
+              end if;
+            when zero =>
+              if data_i='1' then state_next<= one;
+              else state_next<=zero;
+              end if;
+          end case;
+        end process pr2;
 
   pr3 : process(state_reg)
         begin
-		      data_o<= '0';
+          data_o<= '0';
 
-			   case state_reg is
-				  when idle =>
-				  when one  => data_o<='1';
-				  when zero => data_o<='0';
-				end case;
-
-		 end process pr3;
+            case state_reg is
+              when idle =>
+              when one  => data_o<='1';
+              when zero => data_o<='0';
+            end case;
+        end process pr3;
 
 end arch;
