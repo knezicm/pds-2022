@@ -37,8 +37,8 @@
 -----------------------------------------------------------------------------
 
 -------------------------------------------------------
---!  @file
---!  @brief nrzi_encoder_tb   testbench
+--!@file
+--!@brief nrzi_encoder_tb   testbench
 -------------------------------------------------------
 
 library ieee;
@@ -46,13 +46,13 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 
---!  @brief nrzi_encoder_tb is testbench of nrzi_encoder entity
---!  @details Entity nzri_encoder_tb is simple testbench entity
+--!@brief nrzi_encoder_tb is testbench of nrzi_encoder entity
+--!@details Entity nzri_encoder_tb is simple testbench entity
 entity nrzi_encoder_tb is
 end nrzi_encoder_tb;
 
---!  @brief  Architecture definitin of nrzi_encoder_tb entity
---!  @details This architecture is used to test nrzi_encoder functionality
+--!@brief  Architecture definitin of nrzi_encoder_tb entity
+--!@details This architecture is used to test nrzi_encoder functionality
 
 architecture arch of nrzi_encoder_tb is
   component nrzi_encoder is
