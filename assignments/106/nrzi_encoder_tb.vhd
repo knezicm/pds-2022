@@ -63,7 +63,7 @@ architecture arch of nrzi_encoder_tb is
            data_o : out std_logic);
   end component;
 
-  constant T : time := 30 ns;
+  constant c_T           : time := 30 ns;
   signal test_in         : std_logic := '0';
   signal test_out        : std_logic;
   signal clk_in          : std_logic;
@@ -72,7 +72,7 @@ architecture arch of nrzi_encoder_tb is
   signal a               : std_logic_vector( 7 downto 0) := "01011101";
   signal k               : integer   := 0;
   signal x               : std_logic := '0';
-  constant num_of_clocks : integer   := 8;
+  constant c_NUM_OF_CLOCKS : integer   := 8;
 
 
 begin
@@ -103,17 +103,17 @@ begin
         report "Error x"
         severity error;
       end if;
-    end if; 
+    end if;
     wait for 5 ns;
 
-    if i = num_of_clocks then
+    if i = c_NUM_OF_CLOCKS then
       wait;
     else
       i <= i+1;
       k <= k+1;
     end if;
 
-    x <= test_out; 
+    x <= test_out;
 
   end process tb1;
 
