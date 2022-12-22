@@ -63,10 +63,10 @@ end nrzi_encoder;
 
 
 architecture arch of nrzi_encoder is
-  type nrzi_type is (idle, one, zero);
+  type t_nrzi_type is (idle, one, zero);
 
-  signal state_reg  : nrzi_type;
-  signal state_next : nrzi_type;
+  signal state_reg  : t_nrzi_type;
+  signal state_next : t_nrzi_type;
   signal tmp_out    : std_logic;
 
 
@@ -76,7 +76,7 @@ begin
   begin
     if rst_i = '1' then
       state_reg <= idle;
-    elsif (clk_i'event and clk_i = '1') then
+    elsif clk_i'event and clk_i = '1' then
       state_reg <= state_next;
     end if;
   end process pr1;
@@ -92,13 +92,15 @@ begin
         end if;
       when one =>
         if data_i = '1' then
-          state_next<= zero;
+          state_next <= zero;
         else
           state_next <= one;
         end if;
       when zero =>
-        if data_i = '1' then state_next <= one;
-        else state_next <= zero;
+        if data_i = '1' then
+          state_next <= one;
+        else
+          state_next <= zero;
         end if;
     end case;
   end process pr2;
