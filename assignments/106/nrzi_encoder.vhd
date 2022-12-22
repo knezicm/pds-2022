@@ -37,29 +37,29 @@
 -----------------------------------------------------------------------------
 
 -------------------------------------------------------
---!  @file
---!  @brief nrzi_encoder
+--!@file
+--!@brief nrzi_encoder
 -------------------------------------------------------
 
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
---!  @brief nrzi_encoder entity (encoder of input signal)
---!  @details This entity represent Non return to zero Inverted encoder of input signal.
+--!@brief nrzi_encoder entity (encoder of input signal)
+--!@details This entity represent Non return to zero Inverted encoder of input signal.
 
 entity nrzi_encoder is
   port (
-  clk_i  : in  std_logic;   --!  Clock input
-  rst_i  : in  std_logic;   --!  Reset input
-  data_i : in  std_logic;   --!  Input for data signal
-  data_o : out std_logic);  --!  Output of nrzi_encoder
+  clk_i  : in  std_logic;   --!Clock input
+  rst_i  : in  std_logic;   --!Reset input
+  data_i : in  std_logic;   --!Input for data signal
+  data_o : out std_logic);  --!Output of nrzi_encoder
 end nrzi_encoder;
 
---!  @brief  Architecture description of nrzi_encoder entity
---!  @details This architecture represent encoding of input signal.
---!  @details If the input signal is '0', then output of nrzi_encoder  block will remain same.
---!  But if input signal is '1', then output of NRZI block will change state.
+--!@brief  Architecture description of nrzi_encoder entity
+--!@details This architecture represent encoding of input signal.
+--!@details If the input signal is '0', then output of nrzi_encoder  block will remain same.
+--!But if input signal is '1', then output of NRZI block will change state.
 
 
 architecture arch of nrzi_encoder is
