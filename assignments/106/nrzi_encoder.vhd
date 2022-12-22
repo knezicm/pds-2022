@@ -73,45 +73,45 @@ architecture arch of nrzi_encoder is
 begin
 
   pr1 : process(clk_i, rst_i)
-        begin
-          if rst_i = '1' then
-             state_reg <= idle;
-          elsif (clk_i'event and clk_i='1') then
-            state_reg <= state_next;
-          end if;
-        end process pr1;
+  begin
+    if rst_i = '1' then
+      state_reg <= idle;
+    elsif (clk_i'event and clk_i = '1') then
+      state_reg <= state_next;
+    end if;
+  end process pr1;
 
   pr2 : process(state_reg, data_i)
-        begin
-          case state_reg is
-            when idle =>
-              if data_i = '1' then
-                state_next <= one;
-              else
-                state_next <= zero;
-              end if;
-            when one =>
-              if data_i ='1' then
-                state_next<= zero;
-              else
-                state_next<= one;
-              end if;
-            when zero =>
-              if data_i='1' then state_next<= one;
-              else state_next<=zero;
-              end if;
-          end case;
-        end process pr2;
+  begin
+    case state_reg is
+      when idle =>
+        if data_i = '1' then
+          state_next <= one;
+        else
+          state_next <= zero;
+        end if;
+      when one =>
+        if data_i = '1' then
+          state_next<= zero;
+        else
+          state_next <= one;
+        end if;
+      when zero =>
+        if data_i = '1' then state_next <= one;
+        else state_next <= zero;
+        end if;
+    end case;
+  end process pr2;
 
   pr3 : process(state_reg)
-        begin
-          data_o<= '0';
+  begin
+    data_o <= '0';
 
-            case state_reg is
-              when idle =>
-              when one  => data_o<='1';
-              when zero => data_o<='0';
-            end case;
-        end process pr3;
+    case state_reg is
+      when idle =>
+      when one  => data_o <= '1';
+      when zero => data_o <= '0';
+    end case;
+  end process pr3;
 
 end arch;
