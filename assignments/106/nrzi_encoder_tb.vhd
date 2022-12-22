@@ -70,7 +70,7 @@ architecture arch of nrzi_encoder_tb is
   signal rst_in          : std_logic;
   signal i               : integer   := 0;
   signal a               : std_logic_vector( 7 downto 0) := "01011101";
-  signal k               : integer   :=0;
+  signal k               : integer   := 0;
   signal x               : std_logic := '0';
   constant num_of_clocks : integer   := 8;
 
@@ -93,20 +93,20 @@ begin
     wait for 10 ns;
     clk_in  <= '1';
     wait for 5 ns;
-    if rst_in='0' then
-      if test_in='1' then
-        assert test_out=not(x)
+    if rst_in = '0' then
+      if test_in = '1' then
+        assert test_out = not(x)
           report "Error not x=" & std_logic'image(x) & "test_out=" & std_logic'image(test_out)
           severity error;
       else
-        assert test_out=x
+        assert test_out = x
         report "Error x"
         severity error;
       end if;
     end if; 
     wait for 5 ns;
 
-    if i=num_of_clocks then
+    if i = num_of_clocks then
       wait;
     else
       i <= i+1;
