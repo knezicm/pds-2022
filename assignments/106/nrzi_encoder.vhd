@@ -45,8 +45,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
---!@brief nrzi_encoder entity (encoder of input signal)
---!@details This entity represent Non return to zero Inverted encoder of input signal.
+-- !@brief nrzi_encoder entity (encoder of input signal)
+-- !@details This entity represent Non return to zero Inverted encoder of input signal.
 
 entity nrzi_encoder is
   port (
