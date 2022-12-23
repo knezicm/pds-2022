@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['multi_5ffunction_5faritmetic_5funit_0',['multi_function_aritmetic_unit',['../classmulti__function__aritmetic__unit.html',1,'']]]
+  ['leading_5fzero_5fcounter_5funit_0',['leading_zero_counter_unit',['../classleading__zero__counter__unit.html',1,'']]]
 ];
