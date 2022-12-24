@@ -35,18 +35,9 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
-
--------------------------------------------------------
---! @file manchester_encoder_tb.vhd
---! @brief  This file implements Manchester encoder self-checking testbench.
---! @author Emanuela Buganik
--------------------------------------------------------
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
-
---! @brief Manchester_encoder_tb is testbench of manchester_encoder entity.
 
 entity manchester_encoder_tb is
 end manchester_encoder_tb;
@@ -62,18 +53,18 @@ architecture arch of manchester_encoder_tb is
       );
   end component;
 
---! Signals to assign to master ports
+-- Signals to assign to master ports
   signal tstclk_i : std_logic;
   signal tstrst_i : std_logic;
   signal tstv_i   : std_logic := '0';
   signal tstd_i   : std_logic := '0';
   signal tsty_o   : std_logic := '0';
 
---! Test signals to compare
+-- Test signals to compare
 -- signal valid_input : std_logic;
 -- signal data_stream : std_logic;
   signal output      : std_logic;
-  signal i : integer := 0; --! loop variable
+  signal i : integer := 0; -- loop variable
   constant c_TIME : time := 20 ns;
 -- variable error_status : boolean;
 
@@ -91,7 +82,7 @@ end record t_test_vector;
   ('1','1','1')
  );
 
---! uut instantiation
+-- uut instantiation
 begin
   uut : manchester_encoder
     port map (
@@ -100,7 +91,7 @@ begin
        v_i   => tstv_i,
        d_i   => tstd_i,
        y_o   => tsty_o);
---! Continuous clock process
+-- Clock process
   process
   begin
     tstclk_i <= '0';
@@ -113,7 +104,7 @@ begin
     end if;
   end process;
 
---! Reset clock process
+-- Reset clock process
   process
   begin
     tstrst_i <= '0';
@@ -122,7 +113,7 @@ begin
     wait;
   end process;
 
---! Assigning values from vector array
+-- Assigning values from vector array
   process
   begin
     tstv_i <= c_TEST_VECTOR(i).valid_input_v;
@@ -137,7 +128,7 @@ begin
     end if;
   end process;
 
---! Comparing output
+-- Comparing output
   process
     variable error_status : boolean;
   begin
