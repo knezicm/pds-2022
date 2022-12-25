@@ -70,19 +70,18 @@ jobs:
         run: |
           cd pds-verif/verif
           python ./run_test.py --synth --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+') --path=$(pwd)/../..
-
-      - name: Set environment variables
+      
+      - name: Make new dir and copy results
         run: |
-          echo "GITHUB_SIM_PATH=./sim/$(echo $PR_TITLE | grep -o -E '[0-9]+')/test_results" >> $GITHUB_ENV
-          echo "GITHUB_SYNTH_PATH=./synth/$(echo $PR_TITLE | grep -o -E '[0-9]+')" >> $GITHUB_ENV
-          echo $GITHUB_SIM_PATH
-          echo $GITHUB_SYNTH_PATH
+          mkdir results
+          mkdir results/sim
+          mkdir result/synth
+          cp sim/$(echo $PR_TITLE | grep -o -E '[0-9]+')/test_results/* results/sim
+          cp synth/$(echo $PR_TITLE | grep -o -E '[0-9]+') results/synth
 
       - name: Upload simulation and synthesis artifacts
         uses: actions/upload-artifact@v3
         with:
           name: verif-artifacts
-          path: |
-            $GITHUB_SIM_PATH
-            $GITHUB_SYNTH_PATH
+          path: results
           retention-days: 10
