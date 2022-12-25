@@ -160,7 +160,7 @@ begin
         r_next <= (others => '0');
         n_next <= unsigned(n_i);
       when op =>
-        r_next <= a_reg;
+        r_next <= b_reg;
         a_next <= b_reg;
         b_next <= adder_out;
         n_next <= sub_out;
