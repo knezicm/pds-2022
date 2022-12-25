@@ -59,31 +59,35 @@ architecture arch of manchester_decoder_tb is
 
   constant c_T        : time := 20 ns;
   signal i            : integer := 0;
-  signal real_data_o  : std_logic;
-  signal real_valid_o : std_logic;
+  signal data_o  : std_logic;
+  signal valid_o : std_logic;
 
   type t_test_vector is record
     data_i   : std_logic;
-    data_o  : std_logic;
-    valid_o : std_logic;
+    data_o   : std_logic;
+    valid_o  : std_logic;
   end record t_test_vector;
 
   type t_test_vector_array is array (natural range <>) of t_test_vector;
 
   constant c_TEST_VECTORS : t_test_vector_array := (
-    ('0','0','0'),
-    ('0','0','0'),
-    ('1','0','1'),
     ('1','0','0'),
-    ('1','0','0'),
+    ('0','0','0'),
+    ('1','1','1'),
+    ('0','0','1'),
+    ('1','1','1'),
+    ('0','0','1'),
     ('0','1','1'),
+    ('1','0','0'),
     ('1','0','1'),
-    ('0','1','1'),
     ('0','0','0'),
-    ('1','0','1'),
+    ('1','1','1'),
+    ('0','0','1'),
+    ('0','1','1'),
     ('1','0','0'),
-    ('1','0','0'),
-    ('0','1','1')
+    ('0','0','1'),
+    ('1','1','1'),
+    ('0','0','1')
    );
 
 begin
@@ -99,29 +103,26 @@ begin
 -- Stimulus for continous clock
   clk : process
   begin
-
     clk_i_test <= '0';
-    if i = c_TEST_VECTORS'length -1 then
-      wait;
-    end if;
     wait for c_T/2;
     clk_i_test <= '1';
+    wait for c_T/2;
     if i /= c_TEST_VECTORS'length -1 then
-      i <= i+1;
+      i <= i + 1;
     else
       wait;
     end if;
-    wait for c_T/2;
   end process clk;
 
 -- Stimulus generator
   init : process
   begin
     if i /= c_TEST_VECTORS'length -1 then
-      data_i_test <= c_TEST_VECTORS(i).data_i;
-      real_data_o  <= c_TEST_VECTORS(i).data_o;
-      real_valid_o <= C_TEST_VECTORS(i).valid_o;
-      wait for c_T;
+      data_i_test  <= c_TEST_VECTORS(i).data_i;
+      wait for c_T/2;
+      data_o  <= c_TEST_VECTORS(i).data_o;
+      valid_o <= C_TEST_VECTORS(i).valid_o;
+      wait for c_T/2;
     else
       wait;
     end if;
@@ -131,13 +132,13 @@ begin
   process
   begin
     wait until clk_i_test'event and clk_i_test = '1';
-    wait for 5 ns;
-    assert(data_o_test = real_data_o and valid_o_test = real_valid_o)
+    wait for c_T/4;
+    assert(data_o_test = data_o and valid_o_test = valid_o)
        report "Test vector " & integer'image(i) & " failed. " &
-              " Expected:data_o = " & std_logic'image(real_data_o) &
-              " valid_o =" & std_logic'image(real_valid_o) &
-              " Actual:data_o = " & std_logic'image(data_o_test) &
-              " valid_o = " & std_logic'image(valid_o_test)
+              " Expected:data_o = " & std_logic'image(data_o_test) &
+              " valid_o =" & std_logic'image(valid_o_test) &
+              " Actual:data_o = " & std_logic'image(data_o) &
+              " valid_o = " & std_logic'image(valid_o)
        severity error;
 
     if i = c_TEST_VECTORS'length -1 then
