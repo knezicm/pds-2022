@@ -65,7 +65,7 @@ end fibonacci;
 --! @details This design is realized like a Moore machine with a finite number of states by using look-ahead output method.
 --! When start_i is set to logic '1', a sequence of bits "10101010" appears on the output (data_o).
 architecture arch of fibonacci is
-  type t_state is (idle, n0, load, op); --! States of FSM
+  type t_state is (idle1, idle2, n0, load, op); --! States of FSM
   signal state_reg : t_state; --! Current state of register
   signal state_next : t_state; --! Next state of register
   signal n_0 : std_logic; --! It is '1' when n_i is set to "0"
@@ -81,7 +81,7 @@ begin
   process(clk_i, rst_i)
   begin
     if rst_i = '1' then
-      state_reg <= idle;
+      state_reg <= idle1;
     elsif rising_edge(clk_i) then
       state_reg <= state_next;
     end if;
@@ -90,30 +90,36 @@ begin
   process(state_reg, start_i, n_0, count_0)
   begin
     case state_reg is
-      when idle =>
+      when idle1 =>
         if start_i = '1' then
+          state_next <= idle2;
+        else
+          state_next <= idle1;
+        end if;
+      when idle2 =>
+        if start_i = '0' then
           if n_0 = '1' then
             state_next <= n0;
           else
             state_next <= load;
           end if;
         else
-          state_next <= idle;
+          state_next <= idle1;
         end if;
       when n0 =>
-        state_next <= idle;
+        state_next <= idle1;
       when load =>
         state_next <= op;
       when op =>
         if count_0 = '1' then
-          state_next <= idle;
+          state_next <= idle1;
         else
           state_next <= op;
         end if;
     end case;
   end process;
   -- control path: output logic
-  ready_o <= '1' when state_reg = idle else '0';
+  ready_o <= '1' when state_reg = idle1 else '0';
   -- data path: data register
   process(clk_i, rst_i)
   begin
@@ -133,7 +139,12 @@ begin
   process(state_reg, a_reg, b_reg, r_reg, n_reg, n_i, adder_out, sub_out)
   begin
     case state_reg is
-      when idle =>
+      when idle1 =>
+        a_next <= a_reg;
+        b_next <= b_reg;
+        n_next <= n_reg;
+        r_next <= r_reg;
+      when idle2 =>
         a_next <= a_reg;
         b_next <= b_reg;
         n_next <= n_reg;
