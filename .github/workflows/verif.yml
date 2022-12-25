@@ -72,14 +72,16 @@ jobs:
           python ./run_test.py --synth --issue=$(echo $PR_TITLE | grep -o -E '[0-9]+') --path=$(pwd)/../..
       
       - name: Make new dir and copy results
+        if: always()
         run: |
           mkdir results
           mkdir results/sim
-          mkdir result/synth
+          mkdir results/synth
           cp sim/$(echo $PR_TITLE | grep -o -E '[0-9]+')/test_results/* results/sim
           cp synth/$(echo $PR_TITLE | grep -o -E '[0-9]+') results/synth
 
       - name: Upload simulation and synthesis artifacts
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: verif-artifacts
