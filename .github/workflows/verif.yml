@@ -74,6 +74,8 @@ jobs:
       - name: Make new dir and copy results
         if: always()
         run: |
+          cd pds-verif/verif
+          pwd
           mkdir results
           mkdir results/sim
           mkdir results/synth
