@@ -58,7 +58,7 @@ create_clock -name clk_i_virt -period 10
 # Set Clock Uncertainty
 #**************************************************************
  
-#derive_clock_uncertainty
+derive_clock_uncertainty
 
 #**************************************************************
 # Set Input Delay
