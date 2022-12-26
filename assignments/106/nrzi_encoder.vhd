@@ -4,12 +4,14 @@
 -- https://github.com/knezicm/pds-2022/
 -----------------------------------------------------------------------------
 --
--- unit name:    MULTI_FUNCTION_ARITMETIC_UNIT
+-- unit name:  NRZI_ENCODER
 --
 -- description:
 --
---   This file describe circuit that can do following operation: +, -, +1, -1 .
---
+-- This file describe circuit that encodes input signal. Type of encoder is
+-- NON RETURN TO ZERO encoder. Circuit works in the following way:
+-- If input signal is '0' output keeps previous state, else if input signal is
+-- '1' then output change state. (if output '0' -> '1' or if '1' -> '0')
 -----------------------------------------------------------------------------
 -- Copyright (c) 2022 Faculty of Electrical Engineering
 -----------------------------------------------------------------------------
@@ -37,29 +39,30 @@
 -----------------------------------------------------------------------------
 
 -------------------------------------------------------
--- !@file
--- !@brief nrzi_encoder
+--!@file
+--!@brief nrzi_encoder
 -------------------------------------------------------
 
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- !@brief nrzi_encoder entity (encoder of input signal)
--- !@details This entity represent Non return to zero Inverted encoder of input signal.
+--!@brief nrzi_encoder entity (encoder of input signal).
+--!@details This entity represent Non return to zero Inverted encoder of input signal.
+--!@details Input signals are clock (clk_i), reset (rst_i) and input data signal (data_i).On the output we have data_o signal( encoded input signal).
 
 entity nrzi_encoder is
   port (
-  clk_i  : in  std_logic;   -- !Clock input
-  rst_i  : in  std_logic;   -- !Reset input
-  data_i : in  std_logic;   -- !Input for data signal
-  data_o : out std_logic);  -- !Output of nrzi_encoder
+  clk_i  : in  std_logic;   --!Clock input
+  rst_i  : in  std_logic;   --!Reset input
+  data_i : in  std_logic;   --!Input for data signal
+  data_o : out std_logic);  --!Output of nrzi_encoder
 end nrzi_encoder;
 
--- !@brief  Architecture description of nrzi_encoder entity
--- !@details This architecture represent encoding of input signal.
--- !@details If the input signal is '0', then output of nrzi_encoder  block will remain same.
--- !@details But if input signal is '1', then output of NRZI block will change state.
+--!@brief  Architecture description of nrzi_encoder entity
+--!@details This architecture represent encoding of input signal.
+--!@details If the input signal is '0', then output of nrzi_encoder  block will remain same.
+--!@details But if input signal is '1', then output of NRZI block will change state.
 
 
 architecture arch of nrzi_encoder is
