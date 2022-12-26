@@ -2,8 +2,8 @@
 
 | Student | Zadatak 1 | Zadatak 2 | Zadatak 3 | Zadatak 4 | Ukupno |
 | :------ | :------: | :------: | :------: | :------: | :------: |
-| Božić Jovana | 5% | 5% |  |  | **10%** |
-| Buganik Emanuela | 5% | 5% |  |  | **10%** |
+| Božić Jovana | 5% | 5% | 5% |  | **15%** |
+| Buganik Emanuela | 5% | 5% | 5% |  | **15%** |
 | Elezović Azra | 5% |  |  |  | **5%** |
 | Cetić Nikola | 5% | 5% | 5% |  | **15%** |
 | Čenić Nemanja | 5% | 5% | 5% |  | **15%** |
