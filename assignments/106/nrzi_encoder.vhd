@@ -49,7 +49,8 @@ use ieee.numeric_std.all;
 
 --!@brief nrzi_encoder entity (encoder of input signal).
 --!@details This entity represent Non return to zero Inverted encoder of input signal.
---!@details Input signals are clock (clk_i), reset (rst_i) and input data signal (data_i).On the output we have data_o signal( encoded input signal).
+--!@details Input signals are clock (clk_i), reset (rst_i) and input data signal (data_i).
+--!@details On the output we have data_o signal( encoded input signal).
 
 entity nrzi_encoder is
   port (
