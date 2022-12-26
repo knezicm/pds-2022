@@ -4,11 +4,11 @@
 -- https://github.com/knezicm/pds-2022/
 -----------------------------------------------------------------------------
 --
--- unit name:     MULTI_FUNCTION_ARITMETIC_UNIT_TB
+-- unit name:     NRZI_ENCODER_TB
 --
 -- description:
 --
---   This file represent testbench  of MULTI_FUNCTION_ARITMETIC_UNIT circuit.
+--   This file represent testbench  of NRZI_ENCODER circuit.
 --
 -----------------------------------------------------------------------------
 -- Copyright (c) 2022 Faculty of Electrical Engineering
@@ -36,23 +36,15 @@
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
 
--------------------------------------------------------
--- !@file
--- !@brief nrzi_encoder_tb   testbench
--------------------------------------------------------
 
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 
--- !@brief nrzi_encoder_tb is testbench of nrzi_encoder entity
--- !@details Entity nzri_encoder_tb is simple testbench entity
 entity nrzi_encoder_tb is
 end nrzi_encoder_tb;
 
--- !@brief  Architecture definitin of nrzi_encoder_tb entity
--- !@details This architecture is used to test nrzi_encoder functionality
 
 architecture arch of nrzi_encoder_tb is
   component nrzi_encoder is
