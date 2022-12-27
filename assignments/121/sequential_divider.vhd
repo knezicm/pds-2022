@@ -44,6 +44,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+--use ieee.std_logic_unsigned.all;
 
 --! \brief Sequential divider entity
 --!
@@ -81,8 +82,8 @@ architecture arch of sequential_divider is
   --! \brief State type
   --!
   --! This type defines the possible states of the sequential divider.
-  type t_states is (idle, load, cmp, write_res, mul, sub, take_next);
-  signal state_reg, state_next : t_states;
+  type t_state is (idle, load, cmp, write_res, mul, sub, take_next);
+  signal state_reg, state_next : t_state;
   signal gt_reg, gt_next       : std_logic;
   signal rem_reg, rem_next     : unsigned(7 downto 0);
   signal sub_reg, sub_next     : unsigned(7 downto 0);
@@ -110,7 +111,7 @@ begin
   --!
   --! \details This process updates the next state based on the current state and other inputs.
   --! The next state is determined by a state machine that implements the division process.
-  process (state_reg, start_i, count_next)
+  process (state_reg, start_i, count_next, b_next)
   begin
     case state_reg is
       when idle =>
@@ -122,7 +123,10 @@ begin
       when load =>
         state_next <= cmp;
       when cmp =>
-        if count_next = "0000" then
+        if b_next = "00000000" then
+          state_next <= idle;
+          --count_next <= "0000";
+        elsif count_next = "0000" then
           state_next <= idle;
         else
           state_next <= write_res;
@@ -142,7 +146,8 @@ begin
     end case;
   end process;
   -- control path: output logic
-  ready_o <= '1' when state_reg = idle else '0';
+  ready_o <= '1' when state_reg = idle else
+             '0';
   --! \brief Data path: data register
   --!
   --! \details This process updates the data registers based on the clock and reset inputs.
@@ -159,7 +164,7 @@ begin
       rem_reg   <= (others => '0');
       gt_reg    <= '0';
       sub_reg   <= (others => '0');
-      count_reg <= "1000";
+      count_reg <= "0000";
     elsif rising_edge(clk_i) then
       a_reg     <= a_next;
       b_reg     <= b_next;
@@ -203,7 +208,11 @@ begin
         n_next     <= "111";
         count_next <= "1000";
       when cmp =>
-        if rem_reg >= b_reg then
+        if b_next = "00000000" then
+          count_next <= "0000";
+          rem_next   <= "11111111";
+          q_next     <= "11111111";
+        elsif rem_reg >= b_reg then
           gt_next <= '1';
         else
           gt_next <= '0';
