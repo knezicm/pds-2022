@@ -144,7 +144,7 @@ begin
   end process;
 --! Data path : routing multiplexer (routing network)
 -- Routing
-  process(state_reg, b_reg, n_reg, q_reg, rem_reg, a_i, b_i, adder_out, sub_out)
+  process(state_reg, b_reg, n_reg, q_reg, rem_reg, remainder, a_i, b_i, adder_out, sub_out)
   begin
     case state_reg is
       when idle =>
@@ -166,7 +166,7 @@ begin
         q_next  <= (others => '0');
         rem_next <= (others => '0');
       when op =>
-        if b_next = "00000000" then
+        if b_reg = "00000000" then
           b_next   <= b_reg;
           n_next   <= unsigned(a_i);
           q_next   <= "11111111";
