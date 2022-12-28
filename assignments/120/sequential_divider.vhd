@@ -53,7 +53,7 @@ use ieee.numeric_std.all;
 entity sequential_divider is
   port(
       clk_i   : in  std_logic; --! Clock input signal
-      reset_i : in  std_logic; --! Reset input signal
+      rst_i : in  std_logic; --! Reset input signal
       a_i     : in  std_logic_vector(7 downto 0);  --! Numerator(dividend)
       b_i     : in  std_logic_vector(7 downto 0);  --! Denominator(divisor)
       q_o     : out std_logic_vector(7 downto 0);  --! Quotient, result of division
@@ -84,7 +84,7 @@ architecture arch of sequential_divider is
 begin
 
   --! Control path: state register
-  process(clk_i, reset_i)
+  process(clk_i, rst_i)
   begin
     if reset_i = '1' then
       state_reg <= idle;
@@ -136,7 +136,7 @@ begin
   ready_o <= '1' when state_reg = idle else '0';
 
   --! Data path : data register
-  process(clk_i, reset_i)
+  process(clk_i, rst_i)
   begin
     if reset_i = '1' then
       b_reg   <= (others => '0');
@@ -147,7 +147,7 @@ begin
       b_reg   <= b_next;
       n_reg   <= n_next;
       q_reg   <= q_next;
-		rem_reg <= rem_next;
+      rem_reg <= rem_next;
     end if;
   end process;
 
