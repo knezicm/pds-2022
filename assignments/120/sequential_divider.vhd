@@ -58,8 +58,8 @@ entity sequential_divider is
       b_i     : in  std_logic_vector(7 downto 0);  --! Denominator(divisor)
       q_o     : out std_logic_vector(7 downto 0);  --! Quotient, result of division
       r_o     : out std_logic_vector(7 downto 0);  --! Remainder
-      start_i : in  std_logic;                     --! Signalizing whether process of division is over and new one can begin
-      ready_o : out std_logic                      
+      start_i : in  std_logic;
+      ready_o : out std_logic                      --! Signalizing whether process of division is over and new one can begin
       );
 end sequential_divider;
 
@@ -68,9 +68,9 @@ end sequential_divider;
 --! @details The value of b_i is successively subtracted from a_i until the remainder of a_i is less than b_i
 architecture arch of sequential_divider is
 
-  type t_state_type is (idle,a0, b0, bgta, a_equal_b,load, op);
+  type t_state_type is (idle,a0, b0, bgta, a_equal_b, ab0, load, op);
   signal state_reg, state_next   : t_state_type;
-  signal a_is_0, b_is_0, b_gt_a, count_0, a_eq_b : std_logic;
+  signal a_is_0, b_is_0, b_gt_a, count_0, a_eq_b, ab_zeros : std_logic;
   signal b_reg, b_next : unsigned(7 downto 0);
   signal n_reg, n_next : unsigned(7 downto 0);
   signal q_reg, q_next : unsigned(7 downto 0);
@@ -94,7 +94,7 @@ begin
   end process;
 
   --! Control path: next-state/output logic
-  process(state_reg, a_is_0, b_is_0, a_eq_b, start_i, count_0, b_gt_a)
+  process(state_reg, a_is_0, b_is_0, a_eq_b, ab_zeros, start_i, count_0, b_gt_a)
   begin
     case state_reg is
       when idle =>
@@ -107,6 +107,8 @@ begin
             state_next <= bgta;
           elsif a_eq_b = '1' then
             state_next <= a_equal_b;
+          elsif ab_zeros = '1' then
+            state_next <= ab0;
           else
             state_next <= load;
           end if;
@@ -120,6 +122,8 @@ begin
       when bgta =>
         state_next <= idle;
       when a_equal_b =>
+        state_next <= idle;
+      when ab0 =>
         state_next <= idle;
       when load =>
         state_next <= op;
@@ -147,7 +151,7 @@ begin
       b_reg   <= b_next;
       n_reg   <= n_next;
       q_reg   <= q_next;
-      rem_reg <= rem_next;
+		rem_reg <= rem_next;
     end if;
   end process;
 
@@ -181,6 +185,11 @@ begin
         b_next   <= unsigned(a_i);
         q_next   <= "00000001";
         rem_next <= (others => '0');
+      when ab0  =>
+        n_next   <= unsigned(a_i);
+		b_next   <= unsigned(b_i);
+        q_next   <= "11111111";
+        rem_next <= "11111111";
       when load =>
         n_next   <= unsigned(a_i);
         b_next   <= unsigned(b_i);
@@ -199,10 +208,11 @@ begin
   sub_out   <= n_reg - b_reg;
 
   --! Data path : status
-  a_is_0  <= '1' when a_i = "00000000" else '0';
-  b_is_0  <= '1' when a_i = "00000000" else '0';
-  b_gt_a  <= '1' when unsigned(b_i) > unsigned(a_i) else '0';
-  a_eq_b  <= '1' when unsigned(a_i) = unsigned(b_i) else '0';
+  a_is_0   <= '1' when a_i = "00000000" else '0';
+  b_is_0   <= '1' when a_i = "00000000" else '0';
+  b_gt_a   <= '1' when unsigned(b_i) > unsigned(a_i) else '0';
+  a_eq_b   <= '1' when unsigned(a_i) = unsigned(b_i) else '0';
+  ab_zeros <= '1' when unsigned(a_i) = "00000000" and unsigned(b_i) = "00000000" else '0'; 
   count_0 <= '1' when n_reg < b_reg else '0';
 
   q_o   <= std_logic_vector(q_reg);
