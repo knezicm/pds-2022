@@ -75,7 +75,7 @@ architecture arch of sequential_divider is
   signal q_reg, q_next : unsigned(7 downto 0);
   signal rem_reg, rem_next : std_logic_vector(7 downto 0);
   signal tmp_rem : std_logic_vector(15 downto 0);
-  signal remainder     : std_logic_vector(7 downto 0);
+  signal remainder     : std_logic_vector(15 downto 0);
   signal adder_out     : unsigned(7 downto 0);
   signal sub_out       : unsigned(7 downto 0);
 
@@ -108,6 +108,8 @@ begin
         if b_next = "00000000" or a_i = "00000000" or count_0 = '1' then
           state_next <= idle;
         elsif unsigned(a_i) < unsigned(b_i) then
+          state_next <= idle;
+        elsif unsigned(a_i) = unsigned(b_i) then
           state_next <= idle;
         else
           state_next <= op;
@@ -158,27 +160,33 @@ begin
           n_next   <= (others => '0');
           q_next   <= (others => '0');
           rem_next <= (others => '0');
-        elsif unsigned(a_i) < unsigned (b_i) then
-          b_next   <= (others => '0');
+        elsif unsigned(a_i) < unsigned(b_i) then
+		    b_next   <= (others => '0');
           n_next   <= (others => '0');
           q_next   <= (others => '0');
           rem_next <= a_i;
+        elsif unsigned(a_i) = unsigned(b_i) then
+          b_next   <= (others => '0');
+          n_next   <= (others => '0');
+          q_next   <= "00000001";
+          rem_next <= (others => '0');
         else
           b_next  <= b_reg;
           n_next  <= sub_out;
           q_next  <= adder_out;
-          rem_next  <= remainder;
+          rem_next  <= (others => '0');
         end if;
 	end case;
   end process;
 --! Data path : functional units
   sub_out <= n_reg - b_reg;
   adder_out <= q_reg + 1; --! Number of subtractions
-  tmp_rem <= std_logic_vector(q_reg*b_reg);
-  remainder <= std_logic_vector(unsigned(a_i) - unsigned(tmp_rem(7 downto 0))); --! dividend = quotient*divisor + remainder
+--  tmp_rem <= std_logic_vector(q_reg*b_reg);
+--  remainder <= std_logic_vector(unsigned(a_i) - unsigned(tmp_rem(7 downto 0))); --! dividend = quotient*divisor + remainder
 --! Data path : status
   count_0 <= '1' when n_reg < b_reg else '0';
 --! Data path : output
   q_o  <= std_logic_vector(q_reg);
-  r_o <= std_logic_vector(rem_reg);
+  remainder <= std_logic_vector(q_reg * b_reg);
+  r_o <= std_logic_vector(unsigned(a_i)-unsigned(remainder(7 downto 0)));
 end arch;
