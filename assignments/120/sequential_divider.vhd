@@ -171,11 +171,16 @@ begin
           n_next   <= unsigned(a_i);
           q_next   <= "11111111";
           rem_next <= "11111111";
-        elsif a_i = "00000000" or unsigned(a_i) < unsigned (b_i) then
+        elsif a_i = "00000000" then
           b_next   <= (others => '0');
           n_next   <= (others => '0');
           q_next   <= (others => '0');
           rem_next <= (others => '0');
+        elsif unsigned(a_i) < unsigned (b_i) then
+          b_next   <=  b_reg;
+          n_next   <= (others => '0');
+          q_next   <= (others => '0');
+          rem_next <= remainder;
         else
           b_next  <= b_reg;
           n_next  <= sub_out;
