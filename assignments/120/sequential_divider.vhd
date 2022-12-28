@@ -93,31 +93,21 @@ begin
 
 --! Control path: next-state / output logic
 -- Defining states
-  process(state_reg, start_i, a_i, b_next, count_0)
+  process(state_reg, start_i, a_i, b_i, b_next, count_0)
   begin
     case state_reg is
       when idle =>
         if start_i = '1' then
           state_next <= load;
--- if a_is_0 = '1' then
--- state_next <= a0;
--- elsif b_is_0 = '1' then
--- state_next <= b0;
--- elsif a_lt_b = '1' then
--- state_next <= a_lessthan_b;
-        else
+		else
           state_next <= idle;
         end if;
--- when a0 =>
--- state_next <= idle;
--- when b0 =>
--- state_next <= idle;
--- when a_lessthan_b =>
--- state_next <= idle;
       when load =>
         state_next <= op;
       when op =>
         if b_next = "00000000" or a_i = "00000000" or count_0 = '1' then
+          state_next <= idle;
+        elsif unsigned(a_i) < unsigned(b_i) then
           state_next <= idle;
         else
           state_next <= op;
@@ -148,22 +138,14 @@ begin
   begin
     case state_reg is
       when idle =>
-        b_next <= b_reg;
-        n_next <= n_reg;
-        q_next <= q_reg;
-        rem_next  <= rem_reg;
--- when a0 => --! Zero divided by b
--- b_next <= unsigned(b_i);
--- n_next <= unsigned(a_i);
--- q_next <= (others => '0');
--- when b0 => --! Dividing by zero!
--- b_next <= unsigned(b_i);
--- n_next <= unsigned(a_i);
--- q_next <= "11111111";
+        b_next   <=  b_reg;
+        n_next   <=  n_reg;
+        q_next   <=  q_reg;
+        rem_next <=  rem_reg;
       when load =>
-        b_next  <= unsigned(b_i);
-        n_next  <= unsigned(a_i);
-        q_next  <= (others => '1');
+        b_next   <= unsigned(b_i);
+        n_next   <= unsigned(a_i);
+        q_next   <= (others => '1');
         rem_next <= (others => '0');
       when op =>
         if b_reg = "00000000" then
@@ -187,27 +169,16 @@ begin
           q_next  <= adder_out;
           rem_next  <= remainder;
         end if;
--- when a_lessthan_b =>
--- b_next <= unsigned(b_i);
--- n_next <= unsigned(a_i);
--- q_next <= (others => '0');
-    end case;
+	end case;
   end process;
 --! Data path : functional units
-
   sub_out <= n_reg - b_reg;
   adder_out <= q_reg + 1; --! Number of subtractions
   tmp_rem <= std_logic_vector(q_reg*b_reg);
-  remainder <= std_logic_vector(unsigned(a_i) - unsigned(tmp_rem(7 downto 0)));
-  --! Data path : status
--- a_is_0  <= '1' when a_i = "00000000" else '0';
--- b_is_0  <= '1' when b_i = "00000000" else '0';
--- a_lt_b  <= '1' when unsigned(a_i) < unsigned(b_i) else '0';
+  remainder <= std_logic_vector(unsigned(a_i) - unsigned(tmp_rem(7 downto 0))); --! dividend = quotient*divisor + remainder
+--! Data path : status
   count_0 <= '1' when n_reg < b_reg else '0';
 --! Data path : output
   q_o  <= std_logic_vector(q_reg);
---! dividend = quotient*divisor + remainder
---  remainder  <= std_logic_vector(q_reg * b_reg);
---  r_o        <= std_logic_vector(unsigned(a_i) - unsigned(remainder(7 downto 0)));
   r_o <= std_logic_vector(rem_reg);
 end arch;
