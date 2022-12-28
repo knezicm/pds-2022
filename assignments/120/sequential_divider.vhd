@@ -93,7 +93,7 @@ begin
 
 --! Control path: next-state / output logic
 -- Defining states
-  process(state_reg, start_i, b_next, count_0)
+  process(state_reg, start_i, a_i, b_next, count_0)
   begin
     case state_reg is
       when idle =>
@@ -117,7 +117,7 @@ begin
       when load =>
         state_next <= op;
       when op =>
-        if b_next = "00000000" or count_0 = '1' then
+        if b_next = "00000000" or a_i = "00000000" or count_0 = '1' then
           state_next <= idle;
         else
           state_next <= op;
@@ -171,6 +171,11 @@ begin
           n_next   <= unsigned(a_i);
           q_next   <= "11111111";
           rem_next <= "11111111";
+        elsif a_i = "00000000" then
+          b_next   <= (others => '0');
+          n_next   <= (others => '0');
+          q_next   <= (others => '0');
+          rem_next <= (others => '0');
         else
           b_next  <= b_reg;
           n_next  <= sub_out;
