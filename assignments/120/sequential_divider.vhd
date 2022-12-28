@@ -86,7 +86,7 @@ begin
   --! Control path: state register
   process(clk_i, rst_i)
   begin
-    if reset_i = '1' then
+    if rst_i = '1' then
       state_reg <= idle;
     elsif rising_edge(clk_i) then
       state_reg <= state_next;
@@ -138,7 +138,7 @@ begin
   --! Data path : data register
   process(clk_i, rst_i)
   begin
-    if reset_i = '1' then
+    if rst_i = '1' then
       b_reg   <= (others => '0');
       n_reg   <= (others => '0');
       q_reg   <= (others => '0');
