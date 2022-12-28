@@ -62,8 +62,9 @@ entity fibonacci is
 end fibonacci;
 
 --! @brief Architecture definition of the fibonacci
---! @details This design is realized like a Moore machine with a finite number of states by using look-ahead output method.
---! When start_i is set to logic '1', a sequence of bits "10101010" appears on the output (data_o).
+--! @details This design is realized like register-transfer method.
+--! When start_i is set to logic '1', a fibonacci array with size of n_i appears on the output (r_o).
+--! During this proces ready_o is set to logic '0', else is '1'.
 architecture arch of fibonacci is
   type t_state is (idle1, idle2, n0, load, op); --! States of FSM
   signal state_reg : t_state; --! Current state of register
