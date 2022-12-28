@@ -163,7 +163,7 @@ begin
       when load =>
         b_next  <= unsigned(b_i);
         n_next  <= unsigned(a_i);
-        q_next  <= (others => '0');
+        q_next  <= (others => '1');
         rem_next <= (others => '0');
       when op =>
         if b_reg = "00000000" then
