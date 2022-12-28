@@ -241,8 +241,3 @@ begin
   q_o <= std_logic_vector(q_reg);
   r_o <= std_logic_vector(rem_reg);
 end arch;
-
-configuration conf of sequential_divider is
-  for arch
-  end for;
-end conf;
