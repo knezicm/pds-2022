@@ -20,7 +20,7 @@
 ## PROGRAM "Quartus Prime"
 ## VERSION "Version 17.0.0 Build 595 04/25/2017 SJ Lite Edition"
 
-## DATE    "Tue Dec 27 23:58:52 2022"
+## DATE    "Thu Dec 29 18:04:54 2022"
 
 ##
 ## DEVICE  "5CSEMA5F31C6"
@@ -39,8 +39,8 @@ set_time_format -unit ns -decimal_places 3
 # Create Clock
 #**************************************************************
 
-create_clock -name {clk_i} -period 1.000 -waveform { 0.000 0.500 } [get_ports {clk_i}]
-
+create_clock -name clk_i -period 10 [get_ports {clk_i}]
+create_clock -name clk_virt -period 10
 
 #**************************************************************
 # Create Generated Clock
@@ -58,26 +58,29 @@ create_clock -name {clk_i} -period 1.000 -waveform { 0.000 0.500 } [get_ports {c
 # Set Clock Uncertainty
 #**************************************************************
 
-set_clock_uncertainty -rise_from [get_clocks {clk_i}] -rise_to [get_clocks {clk_i}] -setup 0.170  
-set_clock_uncertainty -rise_from [get_clocks {clk_i}] -rise_to [get_clocks {clk_i}] -hold 0.060  
-set_clock_uncertainty -rise_from [get_clocks {clk_i}] -fall_to [get_clocks {clk_i}] -setup 0.170  
-set_clock_uncertainty -rise_from [get_clocks {clk_i}] -fall_to [get_clocks {clk_i}] -hold 0.060  
-set_clock_uncertainty -fall_from [get_clocks {clk_i}] -rise_to [get_clocks {clk_i}] -setup 0.170  
-set_clock_uncertainty -fall_from [get_clocks {clk_i}] -rise_to [get_clocks {clk_i}] -hold 0.060  
-set_clock_uncertainty -fall_from [get_clocks {clk_i}] -fall_to [get_clocks {clk_i}] -setup 0.170  
-set_clock_uncertainty -fall_from [get_clocks {clk_i}] -fall_to [get_clocks {clk_i}] -hold 0.060  
+derive_clock_uncertainty
 
 
 #**************************************************************
 # Set Input Delay
 #**************************************************************
 
-
+set_input_delay -clock clk_virt -min 0.350 [get_ports {start_i}]
+set_input_delay -clock clk_virt -max 0.550 [get_ports {start_i}]
+set_input_delay -clock clk_virt -min 0.350 [get_ports {a_i[*]}]
+set_input_delay -clock clk_virt -max 0.550 [get_ports {a_i[*]}]
+set_input_delay -clock clk_virt -min 0.350 [get_ports {b_i[*]}]
+set_input_delay -clock clk_virt -max 0.550 [get_ports {b_i[*]}]
 
 #**************************************************************
 # Set Output Delay
 #**************************************************************
-
+set_output_delay -clock clk_virt -max 0.550 [get_ports {q_o[*]}]
+set_output_delay -clock clk_virt -min 0.350 [get_ports {q_o[*]}]
+set_output_delay -clock clk_virt -max 0.550 [get_ports {r_o[*]}]
+set_output_delay -clock clk_virt -min 0.350 [get_ports {r_o[*]}]
+set_output_delay -clock clk_virt -max 0.550 [get_ports {ready_o}]
+set_output_delay -clock clk_virt -min 0.350 [get_ports {ready_o}]
 
 
 #**************************************************************
@@ -90,7 +93,7 @@ set_clock_uncertainty -fall_from [get_clocks {clk_i}] -fall_to [get_clocks {clk_
 # Set False Path
 #**************************************************************
 
-
+set_false_path -from [get_ports {rst_i}] -to [all_registers]
 
 #**************************************************************
 # Set Multicycle Path

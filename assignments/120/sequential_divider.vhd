@@ -1,4 +1,3 @@
-
 -----------------------------------------------------------------------------
 -- Faculty of Electrical Engineering
 -- PDS 2022
@@ -53,13 +52,13 @@ use ieee.numeric_std.all;
 entity sequential_divider is
   port(
       clk_i   : in  std_logic; --! Clock input signal
-      rst_i : in  std_logic; --! Reset input signal
+      rst_i   : in  std_logic; --! Reset input signal
+      start_i : in  std_logic; --! Activating process of division
       a_i     : in  std_logic_vector(7 downto 0);  --! Numerator(dividend)
       b_i     : in  std_logic_vector(7 downto 0);  --! Denominator(divisor)
       q_o     : out std_logic_vector(7 downto 0);  --! Quotient, result of division
       r_o     : out std_logic_vector(7 downto 0);  --! Remainder
-      start_i : in  std_logic;
-      ready_o : out std_logic                      --! Signalizing whether process of division is over and new one can begin
+      ready_o : out std_logic                      --! Signalizing whether process of division is over
       );
 end sequential_divider;
 
@@ -79,8 +78,6 @@ architecture arch of sequential_divider is
   signal rem_reg, rem_next : unsigned(7 downto 0);
   signal remainder         : std_logic_vector(15 downto 0);
 
-
-
 begin
 
   --! Control path: state register
@@ -99,22 +96,24 @@ begin
     case state_reg is
       when idle =>
         if start_i = '1' then
-          if a_is_0 = '1' then
+          if ab_zeros = '1' then
+            state_next <= ab0;
+          elsif a_is_0 = '1' then
             state_next <= a0;
           elsif b_is_0 = '1' then
             state_next <= b0;
-          elsif b_gt_a = '1' then
-            state_next <= bgta;
           elsif a_eq_b = '1' then
             state_next <= a_equal_b;
-          elsif ab_zeros = '1' then
-            state_next <= ab0;
+          elsif b_gt_a = '1' then
+            state_next <= bgta;
           else
             state_next <= load;
           end if;
         else
           state_next <= idle;
         end if;
+      when ab0 =>
+        state_next <= idle;
       when a0 =>
         state_next <= idle;
       when b0 =>
@@ -122,8 +121,6 @@ begin
       when bgta =>
         state_next <= idle;
       when a_equal_b =>
-        state_next <= idle;
-      when ab0 =>
         state_next <= idle;
       when load =>
         state_next <= op;
@@ -151,7 +148,7 @@ begin
       b_reg   <= b_next;
       n_reg   <= n_next;
       q_reg   <= q_next;
-		rem_reg <= rem_next;
+      rem_reg <= rem_next;
     end if;
   end process;
 
@@ -164,42 +161,42 @@ begin
         n_next   <= n_reg;
         b_next   <= b_reg;
         q_next   <= q_reg;
-		rem_next <= rem_reg;
+        rem_next <= rem_reg;
+      when ab0  =>
+        n_next   <= unsigned(a_i);
+        b_next   <= unsigned(b_i);
+        q_next   <= "11111111";
+        rem_next <= "11111111";
       when a0 =>
         n_next   <= unsigned(a_i);
         b_next   <= unsigned(b_i);
         q_next   <= (others => '0');
-		rem_next <= (others => '0');
+        rem_next <= (others => '0');
       when b0 =>
         n_next   <= unsigned(a_i);
         b_next   <= unsigned(b_i);
         q_next   <= "11111111";
-		rem_next <= "11111111";
+        rem_next <= "11111111";
       when bgta =>
         n_next   <= unsigned(a_i);
         b_next   <= unsigned(b_i);
         q_next   <= (others => '0');
-		rem_next <= unsigned(a_i);
+        rem_next <= unsigned(a_i);
       when a_equal_b  =>
-        n_next   <= unsigned(a_i); 
-        b_next   <= unsigned(a_i);
+        n_next   <= unsigned(a_i);
+        b_next   <= unsigned(b_i);
         q_next   <= "00000001";
         rem_next <= (others => '0');
-      when ab0  =>
-        n_next   <= unsigned(a_i);
-		b_next   <= unsigned(b_i);
-        q_next   <= "11111111";
-        rem_next <= "11111111";
       when load =>
         n_next   <= unsigned(a_i);
         b_next   <= unsigned(b_i);
         q_next   <= (others => '1');
-		rem_next <= (others => '0');
+        rem_next <= (others => '0');
       when op =>
         n_next   <= sub_out;
         b_next   <= b_reg;
         q_next   <= adder_out;
-		rem_next <= (others => '0');
+        rem_next <= (others => '0');
     end case;
   end process;
 
@@ -212,9 +209,9 @@ begin
   b_is_0   <= '1' when a_i = "00000000" else '0';
   b_gt_a   <= '1' when unsigned(b_i) > unsigned(a_i) else '0';
   a_eq_b   <= '1' when unsigned(a_i) = unsigned(b_i) else '0';
-  ab_zeros <= '1' when unsigned(a_i) = "00000000" and unsigned(b_i) = "00000000" else '0'; 
+  ab_zeros <= '1' when a_i = "00000000" and b_i = "00000000" else '0';
   count_0 <= '1' when n_reg < b_reg else '0';
-
+--! Data path : output
   q_o   <= std_logic_vector(q_reg);
   remainder <= std_logic_vector(q_reg * b_reg);
   r_o   <= std_logic_vector(unsigned(a_i) - unsigned(remainder(7 downto 0)));
