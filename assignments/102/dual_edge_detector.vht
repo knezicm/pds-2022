@@ -150,4 +150,7 @@ component dual_edge_detector is
     end if;
   end process;
 end dual_edge_detector_arch;
+<<<<<<< HEAD:assignments/102/dual_edge_detector.vht
 
+=======
+>>>>>>> 171acd0ac7ba66b162d4e08f73bd568f8eb6fe50:assignments/102/dual_edge_detector_tb.vht
