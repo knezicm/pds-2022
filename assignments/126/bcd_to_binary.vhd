@@ -62,8 +62,8 @@ entity bcd_to_binary is
          start_i  : in  std_logic;                    --!Start of conv (input)
          bcd1_i   : in  std_logic_vector(3 downto 0); --!Input data (bcd1)
          bcd2_i   : in  std_logic_vector(3 downto 0); --!Input data (bcd2)
-         binary_o : out std_logic_vector(6 downto 0);--!Output of converter
-         ready_o  : out std_logic);                  --!Status flag(end of conv)
+         binary_o : out std_logic_vector(6 downto 0); --!Output of converter
+         ready_o  : out std_logic);                   --!Status flag(end of conv)
 
 end bcd_to_binary;
 
