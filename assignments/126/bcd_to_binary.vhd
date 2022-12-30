@@ -10,8 +10,8 @@
 --
 --   This file describe circuit that perform conversion from 8 bit BCD to
 --   7 bit BINARY
---   The main idea is to use following algorithm. First , initialise input
---   register bcd_reg with inputs
+--
+--
 -----------------------------------------------------------------------------
 -- Copyright (c) 2022 Faculty of Electrical Engineering
 -----------------------------------------------------------------------------
@@ -57,11 +57,11 @@ use ieee.numeric_std.all;
 
 entity bcd_to_binary is
   port (
-         clk_i    : in std_logic;                    --!Clock input
-         rst_i    : in std_logic;                    --!Reset input
-         start_i  : in std_logic;                    --!Start of conv (input)
-         bcd1_i   : in std_logic_vector(3 downto 0); --!Input data (bcd1)
-         bcd2_i   : in std_logic_vector(3 downto 0); --!Input data (bcd2)
+         clk_i    : in  std_logic;                    --!Clock input
+         rst_i    : in  std_logic;                    --!Reset input
+         start_i  : in  std_logic;                    --!Start of conv (input)
+         bcd1_i   : in  std_logic_vector(3 downto 0); --!Input data (bcd1)
+         bcd2_i   : in  std_logic_vector(3 downto 0); --!Input data (bcd2)
          binary_o : out std_logic_vector(6 downto 0);--!Output of converter
          ready_o  : out std_logic);                  --!Status flag(end of conv)
 
@@ -187,4 +187,4 @@ begin
   status_flag         <= '1' when num_shift_next = "0000" else '0';
 -- output
   binary_o            <= out_reg;
-  end arch;
+end arch;
