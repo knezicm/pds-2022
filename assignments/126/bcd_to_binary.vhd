@@ -82,10 +82,10 @@ end bcd_to_binary;
 architecture arch of bcd_to_binary is
 
 
-  type bcd_state_type is (idle, load, shift, sub);
+  type t_bcd_type is (idle, load, shift, sub);
 
-  signal state_reg      : bcd_state_type;
-  signal state_next     : bcd_state_type;
+  signal state_reg      : t_bcd_type;
+  signal state_next     : t_bcd_type;
   signal num_shift      : integer;
   signal status_flag    : std_logic;
   signal out_reg        : std_logic_vector(6 downto 0);
@@ -157,19 +157,19 @@ begin
   pr5 : process(state_reg, out_reg, bcd_reg, num_shift_reg, bcd1_i, bcd2_i, n_tmp, sub_bcd, shift_res, shift_bcd)
   begin
     case state_reg is
-      when idle   =>
+      when idle  =>
         out_reg_next   <= out_reg;
         bcd_reg_next   <= bcd_reg;
         num_shift_next <= num_shift_reg;
-       when load  =>
-         out_reg_next   <= (others => '0');
-         bcd_reg_next   <= bcd1_i & bcd2_i;
-         num_shift_next <= "0111";
-       when shift =>
+      when load  =>
+        out_reg_next   <= (others => '0');
+        bcd_reg_next   <= bcd1_i & bcd2_i;
+        num_shift_next <= "0111";
+      when shift =>
         out_reg_next   <= shift_res;
         bcd_reg_next   <= bcd_reg;
         num_shift_next <= n_tmp;
-      when sub    =>
+      when sub   =>
         out_reg_next   <= out_reg;
         bcd_reg_next   <= sub_bcd;
         num_shift_next <= num_shift_reg;
