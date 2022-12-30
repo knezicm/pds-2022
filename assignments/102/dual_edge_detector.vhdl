@@ -4,11 +4,11 @@
 -- https://github.com/knezicm/pds-2022/
 -----------------------------------------------------------------------------
 --
--- unit name:     dual_edge_detector
+-- unit name: dual_edge_detector
 --
 -- description:
 --
---   This file implements a dual-edge detector circuit using Mealy FSM logic.
+--   This file implements a dual-edge detector circuit using Melay FSM logic.
 --
 -----------------------------------------------------------------------------
 -- Copyright (c) 2022 Faculty of Electrical Engineering
@@ -35,14 +35,14 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
---! @file dual_edge_detector.vhd
---! @brief This file Implements  dual-edge detector.
+--! @file dual_edge_detector.vhd 
+--! @brief This file Implements  dual-edge detector. 
 --! This file is part of the PDS-2022 project
---! @author Tanja Popovic
+--! @author Azra Elezovic 
 
---! Use standard library
+--! Use standard library 
 library ieee;
---! Use numeric elements
+--! Use numeric elements 
 use ieee.std_logic_1164.all;
 
 
@@ -64,12 +64,12 @@ end dual_edge_detector;
 
 architecture arch of dual_edge_detector is
 
-	type state_type is 
-		(zero, one); 
+    type state_type is
+      (zero, one); 
     signal state_reg, state_next : state_type;
 
   begin
-  --! State register
+  --! State register 
   state_register : process(clk_i,rst_i)
   begin
     if rst_i = '1' then
@@ -106,5 +106,4 @@ architecture arch of dual_edge_detector is
         p_o <= '0';
     end case;
   end process output_logic;
-
 end arch;
