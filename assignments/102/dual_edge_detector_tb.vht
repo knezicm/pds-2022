@@ -149,4 +149,4 @@ component dual_edge_detector is
       report "Test completed.";
     end if;
   end process;
-end arch;
+end dual_edge_detector_arch;
