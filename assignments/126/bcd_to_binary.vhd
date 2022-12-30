@@ -11,6 +11,7 @@
 --   This file describe circuit that perform conversion from 8 bit BCD to
 --   7 bit BINARY
 --
+--
 -----------------------------------------------------------------------------
 -- Copyright (c) 2022 Faculty of Electrical Engineering
 -----------------------------------------------------------------------------
