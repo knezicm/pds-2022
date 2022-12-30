@@ -4,7 +4,7 @@
 -- https://github.com/knezicm/pds-2022/
 -----------------------------------------------------------------------------
 --
--- unit name:   bcd_to_bin
+-- unit name:   bcd_to_binary
 --
 -- description:
 --
@@ -40,14 +40,14 @@
 
 -------------------------------------------------------
 --!@file
---!@brief bcd_to_bin
+--!@brief bcd_to_binary
 -------------------------------------------------------
 
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
---!@brief bcd_to_bin entity (converter of input signal)
+--!@brief bcd_to_binary entity (converter of input signal)
 --!@details This entity represent converter of bcd input signal (2 x 4 bit signal)
 --!@details to binary(7 bit signal)
 --!@details Input signals are clk_i (clock), rst_i (reset), start_i (start of conversion) and
@@ -55,7 +55,7 @@ use ieee.numeric_std.all;
 --!@details On the output we have ready_o (status flag that represent end of conv) and binary_o
 --!@details (converted input data)
 
-entity bcd_to_bin is
+entity bcd_to_binary is
   port (
          clk_i    : in  std_logic;                    --!Clock input
          rst_i    : in  std_logic;                    --!Reset input
@@ -65,9 +65,9 @@ entity bcd_to_bin is
          binary_o : out std_logic_vector(6 downto 0); --!Output of converter
          ready_o  : out std_logic);                   --!Status flag(end of conv)
 
-end bcd_to_bin;
+end bcd_to_binary;
 
---!@brief  Architecture description of bcd_to_bin
+--!@brief  Architecture description of bcd_to_binary
 --!@details This architectur represent conversion of input data using RT methodology
 --!@details Arch is using following  algorithm for conversion:
 --!@details If start_i is '1' -> start of conversion
@@ -79,7 +79,7 @@ end bcd_to_bin;
 --!@details Repeate 2 and 3 points 7-times
 --!@details 4.Set ready_o to '1' (conversion finished)
 
-architecture arch of bcd_to_bin is
+architecture arch of bcd_to_binary is
 
 
   type t_bcd_type is (idle, load, shift, sub);
