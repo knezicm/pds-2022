@@ -35,14 +35,14 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
---! @file dual_edge_detector.vhd 
---! @brief This file Implements  dual-edge detector. 
+--! @file dual_edge_detector.vhd
+--! @brief This file Implements  dual-edge detector.
 --! This file is part of the PDS-2022 project
---! @author Azra Elezovic 
+--! @author Azra Elezovic
 
---! Use standard library 
+--! Use standard library
 library ieee;
---! Use numeric elements 
+--! Use numeric elements
 use ieee.std_logic_1164.all;
 
 
@@ -59,17 +59,17 @@ entity dual_edge_detector is
 end dual_edge_detector;
 
 
---! @details This circuit is designed using Mealy FSM with 3 states: zero, one
+--! @details This circuit is designed using Mealy FSM with 2 states: zero, one
 --! The circuit detects transitions 0-1 and 1-0
 
 architecture arch of dual_edge_detector is
 
-    type state_type is
+  type state_type is
       (zero, one); 
-    signal state_reg, state_next : state_type;
+  signal state_reg, state_next : state_type;
 
-  begin
-  --! State register 
+begin
+--! State register
   state_register : process(clk_i,rst_i)
   begin
     if rst_i = '1' then
