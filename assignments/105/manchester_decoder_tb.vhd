@@ -57,7 +57,7 @@ architecture arch of manchester_decoder_tb is
         );
   end component;
 
-  constant c_T        : time := 20 ns;
+  constant c_T        : time := 10 ns;
   signal i            : integer := 0;
   signal data_o  : std_logic;
   signal valid_o : std_logic;
@@ -71,23 +71,25 @@ architecture arch of manchester_decoder_tb is
   type t_test_vector_array is array (natural range <>) of t_test_vector;
 
   constant c_TEST_VECTORS : t_test_vector_array := (
-    ('1','0','0'),
+    ('0','0','0'),
+    ('0','0','1'),
+    ('0','0','0'),
     ('0','0','0'),
     ('1','1','1'),
     ('0','0','1'),
     ('1','1','1'),
-    ('0','0','1'),
-    ('0','1','1'),
     ('1','0','0'),
-    ('1','0','1'),
+    ('0','0','1'),
     ('0','0','0'),
     ('1','1','1'),
     ('0','0','1'),
-    ('0','1','1'),
+    ('0','0','0'),
+    ('1','1','1'),
     ('1','0','0'),
     ('0','0','1'),
+    ('0','0','0'),
     ('1','1','1'),
-    ('0','0','1')
+    ('1','0','0')
    );
 
 begin
@@ -119,10 +121,9 @@ begin
   begin
     if i /= c_TEST_VECTORS'length -1 then
       data_i_test  <= c_TEST_VECTORS(i).data_i;
-      wait for c_T/2;
       data_o  <= c_TEST_VECTORS(i).data_o;
       valid_o <= C_TEST_VECTORS(i).valid_o;
-      wait for c_T/2;
+      wait for  c_T;
     else
       wait;
     end if;
@@ -132,7 +133,7 @@ begin
   process
   begin
     wait until clk_i_test'event and clk_i_test = '1';
-    wait for c_T/4;
+    wait for 15 ns;
     assert(data_o_test = data_o and valid_o_test = valid_o)
        report "Test vector " & integer'image(i) & " failed. " &
               " Expected:data_o = " & std_logic'image(data_o_test) &

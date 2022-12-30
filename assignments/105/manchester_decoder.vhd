@@ -57,10 +57,11 @@ entity manchester_decoder is
 end manchester_decoder;
 
 --! @brief Architecture for manchester_decoder.
---! @details Architecture is implemented using Moore FSM with 5 states(idle, s0, s1, s2, s3).
---!
+--! @details Architecture is implemented using Moore FSM with 4 states(s0, s1, s2, s3).
+
+
 architecture arch of manchester_decoder is
-  type t_manch_dec is (idle,s0,s1,s2,s3);
+  type t_manch_dec is (s0,s1,s2,s3);
   signal state_reg,state_next : t_manch_dec;
 begin
 --! State register
@@ -74,35 +75,29 @@ begin
   process(state_reg,data_i) is
   begin
     case state_reg is
-      when idle =>
-        if data_i = '0' then
-          state_next <= s0;
-        elsif data_i = '1' then
-          state_next <= s2;
-        end if;
       when s0 =>
         if data_i = '0' then
-          state_next <= s0;
-        elsif data_i = '1' then
           state_next <= s1;
-        end if;
-      when s2 =>
-        if data_i = '0' then
-          state_next <= s3;
         elsif data_i = '1' then
           state_next <= s2;
         end if;
       when s1 =>
-        if data_i = '1' then
-          state_next <= s2;
-        elsif data_i = '0' then
+        if data_i = '0' then
           state_next <= s3;
+        elsif data_i = '1' then
+          state_next <= s2;
+        end if;
+      when s2 =>
+        if data_i = '0' then
+          state_next <= s1;
+        elsif data_i = '1' then
+          state_next <= s0;
         end if;
       when s3 =>
         if data_i = '0' then
-          state_next <= s0;
+          state_next <= s3;
         elsif data_i = '1' then
-          state_next <= s1;
+          state_next <= s2;
         end if;
     end case;
   end process;
@@ -112,12 +107,11 @@ begin
     data_o <= '0';
     valid_o <= '0';
     case state_reg is
-      when idle =>
       when s0 =>
-      when s2 =>
+      when s3 =>
       when s1 =>
         valid_o <= '1';
-      when s3 =>
+      when s2 =>
         data_o <= '1';
         valid_o <= '1';
     end case;
