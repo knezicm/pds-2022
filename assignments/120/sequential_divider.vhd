@@ -214,6 +214,6 @@ begin
 --! Data path : output
   q_o   <= std_logic_vector(q_reg);
   remainder <= std_logic_vector(q_reg * b_reg);
-  r_o   <= std_logic_vector(unsigned(a_i) - unsigned(remainder(7 downto 0)));
+  r_o <= std_logic_vector(rem_reg);
 
 end arch;
