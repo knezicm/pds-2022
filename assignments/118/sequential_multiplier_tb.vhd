@@ -128,9 +128,9 @@ begin
 
 
   test : process(clk_i_test)
-  variable write_col_to_output_buf : line;
-  variable counter                 : integer := 25;
-  variable temp                    : integer := 0;
+    variable write_col_to_output_buf : line;
+    variable counter                 : integer := 25;
+    variable temp                    : integer := 0;
 
 
   begin
