@@ -99,7 +99,6 @@ architecture arch of bcd_to_binary is
   signal shift_bcd      : std_logic_vector(7 downto 0);
   signal sub_bcd        : std_logic_vector(7 downto 0);
 begin
-
 -- CONTROL PATH
 -- state register
 
