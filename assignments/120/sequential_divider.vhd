@@ -206,7 +206,7 @@ begin
 
   --! Data path : status
   a_is_0   <= '1' when a_i = "00000000" else '0';
-  b_is_0   <= '1' when a_i = "00000000" else '0';
+  b_is_0   <= '1' when b_i = "00000000" else '0';
   b_gt_a   <= '1' when unsigned(b_i) > unsigned(a_i) else '0';
   a_eq_b   <= '1' when unsigned(a_i) = unsigned(b_i) else '0';
   ab_zeros <= '1' when a_i = "00000000" and b_i = "00000000" else '0';
