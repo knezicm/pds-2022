@@ -48,7 +48,7 @@ architecture dual_edge_detector_arch of dual_edge_detector_vhd_tst is
 -- signals  
   signal p_test      : std_logic;
   signal p_comp      : std_logic;
-  signal indeks           : integer := 0;
+  signal indeks		: integer := 0;
   signal clk_test    : std_logic;
   signal rst_test    : std_logic;
   signal strobe_test : std_logic;                                                 
@@ -71,13 +71,13 @@ component dual_edge_detector is
 
   constant C_MEALY_TEST_VECTORS : mealy_test_vector_array := (
     ('0', '0'),
+    ('1', '1'),
     ('1', '0'),
-    ('1', '0'),
-    ('0', '1'),
     ('0', '0')
   );
   
-  
+ begin
+ 
  uut : dual_edge_detector
     port map(
       clk_i     =>  clk_test,
@@ -115,8 +115,8 @@ component dual_edge_detector is
   process
   begin
 
-    strobe_test <= C_MEALY_TEST_VECTORS(i).strobe_v;
-    p_comp   <= C_MEALY_TEST_VECTORS(i).p_v;
+    strobe_test <= C_MEALY_TEST_VECTORS(indeks).strobe_v;
+    p_comp   <= C_MEALY_TEST_VECTORS(indeks).p_v;
     wait for 10 ns;
 
     if indeks < C_MEALY_TEST_VECTORS'length then

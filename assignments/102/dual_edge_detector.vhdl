@@ -59,16 +59,16 @@ entity dual_edge_detector is
 end dual_edge_detector;
 
 
---! @details This circuit is designed using Mealy FSM with 3 states: zero, one
+--! @details This circuit is designed using Mealy FSM with 2 states: zero, one
 --! The circuit detects transitions 0-1 and 1-0
 
 architecture arch of dual_edge_detector is
 
-    type state_type is
+    type mealy_state_type is
       (zero, one); 
-    signal state_reg, state_next : state_type;
+    signal state_reg, state_next : mealy_state_type;
 
-  begin
+ begin
   --! State register 
   state_register : process(clk_i,rst_i)
   begin
@@ -83,9 +83,11 @@ architecture arch of dual_edge_detector is
   next_state : process(state_reg, strobe_i)
   begin
     case state_reg is
-      when zero =>
-        if strobe_i = '1' then
+		when zero =>
+        if strobe_i = '1'  then
           state_next <= one;
+			 else
+			 state_next <= zero;
         end if;
       when one =>
         if strobe_i = '0' then
@@ -97,13 +99,21 @@ architecture arch of dual_edge_detector is
   end process next_state;
 
   --! Output logic
-  output_logic : process(state_next)
+  output_logic : process(state_reg, strobe_i)
   begin
-    case state_next is
+    case state_reg is
       when zero =>
-        p_o <= '0';
+			if strobe_i = '0' then
+				p_o <= '0';
+			else 
+				p_o <= '1';
+			end if;
       when one =>
-        p_o <= '0';
+			if strobe_i = '1' then
+				p_o <= '0';
+			else 
+				p_o <= '0';
+			end if;
     end case;
   end process output_logic;
 end arch;
