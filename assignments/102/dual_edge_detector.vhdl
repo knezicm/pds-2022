@@ -35,14 +35,14 @@
 -- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE
 -----------------------------------------------------------------------------
---! @file dual_edge_detector.vhd 
---! @brief This file Implements  dual-edge detector. 
+--! @file dual_edge_detector.vhd
+--! @brief This file Implements  dual-edge detector.vhd
 --! This file is part of the PDS-2022 project
---! @author Azra Elezovic 
+--! @author Azra Elezovic
 
---! Use standard library 
+--! Use standard library
 library ieee;
---! Use numeric elements 
+--! Use numeric elements
 use ieee.std_logic_1164.all;
 
 
@@ -65,11 +65,11 @@ end dual_edge_detector;
 architecture arch of dual_edge_detector is
 
     type mealy_state_type is
-      (zero, one); 
+      (zero, one);
     signal state_reg, state_next : mealy_state_type;
 
  begin
-  --! State register 
+  --! State register
   state_register : process(clk_i,rst_i)
   begin
     if rst_i = '1' then
@@ -83,11 +83,11 @@ architecture arch of dual_edge_detector is
   next_state : process(state_reg, strobe_i)
   begin
     case state_reg is
-		when zero =>
+      when zero =>
         if strobe_i = '1'  then
           state_next <= one;
-			 else
-			 state_next <= zero;
+	    else
+	      state_next <= zero;
         end if;
       when one =>
         if strobe_i = '0' then
@@ -103,17 +103,17 @@ architecture arch of dual_edge_detector is
   begin
     case state_reg is
       when zero =>
-			if strobe_i = '0' then
-				p_o <= '0';
-			else 
-				p_o <= '1';
-			end if;
+        if strobe_i = '0' then
+	  p_o <= '0';
+	else
+	  p_o <= '1';
+	end if;
       when one =>
-			if strobe_i = '1' then
-				p_o <= '0';
-			else 
-				p_o <= '0';
-			end if;
+        if strobe_i = '1' then
+	  p_o <= '0';
+	else
+	   p_o <= '0';
+	end if;
     end case;
   end process output_logic;
 end arch;
