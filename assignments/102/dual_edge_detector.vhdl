@@ -64,11 +64,11 @@ end dual_edge_detector;
 
 architecture arch of dual_edge_detector is
 
-    type mealy_state_type is
+  type mealy_state_type is
       (zero, one);
-    signal state_reg, state_next : mealy_state_type;
+  signal state_reg, state_next : mealy_state_type;
 
- begin
+begin
   --! State register
   state_register : process(clk_i,rst_i)
   begin
@@ -86,8 +86,8 @@ architecture arch of dual_edge_detector is
       when zero =>
         if strobe_i = '1'  then
           state_next <= one;
-	    else
-	      state_next <= zero;
+	else
+	  state_next <= zero;
         end if;
       when one =>
         if strobe_i = '0' then
@@ -112,7 +112,7 @@ architecture arch of dual_edge_detector is
         if strobe_i = '1' then
 	  p_o <= '0';
 	else
-	   p_o <= '0';
+	  p_o <= '0';
 	end if;
     end case;
   end process output_logic;
