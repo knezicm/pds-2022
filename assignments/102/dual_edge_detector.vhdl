@@ -86,8 +86,8 @@ begin
       when zero =>
         if strobe_i = '1'  then
           state_next <= one;
-	else
-	  state_next <= zero;
+        else
+          state_next <= zero;
         end if;
       when one =>
         if strobe_i = '0' then
@@ -104,16 +104,16 @@ begin
     case state_reg is
       when zero =>
         if strobe_i = '0' then
-	  p_o <= '0';
-	else
-	  p_o <= '1';
-	end if;
+          p_o <= '0';
+        else
+          p_o <= '1';
+        end if;
       when one =>
         if strobe_i = '1' then
-	  p_o <= '0';
-	else
-	  p_o <= '0';
-	end if;
+          p_o <= '0';
+        else
+          p_o <= '0';
+        end if;
     end case;
   end process output_logic;
 end arch;
