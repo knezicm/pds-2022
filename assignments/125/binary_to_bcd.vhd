@@ -51,7 +51,7 @@ use ieee.numeric_std.all;
 entity binary_to_bcd is
   port(
     clk_i    : in  std_logic;  --! Clock input signals.
-    reset_i  : in  std_logic;  --! It resets the system when set to logic '1'.
+    rst_i  : in  std_logic;  --! It resets the system when set to logic '1'.
     start_i  : in  std_logic;  --! It starts the system when set to logic '1'.
     binary_i : in  std_logic_vector(12 downto 0);  --! Binary input number.
     ready_o  : out std_logic; --! Output have logic state '1' when come in idle state.
@@ -84,9 +84,9 @@ architecture arch of binary_to_bcd is
 
 begin
  --! control path: state register
-  process(clk_i,reset_i)
+  process(clk_i,rst_i)
   begin
-    if reset_i = '1' then
+    if rst_i = '1' then
       state_reg <= idle;
     elsif rising_edge(clk_i) then
       state_reg <= state_next;
@@ -117,9 +117,9 @@ begin
 --! Control path : output logic
   ready_o <= '1' when state_reg = idle else '0';
 --! Data path : Data register
-  process(clk_i, reset_i)
+  process(clk_i, rst_i)
   begin
-    if reset_i = '1' then
+    if rst_i = '1' then
       binary_reg <= (others => '0');
       bcd1_reg <= (others => '0');
       bcd2_reg <= (others => '0');
