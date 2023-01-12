@@ -76,7 +76,7 @@ architecture arch of sequential_divider is
   signal adder_out     : unsigned(7 downto 0);
   signal sub_out       : unsigned(7 downto 0);
   signal rem_reg, rem_next : unsigned(7 downto 0);
-  signal remainder         : std_logic_vector(15 downto 0);
+  signal remainder         : unsigned(15 downto 0);
 
 begin
 
@@ -154,7 +154,7 @@ begin
 
   --! Control path : routing multiplexer
   process(state_reg, b_reg, n_reg, q_reg, rem_reg,
-          a_i, b_i, adder_out, sub_out)
+          a_i, b_i, adder_out, sub_out, remainder)
   begin
     case state_reg is
       when idle =>
@@ -196,13 +196,14 @@ begin
         n_next   <= sub_out;
         b_next   <= b_reg;
         q_next   <= adder_out;
-        rem_next <= (others => '0');
+        rem_next <= unsigned(a_i) - remainder(7 downto 0);
     end case;
   end process;
 
   --! Data path : functional units
   adder_out <= q_reg + 1;
   sub_out   <= n_reg - b_reg;
+  remainder <= adder_out * b_reg;
 
   --! Data path : status
   a_is_0   <= '1' when a_i = "00000000" else '0';
@@ -213,7 +214,6 @@ begin
   count_0 <= '1' when n_reg < b_reg else '0';
 --! Data path : output
   q_o   <= std_logic_vector(q_reg);
-  remainder <= std_logic_vector(q_reg * b_reg);
   r_o <= std_logic_vector(rem_reg);
 
 end arch;
