@@ -51,7 +51,7 @@ use ieee.numeric_std.all;
 entity binary_to_bcd is
   port(
     clk_i    : in  std_logic;  --! Clock input signals.
-    rst_i  : in  std_logic;  --! It resets the system when set to logic '1'.
+    rst_i    : in  std_logic;  --! It resets the system when set to logic '1'.
     start_i  : in  std_logic;  --! It starts the system when set to logic '1'.
     binary_i : in  std_logic_vector(12 downto 0);  --! Binary input number.
     ready_o  : out std_logic; --! Output have logic state '1' when come in idle state.
