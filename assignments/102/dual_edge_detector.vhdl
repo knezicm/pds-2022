@@ -44,6 +44,7 @@
 library ieee;
 --! Use numeric elements
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 
 --! @brief Entity for dual-edge detector
@@ -103,14 +104,14 @@ begin
   begin
     case state_reg is
       when zero =>
-        if strobe_i = '0' then
-          p_o <= '0';
-        else
+        if strobe_i = '1' then
           p_o <= '1';
+        else
+          p_o <= '0';
         end if;
       when one =>
-        if strobe_i = '1' then
-          p_o <= '0';
+        if strobe_i = '0' then
+          p_o <= '1';
         else
           p_o <= '0';
         end if;
